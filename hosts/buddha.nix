@@ -31,15 +31,6 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-  #   wget
-      fish
-      bash
-      vim
-      which
-      byobu
-      git
-  ];
 
   programs.zsh.enable = true;
 
