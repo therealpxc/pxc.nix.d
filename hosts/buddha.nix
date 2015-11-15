@@ -9,6 +9,7 @@
   imports = [ 
     ./users/users.nix 
     ./applications/applications.nix
+    ./data/fonts.nix
   ];
 
   # Use the GRUB 2 boot loader.
