@@ -49,4 +49,8 @@
 
     ];
   };
+  environment.systemPackages = with pkgs; [
+    # opentype font with Haskell ligatures (e.g., '->' renders as '→')
+    hasklig
+  ];
 }

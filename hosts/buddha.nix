@@ -6,10 +6,11 @@
 
 {
   # add imports to include other host-specific stuff
-  imports = [ 
-    ./users/users.nix 
+  imports = [
+    ./users/users.nix
     ./applications/applications.nix
     ./data/fonts.nix
+    ./development/build.nix
   ];
 
   # Use the GRUB 2 boot loader.
@@ -42,7 +43,7 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-  
+
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
 
