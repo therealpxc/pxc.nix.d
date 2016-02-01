@@ -17,8 +17,16 @@
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda";
 
+  nixpkgs.config.allowUnfree = true;
+
   networking.hostName = "davetim"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  
+  hardware.trackpoint = {
+    enable = true;
+    emulateWheel = true;
+    speed = 70;
+  };
 
   # Select internationalisation properties.
   i18n = {
@@ -34,18 +42,23 @@
    vimmy = pkgs.vim_configurable.customize {
        name = "vim";
        vimrcConfig.customRC = ''
-       # set vim shell to bash because Syntastic doesn't like fish and stuff
+       " set vim shell to bash because Syntastic doesn't like fish and stuff
        set shell=/run/current-system/sw/bin/bash
+       set number
        '';
        vimrcConfig.vam.pluginDictionaries = [
          {  names = [ 
-              "sensible"     # sensible defaults
-#              "vim-addon-nix"
-              "neocomplete"  # autocompletion
-              "Syntastic"    # syntax checking
-              "ctrlp"        # fuzzy finder
-              "Tabular"      # alignment guides
-              "Supertab"     # tab completion in insert mode
+              "sensible"        # sensible defaults
+              "vim-addon-nix"   # vim syntax checking for .nix files
+#              "neocomplete"     # autocompletion
+              "YouCompleteMe"   # better? autocompletion
+              "Syntastic"       # syntax checking
+              "ctrlp"           # fuzzy finder
+              "Tabular"         # alignment guides
+              "Supertab"        # tab completion in insert mode
+              "vim-gitgutter"   # mark changed lines since last commit with a clear visual indicator in the gutter
+              "fugitive"        # some kind of fancy git thing!
+              "ultisnips"       # fancy snippets
               ]; }
 
        ];
@@ -55,7 +68,13 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    wget vimmy nox
+    wget
+    vimmy             # custom vim with plugins and stuff!
+    nox               # nixos package search tool
+    super-user-spark  # extremely cool dotfiles manager
+    firefox
+    figlet            # command-line tool for rendering stylized text in ascii-art
+    kde4.yakuake           # quake-style terminal for KDE
   ];
   programs.fish.enable = true;
   security.sudo.enable = true;
@@ -71,9 +90,18 @@
   services.printing.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    config = ''
+      Section "InputClass"
+        Identifier "TPPS/2 IBM TrackPoint"
+        MatchProduct "TPPS/2 IBM TrackPoint"
+        MatchDevicePath "/dev/input/event*"
+        Option "AccelProfile" "flat"
+      EndSection
+    '';
+  };
 
   services.xserver.displayManager.slim.enable = true;
   services.xserver.desktopManager.kde5 =
