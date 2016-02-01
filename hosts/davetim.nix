@@ -20,7 +20,7 @@
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "davetim"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
   
   hardware.trackpoint = {
     enable = true;
@@ -30,7 +30,8 @@
 
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "Lat2-Terminus16";
+#    consoleFont = "Lat2-Terminus16";
+    consoleFont = "ter-powerline-v16n";
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
@@ -41,24 +42,37 @@
   nixpkgs.config.packageOverrides = { 
    vimmy = pkgs.vim_configurable.customize {
        name = "vim";
+
        vimrcConfig.customRC = ''
        " set vim shell to bash because Syntastic doesn't like fish and stuff
        set shell=/run/current-system/sw/bin/bash
        set number
+       set tabstop=2
        '';
+#       vimrcConfig.vam.knownPlugins = pkgs.vimPlugins; # optional
+       #vimrcConfig.vam.knownPlugins = pkgs.vimPlugins ++ mypkgs.pkgs.vimPlugins; # optional
        vimrcConfig.vam.pluginDictionaries = [
-         {  names = [ 
-              "sensible"        # sensible defaults
-              "vim-addon-nix"   # vim syntax checking for .nix files
+         {  names = [
+              "vim2nix"
+              "sensible"            # sensible defaults
+              "vim-addon-nix"       # vim syntax checking for .nix files
 #              "neocomplete"     # autocompletion
-              "YouCompleteMe"   # better? autocompletion
-              "Syntastic"       # syntax checking
-              "ctrlp"           # fuzzy finder
-              "Tabular"         # alignment guides
-              "Supertab"        # tab completion in insert mode
-              "vim-gitgutter"   # mark changed lines since last commit with a clear visual indicator in the gutter
-              "fugitive"        # some kind of fancy git thing!
-              "ultisnips"       # fancy snippets
+              "YouCompleteMe"       # better? autocompletion
+              "Syntastic"           # syntax checking
+              "ctrlp"               # fuzzy finder
+              "Tabular"             # alignment guides
+              "Supertab"            # tab completion in insert mode
+              "vim-gitgutter"       # mark changed lines since last commit with a clear visual indicator in the gutter
+              "fugitive"            # some kind of fancy git thing!
+              "UltiSnips"           # fancy snippets
+              "VimOutliner"         # vim outlining; collapse/expand trees like a cool kid
+              "vim-webdevicons"     # cool unicode glyphage
+#              "fireplace"       # Clojure REPL!
+#              "VimClojure"          # Clojure support for vim!
+#              "drgnbrg/vim-redl"    # repl debugging
+              #"ag"
+              #"gitv"
+              "tmux-navigator"
               ]; }
 
        ];
@@ -69,18 +83,44 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     wget
-    vimmy             # custom vim with plugins and stuff!
-    nox               # nixos package search tool
-    super-user-spark  # extremely cool dotfiles manager
+    which
+    vimmy               # custom vim with plugins and stuff!
+    nox                 # nixos package search tool
+    super-user-spark    # extremely cool dotfiles manager
     firefox
-    figlet            # command-line tool for rendering stylized text in ascii-art
-    kde4.yakuake           # quake-style terminal for KDE
+    figlet              # command-line tool for rendering stylized text in ascii-art
+    kde4.yakuake        # quake-style terminal for KDE
+    lighttable          # lighttable editor
+    leiningen           # Clojure project + dependency manager
+    gitAndTools.gitFull
+    gitAndTools.gitflow
+    gitAndTools.hub
+    gitAndTools.git-annex
+    silver-searcher
+    byobu
+    tmux
+    vimPlugins.vim-addon-vim2nix
+    vimPlugins.vim-addon-manager
+    nodePackages.bower2nix
+    nodePackages.npm2nix
+    pypi2nix
+    python2nix
+    egg2nix
+    kde5.konversation
+    fzf
+    fasd
+    mercurialFull
+    subversion
+    keychain
   ];
   programs.fish.enable = true;
+  users.defaultUserShell = "/run/current-system/sw/bin/fish";
   security.sudo.enable = true;
+  services.locate.enable = true;
+
   
   services.avahi.enable = true;
-
+  services.avahi.nssmdns = true;
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -119,7 +159,6 @@
     wheel = { members = [ "pxc" ];
     };
   };
-  users.defaultUserShell = "/run/current-system/sw/bin/fish";
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
