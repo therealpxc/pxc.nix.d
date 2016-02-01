@@ -4,7 +4,7 @@
 
 { config, pkgs, ... } :
 {
-  fonts = {
+    fonts = {
     fontconfig.enable = true;
     enableFontDir = true;
     enableCoreFonts = true;
@@ -15,7 +15,7 @@
       liberation_ttf
       comic-neue
       carlito
-
+      
       # general-purpose
       ttf_bitstream_vera
       dejavu_fonts
