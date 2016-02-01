@@ -47,6 +47,8 @@
       lmmath
       lmodern
 
+      hasklig
+      powerline-fonts
     ];
   };
   environment.systemPackages = with pkgs; [
