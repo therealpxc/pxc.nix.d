@@ -5,8 +5,8 @@
   nixpkgs.config.allowUnfree = true;
   # Select internationalisation properties.
   i18n = {
-#    consoleFont = "ter-powerline-v16n";
-    consoleFont = "Lat2-Terminus16";
+    consoleFont = "ter-powerline-v16n";
+#    consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
@@ -87,11 +87,17 @@
     mercurialFull
     subversion
     keychain
+    python27Packages.docker_compose
+    kde5.breeze
   ];
   programs.fish.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";
   security.sudo.enable = true;
   services.locate.enable = true;
+
+  virtualisation.libvirtd.enable = true;
+  virtualisation.docker.enable = true;
+  virtualisation.lxc.enable = true;
   
     
   services.avahi.enable = true;
@@ -109,10 +115,10 @@
   users.extraUsers.pxc = {
     isNormalUser = true;
     uid = 1000;
+    extraGroups = [ "users" "docker" "libvirtd" ];
   };
   users.groups = {
-    wheel = { members = [ "pxc" ];
-    };
+    wheel = { members = [ "pxc" ]; };
   };
 
 
