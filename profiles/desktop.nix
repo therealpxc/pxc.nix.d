@@ -138,6 +138,12 @@
 
   services.xserver.desktopManager.kde5.enable = true;
   services.xserver.desktopManager.kde5.phonon.gstreamer.enable = true;
-  services.xserver.desktopManager.kde5.phonon.gstreamer.vlc = true;
+  #services.xserver.desktopManager.kde5.phonon.vlc.enable = true; # appears not to work
+  services.xserver.desktopManager.default = "kde5";
   
+  services.xserver.displayManager.slim = {
+    enable = true;
+    defaultUser = "pxc";
+    autoLogin = true;
+  };
 }
