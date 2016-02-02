@@ -52,6 +52,11 @@
 
        ];
     };
+
+    byobuer = pkgs.byobu.overrideDerivation (attrs: {
+      name = "byobu";
+      buildInputs = with pkgs; byobu.buildInputs ++ [ newt python27Full];
+    });
   };
     
   # List packages installed in system profile. To search by name, run:
@@ -72,8 +77,10 @@
     gitAndTools.hub
     gitAndTools.git-annex
     silver-searcher
-    byobu
+#    byobu
     tmux
+    screen
+    byobuer
     vimPlugins.vim-addon-vim2nix
     vimPlugins.vim-addon-manager
     nodePackages.bower2nix
@@ -89,6 +96,13 @@
     keychain
     python27Packages.docker_compose
     kde5.breeze
+    #man_db
+    #pypyPackages.powerline
+    python35Packages.powerline
+    dvtm
+    dtach
+    kde5.plasma-pa
+    kde5.kdeplasma-addons
   ];
   programs.fish.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";
@@ -122,8 +136,8 @@
   };
 
 
-  services.xserver.displayManager.slim.enable = true;
   services.xserver.desktopManager.kde5.enable = true;
   services.xserver.desktopManager.kde5.phonon.gstreamer.enable = true;
+  services.xserver.desktopManager.kde5.phonon.gstreamer.vlc = true;
   
 }
