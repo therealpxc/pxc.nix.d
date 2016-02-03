@@ -24,14 +24,13 @@
        set number
        set tabstop=2
        '';
-#       vimrcConfig.vam.knownPlugins = pkgs.vimPlugins; # optional
+       #vimrcConfig.vam.knownPlugins = pkgs.vimPlugins; # optional
        #vimrcConfig.vam.knownPlugins = pkgs.vimPlugins ++ mypkgs.pkgs.vimPlugins; # optional
        vimrcConfig.vam.pluginDictionaries = [
          {  names = [
               "vim2nix"
               "sensible"            # sensible defaults
               "vim-addon-nix"       # vim syntax checking for .nix files
-#              "neocomplete"     # autocompletion
               "YouCompleteMe"       # better? autocompletion
               "Syntastic"           # syntax checking
               "ctrlp"               # fuzzy finder
@@ -42,9 +41,9 @@
               "UltiSnips"           # fancy snippets
               "VimOutliner"         # vim outlining; collapse/expand trees like a cool kid
               "vim-webdevicons"     # cool unicode glyphage
-#              "fireplace"       # Clojure REPL!
-#              "VimClojure"          # Clojure support for vim!
-#              "drgnbrg/vim-redl"    # repl debugging
+              #"fireplace"       # Clojure REPL!
+              #"VimClojure"          # Clojure support for vim!
+              #"drgnbrg/vim-redl"    # repl debugging
               #"ag"
               #"gitv"
               "tmux-navigator"
@@ -97,6 +96,9 @@
     dtach
     kde5.plasma-pa
     kde5.kdeplasma-addons
+    smbnetfs
+    fusesmb
+    cifs_utils
   ];
   programs.fish.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";
