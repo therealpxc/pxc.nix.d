@@ -53,10 +53,6 @@
        ];
     };
 
-    byobuer = pkgs.byobu.overrideDerivation (attrs: {
-      name = "byobu";
-      buildInputs = with pkgs; byobu.buildInputs ++ [ newt python27Full];
-    });
   };
     
   # List packages installed in system profile. To search by name, run:
@@ -77,10 +73,8 @@
     gitAndTools.hub
     gitAndTools.git-annex
     silver-searcher
-#    byobu
+    byobu
     tmux
-    screen
-    byobuer
     vimPlugins.vim-addon-vim2nix
     vimPlugins.vim-addon-manager
     nodePackages.bower2nix
@@ -124,6 +118,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
   
+  services.samba.enable = true;
+  services.samba.nsswins = true;
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.pxc = {
