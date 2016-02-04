@@ -19,30 +19,9 @@
   boot.loader.grub.device = "/dev/sda";
 
   networking.hostName = "ophelia"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
   ];
-  programs.fish.enable = true;
-  programs.zsh.enable = true;
-  security.sudo.enable = true;
-  
-  services.avahi.enable = true;
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.kdm.enable = true;
-  services.xserver.desktopManager.kde5.enable = true;
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
