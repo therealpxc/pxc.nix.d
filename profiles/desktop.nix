@@ -62,7 +62,7 @@
     vimmy               # custom vim with plugins and stuff!
     nox                 # nixos package search tool
     super-user-spark    # extremely cool dotfiles manager
-    firefox
+    firefox-wrapper     # the wrapper means we get pluginz
     figlet              # command-line tool for rendering stylized text in ascii-art
     kde4.yakuake        # quake-style terminal for KDE
     lighttable          # lighttable editor
@@ -94,16 +94,30 @@
     python35Packages.powerline
     dvtm
     dtach
+    abduco
     kde5.plasma-pa
     kde5.kdeplasma-addons
     smbnetfs
     fusesmb
     cifs_utils
+    kde4.cantor
+    s3fs
+    sshfsFuse
+    google-drive-ocamlfuse
+    fuse-7z-ng
+    kde5.kdbusaddons
+    glxinfo
+    cowsay
+    atom
+    dwm
+    i3
+    kde5.okular
   ];
   programs.fish.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";
   security.sudo.enable = true;
   services.locate.enable = true;
+  hardware.pulseaudio.enable = true;
 
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
@@ -133,7 +147,8 @@
     wheel = { members = [ "pxc" ]; };
   };
 
-
+  services.xserver.enable = true;
+  services.xserver.layout = "us";
   services.xserver.desktopManager.kde5.enable = true;
   services.xserver.desktopManager.kde5.phonon.gstreamer.enable = true;
   #services.xserver.desktopManager.kde5.phonon.vlc.enable = true; # appears not to work
