@@ -5,8 +5,9 @@
   nixpkgs.config.allowUnfree = true;
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "ter-powerline-v16n";
-#    consoleFont = "Lat2-Terminus16";
+#    consoleFont = "/run/current-system/sw/share/fonts/psf/ter-powerline-v20n.psf.gz";
+    consoleFont = "ter-powerline-v16n";    # TODO: fix the powerline-fonts package so that the full path is not required
+#    consoleFont = "Lat2-Terminus16";       # default
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
@@ -71,6 +72,7 @@
     gitAndTools.gitflow
     gitAndTools.hub
     gitAndTools.git-annex
+    gitAndTools.git-remote-hg
     silver-searcher
     byobu
     tmux
@@ -112,6 +114,13 @@
     dwm
     i3
     kde5.okular
+    grc
+    eclipses.eclipse_sdk_451
+    jdk     # openjdk 8
+    jdk7    # openjdk 7
+    rekonq
+    x2goclient
+    kde5.sddm-kcm
   ];
   programs.fish.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";
@@ -136,6 +145,12 @@
   
   services.samba.enable = true;
   services.samba.nsswins = true;
+
+  services.telepathy.enable = true;
+
+  # this may be dangerous! this uses a kms-based console instead of getty
+  # it may make my console awesome... it might fuck me
+  services.kmscon.enable = true;
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.pxc = {
@@ -148,15 +163,12 @@
   };
 
   services.xserver.enable = true;
+  #services.xserver.autorun = false; # i think we're good?
   services.xserver.layout = "us";
   services.xserver.desktopManager.kde5.enable = true;
   services.xserver.desktopManager.kde5.phonon.gstreamer.enable = true;
-  #services.xserver.desktopManager.kde5.phonon.vlc.enable = true; # appears not to work
+
+  # disable slim by preferring sddm; slim is apparently kinda broken
+  services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.default = "kde5";
-  
-  services.xserver.displayManager.slim = {
-    enable = true;
-    defaultUser = "pxc";
-    autoLogin = true;
-  };
 }
