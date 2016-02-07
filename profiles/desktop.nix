@@ -120,7 +120,6 @@
     jdk7    # openjdk 7
     rekonq
     x2goclient
-    kde5.sddm-kcm
   ];
   programs.fish.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";

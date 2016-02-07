@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./data/fonts.nix
-      ./profile/common.nix
+#      ./profiles/common.nix
       ./profiles/desktop.nix
     ];
 
@@ -31,7 +31,6 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    layout = "us";
     config = ''
       Section "InputClass"
         Identifier "TPPS/2 IBM TrackPoint"
