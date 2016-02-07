@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./data/fonts.nix
+      ./profile/common.nix
       ./profiles/desktop.nix
     ];
 
