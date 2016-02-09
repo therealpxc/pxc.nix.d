@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./data/fonts.nix
+      ./profiles/common.nix
       ./profiles/desktop.nix
     ];
 
@@ -25,5 +26,8 @@
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
+
+  services.kmscon.hwRender = true;
+
 
 }
