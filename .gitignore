@@ -1,5 +1,5 @@
-./configuration.nix
-./hardware-configuration.nix
-./nixos-include
+configuration.nix
+hardware-configuration.nix
+nixos-include
 result
-./nixpkgs
+nixpkgs
