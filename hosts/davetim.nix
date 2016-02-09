@@ -9,8 +9,11 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./data/fonts.nix
+#      ./profiles/common.nix
       ./profiles/desktop.nix
     ];
+
+  nix.nixPath = [ "/etc/nixos" "nixos-config=/etc/nixos/configuration.nix" ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -30,7 +33,6 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    layout = "us";
     config = ''
       Section "InputClass"
         Identifier "TPPS/2 IBM TrackPoint"
