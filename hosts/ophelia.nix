@@ -22,6 +22,7 @@
   networking.hostName = "ophelia"; # Define your hostname.
 
   environment.systemPackages = with pkgs; [
+    gazebo
   ];
 
   # The NixOS release to be compatible with for stateful data such as databases.
