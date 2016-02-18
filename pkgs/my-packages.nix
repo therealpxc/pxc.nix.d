@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
-with import <nixpkgs>;
+{ config, pkgs, stdenv, ... }:
+#with import <nixpkgs>;
 
 {
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     vimmy
   ];
   
@@ -44,7 +44,7 @@ with import <nixpkgs>;
     };
 
     # needed for px4
-    empy = nixpkgs.pkgs.pythonPackages.buildPythonPackage rec {
+    empy = pkgs.pythonPackages.buildPythonPackage rec {
       version = "3.3.2";
       
       name = "empy-${version}";
@@ -54,7 +54,7 @@ with import <nixpkgs>;
         sha256 = "177avx6iv9sq2j2iak2il5lxqq0k4np7mpv5gasqmi3h4ypidw4r";
       };
 
-      meta = {
+      meta = with stdenv.lib; {
         description = "A powerful and robust templating system for Python.";
         homepage = "https://pypi.python.org/pypi/EmPy";
         license = licenses.lgpl2;

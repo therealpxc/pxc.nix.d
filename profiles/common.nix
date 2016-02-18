@@ -12,7 +12,7 @@
     EDITOR=vim
   '';
 
-  services.nfs.enable = true;
+  services.nfs.server.enable = true;
   services.sshd.enable = true;
   
   environment.systemPackages = with pkgs; [
@@ -20,5 +20,6 @@
     xpra              # in desktop.profile we also include winswitch
     p7zip
     utillinuxCurses   # used by oh-my-fish
+    nfs-utils
   ];
 }
