@@ -11,6 +11,9 @@
   environment.extraInit = ''
     EDITOR=vim
   '';
+
+  services.nfs.enable = true;
+  services.sshd.enable = true;
   
   environment.systemPackages = with pkgs; [
     vimmy
