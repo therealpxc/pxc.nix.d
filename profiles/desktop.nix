@@ -85,12 +85,16 @@
     winswitch
     kde5.dolphin-plugins
     kde5.kio-extras
+    i3status
+    dmenu
   ];
   programs.fish.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";
   security.sudo.enable = true;
   services.locate.enable = true;
   hardware.pulseaudio.enable = true;
+
+  services.xserver.windowManager.i3.enable = true;
 
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
