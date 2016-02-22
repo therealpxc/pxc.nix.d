@@ -22,6 +22,7 @@
   services.samba.enable = true;
   services.samba.nsswins = true;
   
+  virtualisation.virtualbox.host.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.lxc.enable = true;
@@ -35,7 +36,7 @@
     sshfsFuse
     nfs-utils
     vagrant
-    linuxPackages.virtualbox
+    #linuxPackages.virtualbox
     
     gitAndTools.gitFull
     gitAndTools.gitflow
@@ -64,13 +65,14 @@
     mercurialFull
     subversion
     keychain
+    mawk
   ];
   
     # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.pxc = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "users" "docker" "libvirtd" ];
+    extraGroups = [ "users" "docker" "libvirtd" "vboxusers" ];
   };
   users.groups = {
     wheel = { members = [ "pxc" ]; };
