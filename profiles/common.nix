@@ -65,7 +65,8 @@
     mercurialFull
     subversion
     keychain
-    mawk
+    mawk              # used by fasd
+    xsel              # used by pbcopy
   ];
   
     # Define a user account. Don't forget to set a password with ‘passwd’.
