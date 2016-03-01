@@ -18,6 +18,7 @@
   boot.loader.grub.version = 2;
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda";
+#  nix.useChroot = true;
 
   networking.hostName = "ophelia"; # Define your hostname.
 
@@ -27,7 +28,8 @@
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
-
+  
+  services.kmscon.enable = true;
   services.kmscon.hwRender = true;
 
 
