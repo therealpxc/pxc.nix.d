@@ -53,6 +53,16 @@
     abduco
     figlet              # command-line tool for rendering stylized text in ascii-art
 
+    htop
+    nix-repl
+    p7zip
+    nixops
+    disnix
+
+
+    gollum               # for editing GitLab 
+    
+
     # used by my fancy fish config
     grc
     utillinuxCurses   # used by oh-my-fish
