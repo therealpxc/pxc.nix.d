@@ -6,6 +6,7 @@
 
   # allow us to use custom nixpkgs by cloning it into /etc/nixos
   nix.nixPath = [ "/etc/nixos" "nixos-config=/etc/nixos/configuration.nix" ];
+  nix.useChroot = true;
 
   # this is only allowable because vimmy is also installed by default, see below
   environment.extraInit = ''
