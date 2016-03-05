@@ -6,6 +6,7 @@
 
   # allow us to use custom nixpkgs by cloning it into /etc/nixos
   nix.nixPath = [ "/etc/nixos" "nixos-config=/etc/nixos/configuration.nix" ];
+  nix.useChroot = true;
 
   # this is only allowable because vimmy is also installed by default, see below
   environment.extraInit = ''
@@ -22,6 +23,7 @@
   services.samba.enable = true;
   services.samba.nsswins = true;
   
+  virtualisation.virtualbox.host.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.lxc.enable = true;
@@ -35,7 +37,7 @@
     sshfsFuse
     nfs-utils
     vagrant
-    linuxPackages.virtualbox
+    #linuxPackages.virtualbox
     
     gitAndTools.gitFull
     gitAndTools.gitflow
@@ -52,6 +54,16 @@
     abduco
     figlet              # command-line tool for rendering stylized text in ascii-art
 
+    htop
+    nix-repl
+    p7zip
+    nixops
+    disnix
+
+
+    gollum               # for editing GitLab 
+    
+
     # used by my fancy fish config
     grc
     utillinuxCurses   # used by oh-my-fish
@@ -64,13 +76,15 @@
     mercurialFull
     subversion
     keychain
+    mawk              # used by fasd
+    xsel              # used by pbcopy
   ];
   
     # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.pxc = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "users" "docker" "libvirtd" ];
+    extraGroups = [ "users" "docker" "libvirtd" "vboxusers" ];
   };
   users.groups = {
     wheel = { members = [ "pxc" ]; };
