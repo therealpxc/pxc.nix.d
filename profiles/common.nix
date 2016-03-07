@@ -25,7 +25,7 @@
   
   boot.enableContainers = true;
   virtualisation.virtualbox.host.enable = true;
-  virtualisation.libvirtd.enable = true;
+  #virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.lxc.enable = true;
   
