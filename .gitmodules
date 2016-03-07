@@ -1,0 +1,3 @@
+[submodule "hydra"]
+	path = hydra
+	url = git@github.com:LatitudeEngineering/hydra.git
