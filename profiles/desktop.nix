@@ -66,7 +66,7 @@
     kde5.quassel
     kde4.kdesvn
     chromium
-    virtmanager
+    #virtmanager
     kde5.kate
   ];
 
@@ -93,4 +93,16 @@
   # disable slim by preferring sddm; slim is apparently kinda broken
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.default = "kde5";
+
+  # printer stuff!
+  services.printing.drivers = with pkgs; [
+    splix
+    gutenprint
+    foomatic_filters
+    ijs
+    foo2zjs
+    cups-bjnp
+    cups_filters
+    gutenprintBin
+  ];
 }
