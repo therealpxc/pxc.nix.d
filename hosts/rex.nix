@@ -22,7 +22,7 @@
   networking.hostName = "rex"; # Define your hostname.
 
   environment.systemPackages = with pkgs; [
-#    gazebo6
+    gazebo6
 #    gazebo7
     bluez-tools
 

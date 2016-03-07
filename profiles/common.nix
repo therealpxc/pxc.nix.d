@@ -6,7 +6,7 @@
 
   # allow us to use custom nixpkgs by cloning it into /etc/nixos
   nix.nixPath = [ "/etc/nixos" "nixos-config=/etc/nixos/configuration.nix" ];
-  nix.useChroot = true;
+#  nix.useChroot = true;
 
   # this is only allowable because vimmy is also installed by default, see below
   environment.extraInit = ''
@@ -23,6 +23,7 @@
   services.samba.enable = true;
   services.samba.nsswins = true;
   
+  boot.enableContainers = true;
   virtualisation.virtualbox.host.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
@@ -66,7 +67,7 @@
 
     # used by my fancy fish config
     grc
-    utillinuxCurses   # used by oh-my-fish
+    #utillinuxCurses   # used by oh-my-fish
     silver-searcher
     byobu
     tmux
