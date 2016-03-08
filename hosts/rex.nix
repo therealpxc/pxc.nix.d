@@ -11,6 +11,7 @@
       ./data/fonts.nix
       ./profiles/common.nix
       ./profiles/desktop.nix
+      ./profiles/hydra-container.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -31,7 +32,7 @@
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
-  
+
   services.kmscon.enable = true;
 
   # rex has an NVIDIA GTX 750 Ti
@@ -43,5 +44,9 @@
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
  # networking.wireless.enable = true; # does this conflict with networkmanager?
   networking.networkmanager.enable = true;
+
+  nix.buildCores = 4;
+  nix.maxJobs = 2;
+
 
 }
