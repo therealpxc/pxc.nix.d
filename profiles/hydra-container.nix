@@ -17,15 +17,6 @@
 
       imports = [ ../hydra/hydra-module.nix ];
 
-      # let's manually manage keys instead...
-#      environment.etc = pkgs.lib.singleton {
-#        target = "nix/id_buildfarm";
-#        source = ./id_buildfarm;
-#        uid = config.ids.uids.hydra;
-#        gid = config.ids.gids.hydra;
-#        mode = "0440";
-#      };
-
       networking.firewall.allowedTCPPorts = [ config.services.hydra.port ];
 
       nix = {
@@ -42,6 +33,7 @@
         enable = true;
         hydraURL = "http://hydra.rex.latitudeengineering.com";
         notificationSender = "hydra@latitudeengineering.com";
+        #listenHost = "192.168.0.216";
         port = 8080;
         extraConfig = "binary_cache_secret_key_file = /etc/nix/hydra.rex.latitudeengineering.com-1/secret";
       };
@@ -52,5 +44,6 @@
       };
 
     };
+    autoStart = true;   # run the container when the host system boots
   };
 }
