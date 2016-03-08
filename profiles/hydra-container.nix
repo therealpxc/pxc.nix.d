@@ -17,13 +17,14 @@
 
       imports = [ ../hydra/hydra-module.nix ];
 
-      environment.etc = pkgs.lib.singleton {
-        target = "nix/id_buildfarm";
-        source = ./id_buildfarm;
-        uid = config.ids.uids.hydra;
-        gid = config.ids.gids.hydra;
-        mode = "0440";
-      };
+      # let's manually manage keys instead...
+#      environment.etc = pkgs.lib.singleton {
+#        target = "nix/id_buildfarm";
+#        source = ./id_buildfarm;
+#        uid = config.ids.uids.hydra;
+#        gid = config.ids.gids.hydra;
+#        mode = "0440";
+#      };
 
       networking.firewall.allowedTCPPorts = [ config.services.hydra.port ];
 
