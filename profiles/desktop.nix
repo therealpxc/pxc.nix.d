@@ -81,7 +81,7 @@
 
   # this may be dangerous! this uses a kms-based console instead of getty
   # it may make my console awesome... it might fuck me
-  services.kmscon.enable = true;
+  #services.kmscon.enable = true;
   
 
   services.xserver.enable = true;
