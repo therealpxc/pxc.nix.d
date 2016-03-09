@@ -20,7 +20,8 @@
       networking.firewall.allowedTCPPorts = [ config.services.hydra.port ];
 
       nix = {
-        nixPath = [ "nixpkgs=https://github.com/nixos/nixpkgs-channels/archive/nixos-15.09.tar.gz" ];
+#        nixPath = [ "nixpkgs=https://github.com/nixos/nixpkgs-channels/archive/nixos-15.09.tar.gz" ];
+        nixPath = [ "nixpkgs=https://github.com/nixos/nixpkgs-channels/archive/nixos-16.03-beta.tar.gz" ];
         distributedBuilds = true;
         useChroot = true;
         buildMachines = [
