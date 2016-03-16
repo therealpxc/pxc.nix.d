@@ -15,8 +15,6 @@
   # Set your time zone.
   time.timeZone = "America/Phoenix";
 
-#  nixpkgs.config.packageOverrides = { 
-#  };
     
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -27,6 +25,7 @@
     lighttable          # lighttable editor
     leiningen           # Clojure project + dependency manager
 
+    virtualbox
     vimPlugins.vim-addon-vim2nix
     vimPlugins.vim-addon-manager
     nodePackages.bower2nix
@@ -65,8 +64,8 @@
 
     kde5.quassel
     kde4.kdesvn
-    chromium
-    #virtmanager
+    #chromium
+    virtmanager
     kde5.kate
   ];
 
