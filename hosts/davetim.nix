@@ -11,6 +11,7 @@
       ./data/fonts.nix
       ./profiles/common.nix
       ./profiles/desktop.nix
+#      ./profiles/hydra-container.nix
     ];
 
   nix.nixPath = [ "/etc/nixos" "nixos-config=/etc/nixos/configuration.nix" ];
@@ -46,6 +47,7 @@
   environment.systemPackages = with pkgs; [
     #emacs
     #splix
+    mesa
   ];
 
   services.printing.drivers = with pkgs; [
@@ -57,5 +59,8 @@
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
+  
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
 
 }
