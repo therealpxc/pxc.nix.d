@@ -25,7 +25,7 @@
     lighttable          # lighttable editor
     leiningen           # Clojure project + dependency manager
 
-    virtualbox
+    linuxPackages.virtualbox
     vimPlugins.vim-addon-vim2nix
     vimPlugins.vim-addon-manager
     nodePackages.bower2nix
