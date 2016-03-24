@@ -6,8 +6,11 @@
   services.openssh.passwordAuthentication = false;
 
   users = {
-    mutableUsers = false;
-    users.root.openssh.authorizedKeys.keyFiles = [ "~pxc/.ssh/id_rsa.pub" "~hydra/.ssh/id_rsa.pub" ];
+#    mutableUsers = false;
+    users.root.openssh.authorizedKeys.keyFiles = [ 
+      "/home/pxc/.ssh/id_rsa.pub" 
+      #"~hydra/.ssh/id_rsa.pub"
+    ];
   };
 
   imports = [ ../hydra/hydra-module.nix ];
@@ -15,7 +18,7 @@
   networking.firewall.allowedTCPPorts = [ config.services.hydra.port ];
 
   nix = {
-    nixPath = [ "nixpkgs=https://github.com/nixos/nixpkgs-channels/archive/nixos-16.03-beta.tar.gz" ];
+#    nixPath = [ "nixpkgs=https://github.com/nixos/nixpkgs-channels/archive/nixos-16.03-beta.tar.gz" ];
     distributedBuilds = true;
     useChroot = true;
     extraOptions = "auto-optimise-store = true";
