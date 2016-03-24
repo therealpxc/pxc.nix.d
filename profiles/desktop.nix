@@ -30,7 +30,7 @@
     vimPlugins.vim-addon-manager
     nodePackages.bower2nix
     nodePackages.npm2nix
-    pypi2nix
+    #pypi2nix
     python2nix
     egg2nix
     kde5.konversation
