@@ -67,6 +67,12 @@
     #chromium
     virtmanager
     kde5.kate
+    kde5.kdesu
+    kde4.kmix
+    lshw
+    pavucontrol
+    vlc
+    pythonPackages.youtube-dl
   ];
 
   hardware.pulseaudio.enable = true;

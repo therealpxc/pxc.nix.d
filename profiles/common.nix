@@ -62,12 +62,12 @@
     disnix
 
 
-    gollum               # for editing GitLab 
-    
+    gollum              # for editing GitLab 
+    weechat             # IRC for cool kidz 
 
     # used by my fancy fish config
     grc
-    #utillinuxCurses   # used by oh-my-fish
+    #utillinuxCurses    # used by oh-my-fish
     silver-searcher
     byobu
     tmux
@@ -85,7 +85,7 @@
   users.extraUsers.pxc = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "users" "docker" "libvirtd" "vboxusers" ];
+    extraGroups = [ "users" "docker" "libvirtd" "vboxusers" "dialout" ];
   };
   users.groups = {
     wheel = { members = [ "pxc" ]; };
