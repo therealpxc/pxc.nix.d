@@ -15,10 +15,20 @@
     ];
 
   # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    device = "/dev/sda";
+    copyKernels = true;
+    extraEntries = ''
+      menuentry 'Ubuntu' {
+        insmod ext2
+        set root='(hd0,2)'
+        chainloader +1
+      }
+    '';
+
+  };
 
   networking.hostName = "rex"; # Define your hostname.
 
