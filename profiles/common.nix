@@ -79,6 +79,7 @@
     keychain
     mawk              # used by fasd
     xsel              # used by pbcopy
+    python27Full
   ];
   
     # Define a user account. Don't forget to set a password with ‘passwd’.
