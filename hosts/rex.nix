@@ -93,6 +93,9 @@
 
   nix.buildCores = 4;
   nix.maxJobs = 2;
+#  nix.allowedUsers = [ "root" "pxc" "hydra" ];
+  nix.trustedUsers = [ "root" "pxc" ];
+
 
 
 }
