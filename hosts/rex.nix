@@ -11,7 +11,7 @@
       ./data/fonts.nix
       ./profiles/common.nix
       ./profiles/desktop.nix
-      ./profiles/hydra-container.nix
+#      ./profiles/hydra.nix
     ];
 
   # Use the GRUB 2 boot loader.
