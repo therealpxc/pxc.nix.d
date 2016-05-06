@@ -31,13 +31,11 @@
     vimPlugins.vim-addon-manager
     nodePackages.bower2nix
     nodePackages.npm2nix
-    #pypi2nix
     python2nix
     egg2nix
     kde5.konversation
     python27Packages.docker_compose
     kde5.breeze
-    #man_db
     kde5.plasma-pa
     kde5.kdeplasma-addons
     smbnetfs
