@@ -92,7 +92,7 @@
   #services.xserver.autorun = false; # i think we're good?
   services.xserver.layout = "us";
   services.xserver.desktopManager.kde5.enable = true;
-  services.xserver.desktopManager.kde5.phonon.gstreamer.enable = true;
+  #services.xserver.desktopManager.kde5.phonon.gstreamer.enable = true;
 
   # disable slim by preferring sddm; slim is apparently kinda broken
   services.xserver.displayManager.sddm.enable = true;
