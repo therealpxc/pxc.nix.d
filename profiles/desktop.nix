@@ -20,7 +20,8 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
 
-    firefox-wrapper     # the wrapper means we get pluginz
+    #firefox-wrapper     # the wrapper means we get pluginz
+    firefox
     kde4.yakuake        # quake-style terminal for KDE
     lighttable          # lighttable editor
     leiningen           # Clojure project + dependency manager
