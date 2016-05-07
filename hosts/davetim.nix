@@ -52,13 +52,6 @@
     mesa
   ];
 
-  services.printing.drivers = with pkgs; [
-    splix
-    gutenprint
-    foomatic_filters
-    #pkgs.gutenprint 
-  ];
-
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
   
