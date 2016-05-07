@@ -21,6 +21,8 @@
   boot.loader.grub.version = 2;
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.efiSupport = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   networking.hostName = "davetim"; # Define your hostname.
   networking.networkmanager.enable = true;
