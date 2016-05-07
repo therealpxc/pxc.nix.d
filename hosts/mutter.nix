@@ -7,7 +7,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
       ./profiles/player.nix
     ];
   nixpkgs.config.allowUnfree = true;
@@ -16,7 +15,14 @@
     enable = true;
     version = 2;
     device = "/dev/sda";
+  };
 
+
+  fileSystems = {
+    "/" = { device = "/dev/sda1"; fsType = "ext4"; };
+    "/mnt/Zeus" = { device = "/dev/sdb1"; fsType = "btrfs"; };
+    "/mnt/Constantine" = { device = "/dev/sdc1"; fsType = "btrfs"; };
+    "/home/pxc/.local/mnt/Constantine" = { device = "/mnt/Constantine"; fsType = "bind"; };
   };
 
   networking.hostName = "mutter"; # Define your hostname.
