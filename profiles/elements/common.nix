@@ -5,7 +5,16 @@
   imports = [ ./my-packages.nix ];
 
   # allow us to use custom nixpkgs by cloning it into /etc/nixos
-  nix.nixPath = [ "/etc/nixos" "nixos-config=/etc/nixos/configuration.nix" ];
+  nix.nixPath = [
+    # marks nixpkgs parent directory: 
+    # /etc/nixos/nixpkgs -> /home/pxc/Code/Personal/devnix (local checkout)
+    "/etc/nixos"
+
+    # top-level nixos configuration file
+    "nixos-config=/etc/nixos/configuration.nix"
+  ];
+
+  nix.trustedUsers = [ "@wheel" ];
 
   # this is only allowable because vimmy is also installed by default, see below
   environment.extraInit = ''
