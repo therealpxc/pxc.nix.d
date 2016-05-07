@@ -16,6 +16,7 @@
     kodiPlugins.pvr-hts
 
     steam
+    playonlinux   # wine frontend
   ];
 
   # 32-bit support for WINE and Steam games
