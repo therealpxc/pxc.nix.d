@@ -44,7 +44,9 @@
  # networking.wireless.enable = true; # does this conflict with networkmanager?
   networking.networkmanager.enable = true;
 
-  nix.buildCores = 4;
-  nix.maxJobs = 2;
-
+  services.xserver.displayManager.sddm.autoLogin = {
+    enable = true;
+    user = "pxc";
+    relogin = true;
+  };
 }
