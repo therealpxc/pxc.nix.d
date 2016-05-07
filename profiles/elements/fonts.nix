@@ -9,13 +9,13 @@
     enableFontDir = true;
     enableCoreFonts = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs ; [
+    fonts = with pkgs; [
       # microsoft & microsoft-compatibility
       vistafonts
       liberation_ttf
       comic-neue
       carlito
-      
+
       # general-purpose
       ttf_bitstream_vera
       dejavu_fonts
@@ -51,9 +51,4 @@
       powerline-fonts
     ];
   };
-  environment.systemPackages = with pkgs; [
-    # opentype font with Haskell ligatures (e.g., '->' renders as '→')
-    hasklig
-    powerline-fonts
-  ];
 }

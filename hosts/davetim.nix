@@ -8,13 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./data/fonts.nix
-      ./profiles/common.nix
-      ./profiles/desktop.nix
-#      ./profiles/hydra-container.nix
+      ./profiles/workstation.nix
     ];
-
-  nix.nixPath = [ "/etc/nixos" "nixos-config=/etc/nixos/configuration.nix" ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -26,7 +21,7 @@
 
   networking.hostName = "davetim"; # Define your hostname.
   networking.networkmanager.enable = true;
-  
+
   hardware.trackpoint = {
     enable = true;
     emulateWheel = true;
@@ -47,14 +42,12 @@
   };
 
   environment.systemPackages = with pkgs; [
-    #emacs
-    #splix
     mesa
   ];
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
-  
+
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
