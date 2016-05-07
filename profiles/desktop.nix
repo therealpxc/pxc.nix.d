@@ -109,5 +109,6 @@
     cups-bjnp
     cups_filters
     gutenprintBin
+    samsung-unified-linux-driver
   ];
 }
