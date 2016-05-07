@@ -75,6 +75,7 @@
     grc
     #utillinuxCurses    # used by oh-my-fish
     silver-searcher
+    sift
     byobu
     tmux
     python35Packages.powerline
