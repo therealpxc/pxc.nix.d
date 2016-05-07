@@ -1,23 +1,36 @@
 { config, pkgs, ... }:
 
+let
+  kodiPlugins = with pkgs.kodiPlugins; [
+    pdfreader steam-launcher urlresolver advanced-launcher pvr-hts
+  ];
+  
+  retroPlugins = with pkgs.libretro; [
+    
+  ];
+in 
 {
   imports = [ ./desktop.nix ];
 
   services.xserver.desktopManager.kodi.enable = true;
-  environment.systemPackages = with pkgs; [
-    kodiPlugins.pdfreader
-    kodiPlugins.steam-launcher
-    kodiPlugins.urlresolver
-    kodiPlugins.advanced-launcher
-    #kodiPlugins.salts  # (removed from github)
 
-    # TV streaming through TV headend
+
+  environment.systemPackages = with pkgs; [
+    kodi
+
+    # TV streaming (integrates w/ Kodi through pvr-hts)
     tvheadend
-    kodiPlugins.pvr-hts
 
     steam
     playonlinux   # wine frontend
-  ];
+
+    # aggregate emulator frontend; ROM library browser and manager
+    emulationstation
+
+    # modular game console emulator + backends
+    retroarch
+
+  ] ++ kodiPlugins ++ retroPlugins;
 
   # 32-bit support for WINE and Steam games
   hardware.opengl.driSupport32Bit = true;
