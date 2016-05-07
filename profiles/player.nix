@@ -1,15 +1,15 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./elements/desktop.nix ];
+  imports = [ ./desktop.nix ];
 
   services.xserver.desktopManager.kodi.enable = true;
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     kodiPlugins.pdfreader
     kodiPlugins.steam-launcher
     kodiPlugins.urlresolver
     kodiPlugins.advanced-launcher
-    kodiPlugins.salt
+    #kodiPlugins.salts  # (removed from github)
 
     # TV streaming through TV headend
     tvheadend
@@ -22,8 +22,8 @@
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages32 = with pkgs; [
     libvdpau-va-gl
-    libva-vdpau-driver
-    libva-intel-driver
+    vaapiVdpau
+    vaapiIntel
     libvdpau
     libva
   ];
