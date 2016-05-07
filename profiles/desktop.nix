@@ -20,7 +20,8 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
 
-    firefox-wrapper     # the wrapper means we get pluginz
+    #firefox-wrapper     # the wrapper means we get pluginz
+    firefox
     kde4.yakuake        # quake-style terminal for KDE
     lighttable          # lighttable editor
     leiningen           # Clojure project + dependency manager
@@ -30,13 +31,11 @@
     vimPlugins.vim-addon-manager
     nodePackages.bower2nix
     nodePackages.npm2nix
-    #pypi2nix
     python2nix
     egg2nix
     kde5.konversation
     python27Packages.docker_compose
     kde5.breeze
-    #man_db
     kde5.plasma-pa
     kde5.kdeplasma-addons
     smbnetfs
@@ -93,7 +92,7 @@
   #services.xserver.autorun = false; # i think we're good?
   services.xserver.layout = "us";
   services.xserver.desktopManager.kde5.enable = true;
-  services.xserver.desktopManager.kde5.phonon.gstreamer.enable = true;
+  #services.xserver.desktopManager.kde5.phonon.gstreamer.enable = true;
 
   # disable slim by preferring sddm; slim is apparently kinda broken
   services.xserver.displayManager.sddm.enable = true;
