@@ -51,6 +51,7 @@
     VertRefresh     50.0 - 75.0
     Option         "DPMS" "False" # this TV sucks; can't do DPMS
     DisplaySize    894 563
+    Option         "DPI" "208 x 210" # 2x native
   '';
 
   hardware.bluetooth.enable = true;
