@@ -6,7 +6,26 @@ let
   ];
   
   retroPlugins = with pkgs.libretro; [
-    
+    _4do
+    bsnes-mercury
+    desmume
+    fba
+    fceumm
+    gambatte
+    genesis-plus-gx
+    genesis-plus-gx
+    mednafen-pce-fast
+    mupen64plus
+    nestopia
+    picodrive
+    ppsspp
+    quicknes
+    scummvm
+    snes9x
+    snes9x-next
+    stella
+    vba-next
+    vba-m
   ];
 in 
 {
