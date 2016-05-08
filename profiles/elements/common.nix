@@ -101,7 +101,7 @@
   users.extraUsers.pxc = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "users" "docker" "libvirtd" "vboxusers" "dialout" ];
+    extraGroups = [ "users" "docker" "libvirtd" "vboxusers" "dialout" "cdrom" ];
   };
   users.groups = {
     wheel = { members = [ "pxc" ]; };

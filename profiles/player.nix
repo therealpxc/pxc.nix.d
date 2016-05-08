@@ -13,6 +13,7 @@ in
   imports = [ ./desktop.nix ];
 
   services.xserver.desktopManager.kodi.enable = true;
+  programs.cdemu.enable = true;
 
 
   environment.systemPackages = with pkgs; [
