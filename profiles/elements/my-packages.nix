@@ -13,8 +13,16 @@
        vimrcConfig.customRC = ''
        " set vim shell to bash because Syntastic doesn't like fish and stuff
        set shell=/run/current-system/sw/bin/bash
+       
+       " hybrid line numbering: absolute for current, relative for others
+       set relativenumber
        set number
+
+
+       " tab width is 2, replace tabs with 2 spaces each
        set tabstop=2
+       set expandtab
+       set shiftwidth=2
        '';
        #vimrcConfig.vam.knownPlugins = pkgs.vimPlugins; # optional
        #vimrcConfig.vam.knownPlugins = pkgs.vimPlugins ++ mypkgs.pkgs.vimPlugins; # optional
