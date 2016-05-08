@@ -71,8 +71,8 @@ in
     # hardware peripheral drivers and services
     cwiid
     xwiimote
-    #xboxdrv
-    #python27Packages.ds4drv  # this got removed from nixpkgs???
+    xboxdrv
+    python27Packages.ds4drv
     qjoypad
     #antimicro      # broken as of 2016-05-07
 
