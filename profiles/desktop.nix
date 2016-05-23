@@ -49,6 +49,14 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.desktopManager.kde5.enable = true;
+  services.xserver.windowManager = {
+    #compiz.enable = true;
+    dwm.enable = true;
+    fluxbox.enable = true;
+    icewm.enable = true;
+    openbox.enable = true;
+  };
+
   #services.xserver.desktopManager.kde5.phonon.gstreamer.enable = true;
 
   # disable slim by preferring sddm; slim is apparently kinda broken
