@@ -23,7 +23,7 @@
 
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "/run/current-system/sw/share/fonts/psf/ter-powerline-v20n.psf.gz";
+    #consoleFont = "/run/current-system/sw/share/fonts/psf/ter-powerline-v20n.psf.gz";
     #consoleFont = "ter-powerline-v16n";    # TODO: fix the powerline-fonts package so that the full path is not required
     #consoleFont = "Lat2-Terminus16";       # default
     consoleKeyMap = "us";
