@@ -74,5 +74,6 @@
     cups_filters
     gutenprintBin
     samsung-unified-linux-driver
+    samsung-unified-linux-driver_1_00_37
   ];
 }
