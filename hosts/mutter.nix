@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./profiles/player.nix
+      ./profiles/elements/seedbox.nix
     ];
   nixpkgs.config.allowUnfree = true;
   # Use the GRUB 2 boot loader.
