@@ -81,6 +81,12 @@
     Option         "DPI" "208 x 210" # 2x native
   '';
 
+  services.transmission.settings = {
+#    download-dir = "/mnt/Constantine/Docks/_Lost+Found";
+#    incomplete-dir = "/mnt/Constantine/Docks/_Incomplete";
+    incomplete-dir-enabled = true;
+  };
+
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   networking.networkmanager.enable = true;
