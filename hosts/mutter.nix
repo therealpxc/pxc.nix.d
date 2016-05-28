@@ -10,6 +10,8 @@
       ./profiles/player.nix
       ./profiles/elements/seedbox.nix
     ];
+  
+  # hardware-y stuff
   nixpkgs.config.allowUnfree = true;
   # Use the GRUB 2 boot loader.
   boot.loader.grub = {
@@ -18,24 +20,48 @@
     device = "/dev/sda";
   };
 
-
   fileSystems = {
     "/" = { device = "/dev/sda1"; fsType = "ext4"; };
     "/mnt/Zeus" = { device = "/dev/sdb1"; fsType = "btrfs"; };
     "/mnt/Constantine" = { device = "/dev/sdc1"; fsType = "btrfs"; };
-    "/home/pxc/.local/mnt/Constantine" = { device = "/mnt/Constantine"; fsType = "bind"; };
+    "/home/pxc/.local/mnt/Constantine" = { device = "/dev/sdc1"; fsType = "btrfs"; };
+#    "/home/pxc/.local/mnt/Constantine" = { device = "/mnt/Constantine"; fsType = "bind"; };
   };
+  swapDevices = [ { device = "/dev/sda5"; } ];
 
   networking.hostName = "mutter"; # Define your hostname.
 
   environment.systemPackages = with pkgs; [
+    bluez-tools
+    bluez
+    bluez4
   ];
+
+    services.udev.extraRules = ''
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="28de", MODE="0666"
+      KERNEL=="uinput", MODE="0660", GROUP="users", OPTIONS+="static_node=uinput"
+    '';
+    boot.kernelModules = [ "uinput" ];
+    boot.blacklistedKernelModules = [ "joydev" "xpad" ];
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.03";
 
+  nix.buildCores = 8;
+  nix.maxJobs = 4;
+
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.driSupport32Bit = true;
+  
+  services.xserver.libinput.enable = true;
+  services.xserver.libinput.clickMethod = "buttonareas";
+
+  services.xserver.synaptics.enable = true;
+  # for my tiny wireless keyboard, whose touchpad has no real buttons
+  services.xserver.synaptics.additionalOptions = ''
+    Option "LBCornerButton" "1"   # left-click
+    Option "RBCornerButton" "3"   # right-click
+  '';
 
   services.xserver.deviceSection = ''
     Driver         "nvidia"
@@ -58,10 +84,13 @@
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
 
   services.xserver.displayManager.sddm.autoLogin = {
     enable = true;
     user = "pxc";
-    relogin = true;
+    #relogin = true;
   };
+
+  #nixup.enable = true;
 }
