@@ -12,4 +12,6 @@
     tribler
   ];
 
+  users.groups.mediakeepers.members = [ "deluge" "transmission" ];
+
 }

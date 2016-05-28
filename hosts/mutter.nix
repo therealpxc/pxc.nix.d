@@ -82,8 +82,10 @@
   '';
 
   services.transmission.settings = {
-#    download-dir = "/mnt/Constantine/Docks/_Lost+Found";
-#    incomplete-dir = "/mnt/Constantine/Docks/_Incomplete";
+    # transmission needs ownership of these directories, as in NixOS,
+    # the systemd service chmods key directories.
+    download-dir = "/mnt/Constantine/Docks/_Lost+Found";
+    incomplete-dir = "/mnt/Constantine/Docks/_Incomplete";
     incomplete-dir-enabled = true;
   };
 
@@ -99,4 +101,5 @@
   };
 
   #nixup.enable = true;
+  users.users.pxc.extraGroups = [ "mediakeepers" ];
 }
