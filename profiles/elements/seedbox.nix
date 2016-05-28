@@ -13,7 +13,7 @@
   environment.systemPackages = with pkgs; [
     mktorrent
     python27Packages.flexget
-    transmission-remote-gtk
+    transmission_remote_gtk
     tribler
   ];
 
