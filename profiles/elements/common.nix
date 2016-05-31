@@ -79,6 +79,7 @@
 
     gollum              # for editing GitLab
     weechat             # IRC for cool kidz
+    pass                # git-based password management utility
 
     # used by my fancy fish config
     grc
