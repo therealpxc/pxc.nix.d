@@ -80,6 +80,10 @@
     gollum              # for editing GitLab
     weechat             # IRC for cool kidz
     pass                # git-based password management utility
+    qtpass
+    pwgen
+    gnupg
+    gnupg1
 
     # used by my fancy fish config
     grc

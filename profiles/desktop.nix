@@ -32,6 +32,7 @@
     kde4.kdesvn
     kde5.kate
     kde5.kdesu
+    kde5.kgpg
     kde4.kmix
     pavucontrol
     vlc
