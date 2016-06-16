@@ -33,7 +33,8 @@
     kde5.kate
     kde5.kdesu
     kde5.kgpg
-    kde4.kmix
+    #kde4.kmix
+    kde5.spectacle
     pavucontrol
     vlc
     pythonPackages.youtube-dl
