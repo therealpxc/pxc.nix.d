@@ -65,6 +65,13 @@
     wget
     which
     lshw
+    pstree
+    usbutils            # lsusb
+    
+    # basic multimedia
+    mediainfo
+    mplayer
+
     nox                 # nixos package search tool
     dvtm
     dtach
