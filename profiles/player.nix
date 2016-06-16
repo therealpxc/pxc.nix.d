@@ -38,6 +38,11 @@ in
   environment.systemPackages = with pkgs; [
     kodi
 
+    # mediainfo and mplayer included in profiles/elements/common.nix
+    # mediainfo mplayer
+    vlc
+    mpv
+
     # TV streaming (integrates w/ Kodi through pvr-hts)
     tvheadend
 
@@ -101,4 +106,7 @@ in
     libvdpau
     libva
   ];
+
+  services.xserver.vaapiDrivers = with pkgs; [ vaapiIntel vaapiVdpau vaapiIntel libvdpau libva libvdpau-va-gl ];
+
 }
