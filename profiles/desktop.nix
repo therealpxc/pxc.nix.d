@@ -13,6 +13,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     firefox
+    cutegram
     kde4.yakuake        # quake-style terminal for KDE
 
     vimPlugins.vim-addon-manager
