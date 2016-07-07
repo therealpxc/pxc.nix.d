@@ -15,11 +15,16 @@
       liberation_ttf
       comic-neue
       carlito
+      corefonts
+      dosemu_fonts
 
       # general-purpose
       ttf_bitstream_vera
       dejavu_fonts
       ubuntu_font_family
+
+      # my favorite fonts
+      libertine
 
       # extended unicode & special
       symbola
