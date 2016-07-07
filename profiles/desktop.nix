@@ -15,6 +15,7 @@
     firefox
     cutegram
     kde4.yakuake        # quake-style terminal for KDE
+    kde5.ark
 
     vimPlugins.vim-addon-manager
     kde5.breeze
