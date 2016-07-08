@@ -85,15 +85,15 @@ in
     game-music-emu
     freedink        # Dink Smallwood!
     hawkthorne      # Community game!
-    kde4.ksirk      # Risk
+    #kde4.ksirk      # Risk
     n2048
-    openmw          # Morrowind
-    openra          # Command & Conquer: Red Alert
-    superTux
-    wesnoth
-    widelands
-    warzone2100
-    xonotic
+    #openmw          # Morrowind
+    #openra          # Command & Conquer: Red Alert
+    #superTux
+    #wesnoth
+    #widelands
+    #warzone2100
+    #xonotic
 
   ] ++ kodiPlugins ++ retroPlugins;
 
