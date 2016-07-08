@@ -35,6 +35,8 @@
     kde5.kgpg
     #kde4.kmix
     kde5.spectacle
+    # afaik there's no manager app for kde5-only yet
+    kde4.kwalletmanager
     pavucontrol
     vlc
     pythonPackages.youtube-dl
