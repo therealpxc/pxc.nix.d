@@ -13,7 +13,10 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     firefox
+    cutegram
+    telegram-cli
     kde4.yakuake        # quake-style terminal for KDE
+    kde5.ark
 
     vimPlugins.vim-addon-manager
     kde5.breeze
