@@ -8,6 +8,18 @@
     ];
 
   services.xserver.windowManager.i3.enable = true;
+  
+  # for communityshare research for now
+  services.elasticsearch.enable = true;
+  services.elasticsearch.plugins = with pkgs; [
+    # web admin interface
+    elasticsearchPlugins.elasticsearch_kopf
+
+    # lemmatization (stemming, grouping inflected words with the same base)
+    #elasticsearchPlugins.elasticsearch_analisys_lemmagen # broken? 2016-06-08
+  ];
+
+  services.postgresql.enable = true;
 
   environment.systemPackages = with pkgs; [
     lighttable          # lighttable editor
@@ -23,6 +35,12 @@
     jdk     # openjdk 8
     jdk7    # openjdk 7
 
+    # python development tools
+    python35Packages.pew
+    python35Packages.virtualenv
+    idea.pycharm-community
 
+    # misc dev tools
+    direnv
   ];
 }
