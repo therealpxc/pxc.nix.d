@@ -13,7 +13,7 @@
   services.elasticsearch.enable = true;
   services.elasticsearch.plugins = with pkgs; [
     # web admin interface
-    elasticsearchPlugins.elasticsearch_kopf
+    #elasticsearchPlugins.elasticsearch_kopf # I think these are only for old elasticsearch
 
     # lemmatization (stemming, grouping inflected words with the same base)
     #elasticsearchPlugins.elasticsearch_analisys_lemmagen # broken? 2016-06-08
