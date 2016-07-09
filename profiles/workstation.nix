@@ -36,6 +36,7 @@
     jdk7    # openjdk 7
 
     # python development tools
+    python3
     python35Packages.pew
     python35Packages.virtualenv
     idea.pycharm-community
