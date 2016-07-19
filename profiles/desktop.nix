@@ -9,6 +9,15 @@
     ./elements/fonts.nix
   ];
 
+  nixpkgs.config.firefox = {
+    enableGoogleTalkPlugin = true;
+    enableAdobeFlash = true;
+  };
+
+  nixpkgs.config.chromium = {
+    enablePepperFlash = true;
+  };
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
