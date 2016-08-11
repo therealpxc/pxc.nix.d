@@ -52,6 +52,8 @@
     pavucontrol
     vlc
     pythonPackages.youtube-dl
+    kde5.gwenview
+    kde5.ksysguard
   ];
 
   hardware.pulseaudio.enable = true;
