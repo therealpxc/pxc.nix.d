@@ -75,6 +75,26 @@
       qt4Support = config.avahi.qt4Support or false;
       withLibdnssdCompat = true;
     };
+
+    texLive2014Custom = with pkgs; texLiveAggregationFun {
+      paths = [
+                texLive         # texlive core
+                texLiveCMSuper  # CM Super fonts needed for Lyx's use of article.cls
+                texLiveExtra
+              ];
+    };
+
+    texLive2015Custom = with pkgs; texlive.combine {
+      inherit
+        (texlive)     # defaults
+        scheme-tetex  # ‘bigger than medium, way less than full’
+        cm-super      # used in Lyx default document class
+        libertine     # Linux Libertine fonts family, my fave
+        preprint      # for fullpage.sty
+        enumitem      # for Lyx's ‘Customizable Lists’ module
+        graphviz      # for automata and stuff
+      ;
+    };
   };
 }
 
