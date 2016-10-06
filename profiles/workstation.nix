@@ -26,7 +26,7 @@
     leiningen               # Clojure project + dependency manager
     glxinfo
     atom
-    i3                  # TODO: figure out how I want to integrate i3 and kde5
+    i3                      # TODO: figure out how I want to integrate i3 and kde5
     eclipses.eclipse_sdk_451
     dwm
     i3status
