@@ -22,8 +22,8 @@
   services.postgresql.enable = true;
 
   environment.systemPackages = with pkgs; [
-    lighttable          # lighttable editor
-    leiningen           # Clojure project + dependency manager
+    lighttable              # lighttable editor
+    leiningen               # Clojure project + dependency manager
     glxinfo
     atom
     i3                  # TODO: figure out how I want to integrate i3 and kde5
