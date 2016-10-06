@@ -43,5 +43,12 @@
 
     # misc dev tools
     direnv
+
+    # typesetting tools
+    #texLive2014Custom       # defined in ../elements/my-packages.nix using texLiveAggregationFun
+    texLive2015Custom
+    lyx
+    graphviz
+    ghostscript
   ];
 }
