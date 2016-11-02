@@ -22,11 +22,11 @@
   services.postgresql.enable = true;
 
   environment.systemPackages = with pkgs; [
-    lighttable          # lighttable editor
-    leiningen           # Clojure project + dependency manager
+    lighttable              # lighttable editor
+    leiningen               # Clojure project + dependency manager
     glxinfo
     atom
-    i3                  # TODO: figure out how I want to integrate i3 and kde5
+    i3                      # TODO: figure out how I want to integrate i3 and kde5
     eclipses.eclipse_sdk_451
     dwm
     i3status
@@ -36,11 +36,19 @@
     jdk7    # openjdk 7
 
     # python development tools
+    python3
     python35Packages.pew
     python35Packages.virtualenv
     idea.pycharm-community
 
     # misc dev tools
     direnv
+
+    # typesetting tools
+    #texLive2014Custom       # defined in ../elements/my-packages.nix using texLiveAggregationFun
+    texLive2015Custom
+    lyx
+    graphviz
+    ghostscript
   ];
 }

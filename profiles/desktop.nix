@@ -9,6 +9,15 @@
     ./elements/fonts.nix
   ];
 
+  nixpkgs.config.firefox = {
+    enableGoogleTalkPlugin = true;
+    enableAdobeFlash = true;
+  };
+
+  nixpkgs.config.chromium = {
+    enablePepperFlash = true;
+  };
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -43,6 +52,8 @@
     pavucontrol
     vlc
     pythonPackages.youtube-dl
+    kde5.gwenview
+    kde5.ksysguard
   ];
 
   hardware.pulseaudio.enable = true;
@@ -81,6 +92,5 @@
     cups_filters
     gutenprintBin
     samsung-unified-linux-driver
-    samsung-unified-linux-driver_1_00_37
   ];
 }
