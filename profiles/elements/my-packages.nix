@@ -84,7 +84,7 @@
               ];
     };
 
-    texLive2015Custom = with pkgs; texlive.combine {
+    texLive2016Custom = with pkgs; texlive.combine {
       inherit
         (texlive)     # defaults
         scheme-tetex  # ‘bigger than medium, way less than full’
