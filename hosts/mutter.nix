@@ -27,6 +27,13 @@
     "/home/pxc/.local/mnt/Constantine" = { device = "/dev/sdc1"; fsType = "btrfs"; };
 #    "/home/pxc/.local/mnt/Constantine" = { device = "/mnt/Constantine"; fsType = "bind"; };
   };
+ 
+  systemd.automounts = [
+    { before = [ "deluged.service" "transmission.service" ]; wantedBy = [ "deluged.service" "transmission.service" ]; where = "/mnt/Constantine"; }
+    { before = [ "deluged.service" "transmission.service" ]; wantedBy = [ "deluged.service" "transmission.service" ]; where = "/mnt/Zeus"; }
+  ];
+
+
   swapDevices = [ { device = "/dev/sda5"; } ];
 
   networking.hostName = "mutter"; # Define your hostname.
