@@ -45,8 +45,7 @@
     direnv
 
     # typesetting tools
-    #texLive2014Custom       # defined in ../elements/my-packages.nix using texLiveAggregationFun
-    texLive2015Custom
+    texLive2016Custom       # defined in ../elements/my-packages.nix using texLiveAggregationFun
     lyx
     graphviz
     ghostscript

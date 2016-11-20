@@ -1,0 +1,38 @@
+Confused about the syntax of this section? Modules are a special and simple
+NixOS facility for modular configuration. It is possible to have a complete
+system configuration without them, even one that is split out across multiple
+source files. However, experimenting with NixOS modules helps prepare one for
+NixOS development, and adds some flexibility in configuration by making the
+configuration an object of reference within the configuration in a sane way.
+
+Modules use a simple and limited syntax, as follows:
+
+{
+  imports = [
+    # list of path to other modules.
+  ];
+
+  options = {
+    # attribute set of option declarations.
+  };
+
+  config = {
+    # attribute set of option definitions.
+  };
+}
+
+Alternatively, if they have no options to declare, they can be specified like
+this:
+
+{
+  require = [
+    # list of path to other modules.
+  ];
+
+  # attribute set of option definitions.
+}
+
+See the online documentation here:
+  • https://nixos.org/wiki/NixOS:Modules
+  • http://nixos.org/nixos/manual/index.html#sec-writing-modules
+  
