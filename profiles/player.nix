@@ -107,6 +107,8 @@ in
     libva
   ];
 
-  services.xserver.vaapiDrivers = with pkgs; [ vaapiIntel vaapiVdpau vaapiIntel libvdpau libva libvdpau-va-gl ];
+  hardware.pulseaudio.support32Bit = true;
+
+  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel vaapiVdpau vaapiIntel libvdpau libva libvdpau-va-gl ];
 
 }
