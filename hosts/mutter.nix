@@ -41,7 +41,6 @@
   environment.systemPackages = with pkgs; [
     bluez-tools
     bluez
-    bluez4
   ];
 
     services.udev.extraRules = ''
@@ -63,12 +62,12 @@
   services.xserver.libinput.enable = true;
   services.xserver.libinput.clickMethod = "buttonareas";
 
-  services.xserver.synaptics.enable = true;
+  #services.xserver.synaptics.enable = true;
   # for my tiny wireless keyboard, whose touchpad has no real buttons
-  services.xserver.synaptics.additionalOptions = ''
-    Option "LBCornerButton" "1"   # left-click
-    Option "RBCornerButton" "3"   # right-click
-  '';
+  #services.xserver.synaptics.additionalOptions = ''
+  #  Option "LBCornerButton" "1"   # left-click
+  #  Option "RBCornerButton" "3"   # right-click
+  #'';
 
   services.xserver.deviceSection = ''
     Driver         "nvidia"
@@ -111,4 +110,8 @@
 
   #nixup.enable = true;
   users.users.pxc.extraGroups = [ "mediakeepers" ];
+
+  services.subsonic.enable = true;
+  services.subsonic.maxMemory = 256; # in MB
+  services.subsonic.httpsPort = 4343;
 }
