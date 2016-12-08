@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # import homemade packages and override pkgs
@@ -111,7 +111,7 @@
     python27Full
   ];
 
-    # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.pxc = {
     isNormalUser = true;
     uid = 1000;

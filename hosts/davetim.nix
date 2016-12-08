@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./profiles/workstation.nix
+      ./modules/xcompose
     ];
 
   # Use the GRUB 2 boot loader.
@@ -21,6 +22,8 @@
 
   networking.hostName = "davetim"; # Define your hostname.
   networking.networkmanager.enable = true;
+
+  #nixup.enable = false;
 
   hardware.trackpoint = {
     enable = true;
