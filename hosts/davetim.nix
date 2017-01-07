@@ -14,12 +14,13 @@
   nix.useSandbox = true;
 
   # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
+  #boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = "/dev/sda1";
   boot.loader.grub.efiSupport = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "davetim"; # Define your hostname.
   networking.networkmanager.enable = true;
