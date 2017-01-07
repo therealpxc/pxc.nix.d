@@ -7,20 +7,8 @@
       ./elements/virtualization.nix
     ];
 
-  services.xserver.windowManager.i3.enable = true;
+  #services.xserver.windowManager.i3.enable = true;
   
-  # for communityshare research for now
-  services.elasticsearch.enable = true;
-  services.elasticsearch.plugins = with pkgs; [
-    # web admin interface
-    #elasticsearchPlugins.elasticsearch_kopf # I think these are only for old elasticsearch
-
-    # lemmatization (stemming, grouping inflected words with the same base)
-    #elasticsearchPlugins.elasticsearch_analisys_lemmagen # broken? 2016-06-08
-  ];
-
-  services.postgresql.enable = true;
-
   environment.systemPackages = with pkgs; [
     lighttable              # lighttable editor
     leiningen               # Clojure project + dependency manager
