@@ -90,9 +90,16 @@
         scheme-tetex  # ‘bigger than medium, way less than full’
         cm-super      # used in Lyx default document class
         libertine     # Linux Libertine fonts family, my fave
+        libertinus    # Linux Libertine fork... maybe awesome?
         preprint      # for fullpage.sty
         enumitem      # for Lyx's ‘Customizable Lists’ module
         graphviz      # for automata and stuff
+        newtx         # NewTX math figures + Libertine Math font
+        
+        #collection-latex
+        collection-latexextra     # some NewTX dependency?
+        #collection.fontutils
+        collection-fontsextra     # for mweight.sty and ???
       ;
     };
   };
