@@ -109,6 +109,8 @@
     xsel              # used by pbcopy
 
     python27Full
+
+    direnv            # barebones projects
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

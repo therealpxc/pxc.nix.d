@@ -21,10 +21,10 @@
   };
 
   fileSystems = {
-    "/" = { device = "/dev/sda1"; fsType = "ext4"; };
-    "/mnt/Zeus" = { device = "/dev/sdb1"; fsType = "btrfs"; };
-    "/mnt/Constantine" = { device = "/dev/sdc1"; fsType = "btrfs"; };
-    "/home/pxc/.local/mnt/Constantine" = { device = "/dev/sdc1"; fsType = "btrfs"; };
+    "/" = { device = "/dev/disk/by-uuid/8faec437-ff47-4c9e-ac38-6d46d19bc274"; fsType = "ext4"; };
+    "/mnt/Zeus" = { device = "/dev/disk/by-uuid/59a11ea6-fc2b-4c37-8b9b-0fc8de4df0dd"; fsType = "btrfs"; };
+    "/mnt/Constantine" = { device = "/dev/disk/by-uuid/22228e88-1c5e-4eb3-889a-454d348a2edf"; fsType = "btrfs"; };
+    "/home/pxc/.local/mnt/Constantine" = { device = "/dev/disk/by-uuid/22228e88-1c5e-4eb3-889a-454d348a2edf"; fsType = "btrfs"; };
 #    "/home/pxc/.local/mnt/Constantine" = { device = "/mnt/Constantine"; fsType = "bind"; };
   };
  
@@ -34,7 +34,7 @@
   ];
 
 
-  swapDevices = [ { device = "/dev/sda5"; } ];
+  swapDevices = [ { device = "/dev/disk/by-uuid/df0845be-fa9f-4fd0-b053-fefeb7eec0a2"; } ];
 
   networking.hostName = "mutter"; # Define your hostname.
 
@@ -44,8 +44,37 @@
   ];
 
     services.udev.extraRules = ''
+      # Steam controller — basic functionality
+      # This rule is needed for basic functionality of the controller in Steam and keyboard/mouse emulation
       SUBSYSTEM=="usb", ATTRS{idVendor}=="28de", MODE="0666"
+      
+      # This rule is necessary for gamepad emulation; make sure you replace 'pgriffais' with a group that the user that runs Steam belongs to
+      #KERNEL=="uinput", MODE="0660", GROUP="pgriffais", OPTIONS+="static_node=uinput"
       KERNEL=="uinput", MODE="0660", GROUP="users", OPTIONS+="static_node=uinput"
+      
+      
+      # Valve HID devices over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="28de", MODE="0666"
+      
+      # Valve HID devices over bluetooth hidraw 
+      KERNEL=="hidraw*", KERNELS=="*28DE:*", MODE="0666"
+      
+      # DualShock 4 over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="05c4", MODE="0666"
+      
+      # DualShock 4 wireless adapter over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ba0", MODE="0666"
+      
+      # DualShock 4 Slim over USB hidraw
+      KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="09cc", MODE="0666"
+      
+      # DualShock 4 over bluetooth hidraw
+      KERNEL=="hidraw*", KERNELS=="*054C:05C4*", MODE="0666"
+      
+      # DualShock 4 Slim over bluetooth hidraw KERNEL=="hidraw*", KERNELS=="*054C:09CC*", MODE="0666"
+      
+      # USB GameCube controller adapter
+      SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666", GROUP="users"
     '';
     boot.kernelModules = [ "uinput" ];
     boot.blacklistedKernelModules = [ "joydev" "xpad" ];
@@ -109,9 +138,34 @@
   };
 
   #nixup.enable = true;
+  nix.useSandbox = true;
   users.users.pxc.extraGroups = [ "mediakeepers" ];
 
   services.subsonic.enable = true;
   services.subsonic.maxMemory = 256; # in MB
   services.subsonic.httpsPort = 4343;
+
+  services.samba.shares = {
+    Constantine = {
+      browseable = "yes";
+      comment = "Constantine on Mutter";
+      "guest ok" = "yes";
+      path = "/mnt/Constantine";
+      "read only" = true;
+      "guest account" = "pxc";
+    };
+
+    Zeus = {
+      browseable = "yes";
+      comment = "Constantine on Mutter";
+      "guest ok" = "yes";
+      path = "/mnt/Zeus";
+      "read only" = true;
+      "guest account" = "pxc";
+    };
+  };
+
+  services.samba.extraConfig = ''
+    map to guest = bad user
+  '';
 }
