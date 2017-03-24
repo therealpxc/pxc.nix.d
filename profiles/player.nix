@@ -90,7 +90,7 @@ in
     # games & toys
     game-music-emu
      freedink        # Dink Smallwood!
-    hawkthorne      # broken as of 01/04/2017
+    #hawkthorne      # broken as of 03/21/2017
     kde4.ksirk      # Risk
     n2048
     openmw          # Morrowind
