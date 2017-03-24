@@ -13,7 +13,6 @@ let
     fceumm
     gambatte
     genesis-plus-gx
-    genesis-plus-gx
     mednafen-pce-fast
     mupen64plus
     nestopia
@@ -56,22 +55,29 @@ in
     retroarch
 
     # misc emulators
-    mupen64plus
-    #wxmupen64plus     # broken as of 2016-05-07
-    pcsx2
-    higan
-    fceux
-    zsnes
-    snes9x-gtk
-    gensgs
-    yabause
-    atari800
-    hatari
-    ataripp
-    stella
-    dolphinEmuMaster
-    #mess           # appears broken as of 2016-05-07
-    residualvm      # LucasArts adventure games
+    mupen64plus       # N64
+    #wxmupen64plus     # broken as of 2016-12-16
+    pcsx2             # PS2
+    desmume           # Nintendo DS
+    higan             # Super Nintendo
+    fceux             # NES/Famicom
+    zsnes             # Super Nintendo
+    snes9x-gtk        # Super Nintendo
+    gensgs            # Sega Genesis
+    yabause           # Sega Saturn
+    atari800          # Atari 400(XL)/800(XL)/130XE/5200
+    hatari            # Atari ST/STE
+    ataripp           # Atari 400(XL)/800(XL)/130XE/5200
+    stella            # Atari 2600
+    dolphinEmuMaster  # GameCube
+    #mess             # appears broken as of 2016-12-16
+    residualvm        # LucasArts adventure games
+    vbam              # GameBoy Advance
+    PPSSPP            # PSP
+    mednafen          # PSX
+    mednafen-server   # mednafen netplay server (PSX)
+    pcsxr             # PSX
+    gambatte          # GBA
     
     # hardware peripheral drivers and services
     cwiid
@@ -83,17 +89,17 @@ in
 
     # games & toys
     game-music-emu
-    freedink        # Dink Smallwood!
-    hawkthorne      # Community game!
-    #kde4.ksirk      # Risk
+     freedink        # Dink Smallwood!
+    hawkthorne      # broken as of 01/04/2017
+    kde4.ksirk      # Risk
     n2048
-    #openmw          # Morrowind
-    #openra          # Command & Conquer: Red Alert
-    #superTux
-    #wesnoth
-    #widelands
-    #warzone2100
-    #xonotic
+    openmw          # Morrowind
+    openra          # Command & Conquer: Red Alert
+    superTux
+    wesnoth
+    widelands
+    warzone2100
+    xonotic
 
   ] ++ kodiPlugins ++ retroPlugins;
 
