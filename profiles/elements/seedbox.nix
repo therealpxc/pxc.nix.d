@@ -9,7 +9,7 @@
     aria
     axel
     mktorrent
-    python27Packages.flexget
+    flexget
     transmission_remote_gtk
     tribler
   ];

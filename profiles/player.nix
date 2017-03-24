@@ -2,7 +2,7 @@
 
 let
   kodiPlugins = with pkgs.kodiPlugins; [
-    pdfreader steam-launcher urlresolver advanced-launcher pvr-hts
+    pdfreader steam-launcher advanced-launcher pvr-hts
   ];
   
   retroPlugins = with pkgs.libretro; [
@@ -13,7 +13,7 @@ let
     fceumm
     gambatte
     genesis-plus-gx
-    mednafen-pce-fast
+    #mednafen-pce-fast # no more mednafen for retroarch?
     mupen64plus
     nestopia
     picodrive
@@ -91,7 +91,6 @@ in
     game-music-emu
      freedink        # Dink Smallwood!
     #hawkthorne      # broken as of 03/21/2017
-    kde4.ksirk      # Risk
     n2048
     openmw          # Morrowind
     openra          # Command & Conquer: Red Alert
