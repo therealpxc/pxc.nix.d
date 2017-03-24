@@ -34,6 +34,7 @@
   time.timeZone = "America/Phoenix";
 
   services.sshd.enable = true;
+  services.openssh.forwardX11 = true;
   programs.fish.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";
   security.sudo.enable = true;

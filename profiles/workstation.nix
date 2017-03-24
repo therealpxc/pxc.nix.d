@@ -15,7 +15,7 @@
     glxinfo
     atom
     i3                      # TODO: figure out how I want to integrate i3 and kde5
-    eclipses.eclipse_sdk_451
+    eclipses.eclipse-sdk
     dwm
     i3status
     dmenu

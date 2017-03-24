@@ -14,6 +14,19 @@
        " set vim shell to bash because Syntastic doesn't like fish and stuff
        set shell=/run/current-system/sw/bin/bash
        
+       " more fish stuff
+       "syntax enable
+       "filetype plugin indent on
+
+       " Set up :make to use fish for syntax checking.
+       "autocmd FileType fish compiler fish
+
+       " Set this to have long lines wrap inside comments.
+       "autocmd FileType fish setlocal textwidth=79
+
+       " Enable folding of block structures in fish.
+       "autocmd FileType fish setlocal foldmethod=expr
+       
        " hybrid line numbering: absolute for current, relative for others
        set relativenumber
        set number
@@ -47,6 +60,7 @@
               #"ag"
               #"gitv"
               "tmux-navigator"
+              #"fish-vim" # doesn't work right anyway, need to re-add it to vim-plugin-names &c
               ]; }
        ];
     };
@@ -86,15 +100,16 @@
 
     texLive2016Custom = with pkgs; texlive.combine {
       inherit
-        (texlive)     # defaults
-        scheme-tetex  # ‘bigger than medium, way less than full’
-        cm-super      # used in Lyx default document class
-        libertine     # Linux Libertine fonts family, my fave
-        libertinus    # Linux Libertine fork... maybe awesome?
-        preprint      # for fullpage.sty
-        enumitem      # for Lyx's ‘Customizable Lists’ module
-        graphviz      # for automata and stuff
-        newtx         # NewTX math figures + Libertine Math font
+        (texlive)         # defaults
+        scheme-tetex      # ‘bigger than medium, way less than full’
+        cm-super          # used in Lyx default document class
+        libertine         # Linux Libertine fonts family, my fave
+        libertinus        # Linux Libertine fork... maybe awesome?
+        libertinust1math  # Linux Libertine fork... maybe awesome?
+        preprint          # for fullpage.sty
+        enumitem          # for Lyx's ‘Customizable Lists’ module
+        graphviz          # for automata and stuff
+        newtx             # NewTX math figures + Libertine Math font
         
         #collection-latex
         collection-latexextra     # some NewTX dependency?

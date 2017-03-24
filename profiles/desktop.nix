@@ -24,36 +24,46 @@
     firefox
     cutegram
     telegram-cli
-    kde4.yakuake        # quake-style terminal for KDE
-    kde5.ark
+    yakuake        # quake-style terminal for KDE
+    ark
 
     vimPlugins.vim-addon-manager
-    kde5.breeze
-    kde5.plasma-pa
-    kde5.kdeplasma-addons
-    kde4.cantor
+    
+    breeze-grub
+    breeze-gtk
+    breeze-icons
+    breeze-plymouth
+    breeze-qt4
+    breeze-qt5
+
+    plasma-pa
+    kdeplasma-addons
+    #cantor # no more cantor package?? 😢
     s3fs
     google-drive-ocamlfuse
-    kde5.kdbusaddons
-    kde5.okular
-    rekonq
+    #kdeFrameworks.kdbusaddons # needed?
+    okular
+    #rekonq # no more rekonq
     x2goclient
     winswitch
-    kde5.dolphin-plugins
-    kde5.kio-extras
-    kde4.kdesvn
-    kde5.kate
-    kde5.kdesu
-    kde5.kgpg
-    #kde4.kmix
-    kde5.spectacle
+    kdeApplications.dolphin-plugins
+    kdeApplications.kio-extras
+    #kdesvn # no more kdesvn
+    kate
+    kdesu
+    kgpg
+    #kmix
+    spectacle
     # afaik there's no manager app for kde5-only yet
-    kde4.kwalletmanager
+    kdeApplications.kwalletmanager
     pavucontrol
     vlc
     pythonPackages.youtube-dl
-    kde5.gwenview
-    kde5.ksysguard
+    gwenview
+    ksysguard
+
+    aspellDicts.en
+    hunspellDicts.en-us
   ];
 
   hardware.pulseaudio.enable = true;
@@ -66,7 +76,7 @@
 
   services.xserver.enable = true;
   services.xserver.layout = "us";
-  services.xserver.desktopManager.kde5.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.windowManager = {
     #compiz.enable = true;
     dwm.enable = true;
@@ -75,11 +85,11 @@
     openbox.enable = true;
   };
 
-  #services.xserver.desktopManager.kde5.phonon.gstreamer.enable = true;
+  #services.xserver.desktopManager.phonon.gstreamer.enable = true;
 
   # disable slim by preferring sddm; slim is apparently kinda broken
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.default = "kde5";
+  services.xserver.desktopManager.default = "plasma5";
 
   # printer stuff!
   services.printing.drivers = with pkgs; [
