@@ -18,6 +18,13 @@
     enablePepperFlash = true;
   };
 
+  # fuck it− let's have a bootsplash!
+  # just kidding − this is broken as of 2017-03-25
+  # see https://github.com/NixOS/nixpkgs/issues/22292
+  #boot.plymouth.enable = true;
+  #boot.plymouth.themePackages = with pkgs; [ breeze-plymouth ];
+  #boot.plymouth.theme = "breeze";
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -32,7 +39,6 @@
     breeze-grub
     breeze-gtk
     breeze-icons
-    breeze-plymouth
     breeze-qt4
     breeze-qt5
 
