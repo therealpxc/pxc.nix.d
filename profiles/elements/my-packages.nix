@@ -48,7 +48,7 @@
               "Syntastic"           # syntax checking
               "ctrlp"               # fuzzy finder
               "Tabular"             # alignment guides
-              "Supertab"            # tab completion in insert mode
+              #"Supertab"            # tab completion in insert mode
               "vim-gitgutter"       # mark changed lines since last commit with a clear visual indicator in the gutter
               "fugitive"            # some kind of fancy git thing!
               "UltiSnips"           # fancy snippets
