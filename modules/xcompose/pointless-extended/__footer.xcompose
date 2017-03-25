@@ -1,0 +1,6 @@
+### ↓ __footer.xcompose ↓ ###
+
+# Logical symbol, re-included here to override conflicting mapping in typography.xcompose
+<Multi_key> <bar> <bar>	: "∨"			# LOGICAL OR
+
+### ↓ __footer.xcompose ↓ ###

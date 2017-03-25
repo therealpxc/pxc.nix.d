@@ -1,0 +1,53 @@
+# -*- coding: utf-8; mode: conf -*-
+# vim: encoding=utf-8 ft=conf
+
+#### Props
+# The NixOS XCompose configuration system (this) is based largely on
+# pointless-xcompose, maintained at
+#
+#   https://github.com/rrthomas/pointless-xcompose
+#
+####
+
+#### A warning to KDE and GNOME users
+#
+#  By default, ~/.XCompose may have no effect with GNOME and KDE, even if you
+#  have a Multi_Key set. There are environment variables that set the "input
+#  method". Configure them as follows to use XIM, which comes with X and obeys
+#  ~/.XCompose.
+#    For KDE4: QT4_IM_MODULE=xim
+#    For GNOME: GTK_IM_MODULE=xim
+#  You can set the variables permanently for yourself by adding the following
+#  lines to ~/.profile or ~/.bashrc.
+#    export QT4_IM_MODULE=xim
+#    export GTK_IM_MODULE=xim
+#  You can set the variables systemwide by adding those same lines to
+#  /etc/profile or /etc/environment.
+#
+#  The proper way to set these variables on Debian-like systems (including
+#  Ubuntu) is to modify /etc/X11/xinit/xinput.d/default to set the variables
+#  there, or set the use update-alternatives to set the link at
+#  /etc/alternatives/xinput-all_ALL to point to
+#  /etc/X11/xinit/xinput.d/default-xim.
+#
+####
+
+# Configurations from the various files users may include into their XCompose
+# will be laid out in the same format as those in the following portion of this,
+# the header file.
+
+### ↓ __header.xcompose ↓ ###
+
+include "%L"
+
+# See also http://bleah.co.uk/~simon/stuff/XCompose
+# and http://dotfiles.org/~inky/.XCompose
+# and http://paste.lisp.org/display/73094
+
+# scan4dups.py will ignore conflicts marked INTENTIONAL CONFLICT
+
+# X defaults
+## <Multi_key> <t> <m> : "™" U2122 # TRADE MARK SIGN
+## <Multi_key> <m> <u>: "µ"   mu # MICRO SIGN
+
+### ↑ __header.xcompose ↑ ###

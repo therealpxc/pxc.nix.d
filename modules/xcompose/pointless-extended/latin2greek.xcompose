@@ -1,0 +1,143 @@
+### ↓ latin2greek.xcompose ↓ ###
+
+# Greek alphabet (ripped off from ootync-xcompose, needs review)
+#====== Greek Letters (MathCad compatible): [ g char ] , [ g CHAR ]
+#<Multi_key> <g> <a>						: "⍺"	# APL FUNCTIONAL SYMBOL ALPHA
+<Multi_key> <g> <a>						: "α"	# GREEK SMALL LETTER ALPHA
+<Multi_key> <g> <b>						: "β"	# GREEK SMALL LETTER BETA
+<Multi_key> <g> <g>						: "γ"	# GREEK SMALL LETTER GAMMA
+<Multi_key> <g> <d>						: "δ"	# GREEK SMALL LETTER DELTA
+<Multi_key> <g> <e>						: "ε"	# GREEK SMALL LETTER EPSILON
+<Multi_key> <g> <z>						: "ζ"	# GREEK SMALL LETTER ZETA
+<Multi_key> <g> <h>						: "η"	# GREEK SMALL LETTER ΕΤΑ
+<Multi_key> <g> <q>						: "θ"	# GREEK SMALL LETTER THETA
+<Multi_key> <g> <i>						: "ι"	# GREEK SMALL LETTER ΙΟΤΑ
+<Multi_key> <g> <k>						: "κ"	# GREEK SMALL LETTER KAPPA
+<Multi_key> <g> <l>						: "λ"	# GREEK SMALL LETTER LAMBDA
+<Multi_key> <g> <m>						: "μ"	# GREEK SMALL LETTER MU
+<Multi_key> <g> <n>						: "ν"	# GREEK SMALL LETTER NU
+<Multi_key> <g> <x>						: "ξ"	# GREEK SMALL LETTER XI
+<Multi_key> <g> <o>						: "ο"	# GREEK SMALL LETTER OMICRON
+<Multi_key> <g> <p>						: "π"	# GREEK SMALL LETTER PI
+<Multi_key> <g> <v>						: "ϖ"	# GREEK PI SYMBOL
+<Multi_key> <g> <r>						: "ρ"	# GREEK SMALL LETTER RHO
+#<Multi_key> <g> <>						: "ς"	# GREEK SMALL LETTER FINAL SIGMA
+<Multi_key> <g> <s>						: "σ"	# GREEK SMALL LETTER SIGMA
+<Multi_key> <g> <t>						: "τ"	# GREEK SMALL LETTER TAU
+<Multi_key> <g> <u>						: "υ"	# GREEK SMALL LETTER UPSILON
+<Multi_key> <g> <f>						: "φ"	# GREEK SMALL LETTER PHI
+<Multi_key> <g> <j>						: "ϕ"	# GREEK SMALL PHI SYMBOL
+<Multi_key> <g> <c>						: "χ"	# GREEK SMALL LETTER CHI
+<Multi_key> <g> <y>						: "ψ"	# GREEK SMALL LETTER PSI
+<Multi_key> <g> <w>						: "ω"	# GREEK SMALL LETTER OMEGA
+
+<Multi_key> <G> <A>						: "Α"	# GREEK CAPITAL LETTER ALPHA
+<Multi_key> <G> <B>						: "Β"	# GREEK CAPITAL LETTER BETA
+<Multi_key> <G> <G>						: "Γ"	# GREEK CAPITAL LETTER GAMMA
+<Multi_key> <G> <D>						: "Δ"	# GREEK CAPITAL LETTER DELTA
+<Multi_key> <G> <E>						: "Ε"	# GREEK CAPITAL LETTER EPSILON
+<Multi_key> <G> <Z>						: "Ζ"	# GREEK CAPITAL LETTER ZETA
+<Multi_key> <G> <H>						: "Η"	# GREEK CAPITAL LETTER ΕΤΑ
+<Multi_key> <G> <Q>						: "Θ"	# GREEK CAPITAL LETTER THETA
+<Multi_key> <G> <I>						: "Ι"	# GREEK CAPITAL LETTER ΙΟΤΑ
+<Multi_key> <G> <K>						: "Κ"	# GREEK CAPITAL LETTER KAPPA
+<Multi_key> <G> <L>						: "Λ"	# GREEK CAPITAL LETTER LAMBDA
+<Multi_key> <G> <M>						: "Μ"	# GREEK CAPITAL LETTER MU
+<Multi_key> <G> <N>						: "Ν"	# GREEK CAPITAL LETTER NU
+<Multi_key> <G> <X>						: "Ξ"	# GREEK CAPITAL LETTER XI
+<Multi_key> <G> <O>						: "Ο"	# GREEK CAPITAL LETTER OMICRON
+<Multi_key> <G> <P>						: "Π"	# GREEK CAPITAL LETTER PI
+<Multi_key> <G> <V>						: "Π"	# GREEK PI SYMBOL
+<Multi_key> <G> <R>						: "Ρ"	# GREEK CAPITAL LETTER RHO
+#<Multi_key> <G> <>						: "Σ"	# GREEK CAPITAL LETTER FINAL SIGMA
+<Multi_key> <G> <S>						: "Σ"	# GREEK CAPITAL LETTER SIGMA
+<Multi_key> <G> <T>						: "Τ"	# GREEK CAPITAL LETTER TAU
+<Multi_key> <G> <U>						: "Υ"	# GREEK CAPITAL LETTER UPSILON
+<Multi_key> <G> <F>						: "Φ"	# GREEK CAPITAL LETTER PHI
+<Multi_key> <G> <J>						: "Φ"	# GREEK CAPITAL PHI SYMBOL
+<Multi_key> <G> <C>						: "Χ"	# GREEK CAPITAL LETTER CHI
+<Multi_key> <G> <Y>						: "Ψ"	# GREEK CAPITAL LETTER PSI
+<Multi_key> <G> <W>						: "Ω"	# GREEK CAPITAL LETTER OMEGA
+
+### Superscript and Subscript Latin Letters ###
+<Multi_key> <Up> <a>				: "ᵃ" # SUPERSCRIPTED LOWERCASE LETTER A
+<Multi_key> <Up> <b>				: "ᵇ" # SUPERSCRIPTED LOWERCASE LETTER B
+<Multi_key> <Up> <c>				: "ᶜ" # SUPERSCRIPTED LOWERCASE LETTER C
+<Multi_key> <Up> <d>				: "ᵈ" # SUPERSCRIPTED LOWERCASE LETTER D
+<Multi_key> <Up> <e>				: "ᵉ" # SUPERSCRIPTED LOWERCASE LETTER E
+<Multi_key> <Up> <f>				: "ᶠ" # SUPERSCRIPTED LOWERCASE LETTER F
+<Multi_key> <Up> <g>				: "ᵍ" # SUPERSCRIPTED LOWERCASE LETTER G
+<Multi_key> <Up> <h>				: "ʰ" # SUPERSCRIPTED LOWERCASE LETTER H
+<Multi_key> <Up> <i>				: "ⁱ" # SUPERSCRIPTED LOWERCASE LETTER I
+<Multi_key> <Up> <j>				: "ʲ" # SUPERSCRIPTED LOWERCASE LETTER J
+<Multi_key> <Up> <k>				: "ᵏ" # SUPERSCRIPTED LOWERCASE LETTER K
+<Multi_key> <Up> <l>				: "ˡ" # SUPERSCRIPTED LOWERCASE LETTER L
+<Multi_key> <Up> <m>				: "ᵐ" # SUPERSCRIPTED LOWERCASE LETTER M
+<Multi_key> <Up> <n>				: "ⁿ" # SUPERSCRIPTED LOWERCASE LETTER N
+<Multi_key> <Up> <o>				: "ᵒ" # SUPERSCRIPTED LOWERCASE LETTER O
+<Multi_key> <Up> <p>				: "ᵖ" # SUPERSCRIPTED LOWERCASE LETTER P
+#<Multi_key> <Up> <q>				: "" # SUPERSCRIPTED LOWERCASE LETTER Q # no such Unicode character!
+<Multi_key> <Up> <r>				: "ʳ" # SUPERSCRIPTED LOWERCASE LETTER R
+<Multi_key> <Up> <s>				: "ˢ" # SUPERSCRIPTED LOWERCASE LETTER S
+<Multi_key> <Up> <t>				: "ᵗ" # SUPERSCRIPTED LOWERCASE LETTER T
+<Multi_key> <Up> <u>				: "ᵘ" # SUPERSCRIPTED LOWERCASE LETTER U
+<Multi_key> <Up> <v>				: "ᵛ" # SUPERSCRIPTED LOWERCASE LETTER V
+<Multi_key> <Up> <w>				: "ʷ" # SUPERSCRIPTED LOWERCASE LETTER W
+<Multi_key> <Up> <x>				: "ˣ" # SUPERSCRIPTED LOWERCASE LETTER X
+<Multi_key> <Up> <y>				: "ʸ" # SUPERSCRIPTED LOWERCASE LETTER Y
+<Multi_key> <Up> <z>				: "ᶻ" # SUPERSCRIPTED LOWERCASE LETTER Z
+<Multi_key> <Up> <A>				: "ᴬ" # SUPERSCRIPTED UPPERCASE LETTER A
+<Multi_key> <Up> <B>				: "ᴮ" # SUPERSCRIPTED UPPERCASE LETTER B
+#<Multi_key> <Up> <C>				: "" # SUPERSCRIPTED UPPERCASE LETTER C # No such Unicode character!
+<Multi_key> <Up> <D>				: "ᴰ" # SUPERSCRIPTED UPPERCASE LETTER D
+<Multi_key> <Up> <E>				: "ᴱ" # SUPERSCRIPTED UPPERCASE LETTER E
+#<Multi_key> <Up> <F>				: "" # SUPERSCRIPTED UPPERCASE LETTER F # No such Unicode character!
+<Multi_key> <Up> <G>				: "ᴳ" # SUPERSCRIPTED UPPERCASE LETTER G
+<Multi_key> <Up> <H>				: "ᴴ" # SUPERSCRIPTED UPPERCASE LETTER H
+<Multi_key> <Up> <I>				: "ᴵ" # SUPERSCRIPTED UPPERCASE LETTER I
+<Multi_key> <Up> <J>				: "ᴶ" # SUPERSCRIPTED UPPERCASE LETTER J
+<Multi_key> <Up> <K>				: "ᴷ" # SUPERSCRIPTED UPPERCASE LETTER K
+<Multi_key> <Up> <L>				: "ᴸ" # SUPERSCRIPTED UPPERCASE LETTER L
+<Multi_key> <Up> <M>				: "ᴹ" # SUPERSCRIPTED UPPERCASE LETTER M
+<Multi_key> <Up> <N>				: "ᴺ" # SUPERSCRIPTED UPPERCASE LETTER N
+<Multi_key> <Up> <O>				: "ᴼ" # SUPERSCRIPTED UPPERCASE LETTER O
+<Multi_key> <Up> <P>				: "ᴾ" # SUPERSCRIPTED UPPERCASE LETTER P
+#<Multi_key> <Up> <Q>				: "" # SUPERSCRIPTED UPPERCASE LETTER Q # no such Unicode character!
+<Multi_key> <Up> <R>				: "ᴿ" # SUPERSCRIPTED UPPERCASE LETTER R
+#<Multi_key> <Up> <S>				: "" # SUPERSCRIPTED UPPERCASE LETTER S # no such Unicode character!
+<Multi_key> <Up> <T>				: "ᵀ" # SUPERSCRIPTED UPPERCASE LETTER T
+<Multi_key> <Up> <U>				: "ᵁ" # SUPERSCRIPTED UPPERCASE LETTER U
+<Multi_key> <Up> <V>				: "ⱽ" # SUPERSCRIPTED UPPERCASE LETTER V
+<Multi_key> <Up> <W>				: "ᵂ" # SUPERSCRIPTED UPPERCASE LETTER W
+#<Multi_key> <Up> <X>				: "" # SUPERSCRIPTED UPPERCASE LETTER X # no such Unicode character
+#<Multi_key> <Up> <Y>				: "" # SUPERSCRIPTED UPPERCASE LETTER Y # no such Unicode character
+# <Multi_key> <Up> <Z>				: "" # SUPERSCRIPTED UPPERCASE LETTER Z # no such Unicode character
+
+<Multi_key> <Down> <a>				: "ₐ" # SUPERSCRIPTED LOWERCASE LETTER A
+#<Multi_key> <Down> <b>				: "" # SUPERSCRIPTED LOWERCASE LETTER B
+#<Multi_key> <Down> <c>				: "" # SUPERSCRIPTED LOWERCASE LETTER C
+#<Multi_key> <Down> <d>				: "" # SUPERSCRIPTED LOWERCASE LETTER D
+#<Multi_key> <Down> <e>				: "ₑ" # SUPERSCRIPTED LOWERCASE LETTER E
+#<Multi_key> <Down> <f>				: "" # SUPERSCRIPTED LOWERCASE LETTER F
+#<Multi_key> <Down> <g>				: "" # SUPERSCRIPTED LOWERCASE LETTER G
+<Multi_key> <Down> <h>				: "ₕ" # SUPERSCRIPTED LOWERCASE LETTER H
+<Multi_key> <Down> <i>				: "ᵢ" # SUPERSCRIPTED LOWERCASE LETTER I
+<Multi_key> <Down> <j>				: "ⱼ" # SUPERSCRIPTED LOWERCASE LETTER J
+<Multi_key> <Down> <k>				: "ₖ" # SUPERSCRIPTED LOWERCASE LETTER K
+<Multi_key> <Down> <l>				: "ₗ" # SUPERSCRIPTED LOWERCASE LETTER L
+<Multi_key> <Down> <m>				: "ₘ" # SUPERSCRIPTED LOWERCASE LETTER M
+<Multi_key> <Down> <n>				: "ₙ" # SUPERSCRIPTED LOWERCASE LETTER N
+<Multi_key> <Down> <o>				: "ₒ" # SUPERSCRIPTED LOWERCASE LETTER O
+<Multi_key> <Down> <p>				: "ₚ" # SUPERSCRIPTED LOWERCASE LETTER P
+#<Multi_key> <Down> <q>				: "" # SUPERSCRIPTED LOWERCASE LETTER Q # no such Unicode character!
+<Multi_key> <Down> <r>				: "ᵣ" # SUPERSCRIPTED LOWERCASE LETTER R
+<Multi_key> <Down> <s>				: "ₛ" # SUPERSCRIPTED LOWERCASE LETTER S
+<Multi_key> <Down> <t>				: "ₜ" # SUPERSCRIPTED LOWERCASE LETTER T
+<Multi_key> <Down> <u>				: "ᵤ" # SUPERSCRIPTED LOWERCASE LETTER U
+<Multi_key> <Down> <v>				: "ᵥ" # SUPERSCRIPTED LOWERCASE LETTER V
+#<Multi_key> <Down> <w>				: "" # SUPERSCRIPTED LOWERCASE LETTER W
+<Multi_key> <Down> <x>				: "ₓ" # SUPERSCRIPTED LOWERCASE LETTER X
+#<Multi_key> <Down> <y>				: "" # SUPERSCRIPTED LOWERCASE LETTER Y
+#<Multi_key> <Down> <z>				: "" # SUPERSCRIPTED LOWERCASE LETTER Z
+
+### ↑ latin2greek.xcompose ↑ ###

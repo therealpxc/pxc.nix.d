@@ -1,0 +1,248 @@
+### ↓ math.xcompose ↓ ###
+
+# Arithmetic operators
+# ====================
+
+# Notice the “<minus>” X name refers to the ASCII hyphen‐minus, not to
+# the true minus character.
+
+<Multi_key> <m> <m>                : "−" U2212 # MINUS SIGN
+<Multi_key> <minus> <KP_Subtract>  : "−" U2212 #  MINUS SIGN
+
+# 2215 is different from both the ASCII slash (which Unicode
+# confusingly call “solidus”) and the U2044 fraction slash ⁄, which
+# everyone _except_ unicode call “solidus”. Use U2215 as a math
+# operator, U2044 for fractions.
+
+# slash:                   "/" U002F # ASCII SLASH
+<Multi_key> <slash> <slash>: "∕" U2215 # DIVISION SLASH (INTENTIONAL CONFLICT)
+<Multi_key> <slash> <period>: "⁄" U2044 # FRACTION SLASH
+
+# Comparison
+# ==========
+
+# The order here is more intuitive for programmers than the X
+# versions.
+<Multi_key> <exclam> <equal>   : "≠" U2260 # NOT EQUAL TO
+<Multi_key> <asciitilde> <equal> : "≅" U2245 # APPROXIMATELY EQUAL TO
+<Multi_key> <slash> <less>    : "≮" U226E # NOT LESS THAN (INTENTIONAL CONFLICT)
+<Multi_key> <slash> <greater> : "≯" U226F # NOT GREATER THAN
+<Multi_key> <asciitilde> <asciitilde>        : "≈"  U2248           # ALMOST EQUAL TO
+
+
+# Set operators
+# =============
+
+<Multi_key> <E> <E>			: "∈"	U2208		# ELEMENT OF
+<Multi_key> <slash> <E> <E>		: "∉"	U2209		# NOT AN ELEMENT OF
+<Multi_key> <braceleft> <parenleft>	: "⊂"	U2282		# SUBSET OF
+<Multi_key> <braceleft>	<parenright>	: "⊃"	U2283		# SUPERSET OF
+<Multi_key> <exclam> <braceleft> <parenleft> : "⊄" U2284        # NOT A SUBSET OF
+<Multi_key> <braceleft> <equal> <parenleft> : "⊆" U2286		# SUBSET OF OR EQUAL TO
+<Multi_key> <braceleft> <equal> <parenright> : "⊇" U2287	# SUPERSET OF OR EQUAL TO
+<Multi_key> <braceleft> <asciicircum>	: "∩"	U2229		# INTERSECTION
+<Multi_key> <braceleft> <U>		: "∪"	U222A		# UNION
+
+<Multi_key> <bracketleft> <bracketright>: "∎" # END OF PROOF (INTENTIONAL CONFLICT)
+
+# % ÷ 100; can’t extend with <o> <o> due to XCompose substring issue
+# (<%> <o> already used for per-mille)
+<Multi_key> <percent> <O>: "‱"   U2031 # PER MYRIAD SIGN
+
+# Tell that adjacent symbols form a list, without a visible comma.
+<Multi_key> <space> <comma>: "⁣" U2063 # INVISIBLE COMMA (INTENTIONAL CONFLICT)
+
+# v = ↓ = vertical
+<Multi_key> <v> <period> <period>: "⋮" U22EE # VERTICAL ELLIPSIS
+# FIXME: prefix conflict
+#<Multi_key> <c> <period> <period>	: "⋯"	U22EF		# MIDLINE HORIZONTAL ELLIPSIS
+<Multi_key> <period> <slash> <period>	: "⋰"	U22F0		# UP RIGHT DIAGONAL ELLIPSIS
+# To avoid conflict with \. for combining dot
+<Multi_key> <period> <backslash> <period> : "⋱" U22F1		# DOWN RIGHT DIAGONAL ELLIPSIS
+
+# See also the other files (e.g. invisible.xcompose for spaces, &c.)
+
+# FIXME: 2. is ⒉
+#<Multi_key> <2> <period>                  : "‥"	U2025		# TWO DOT LEADER
+# This should not be needed.
+#<Multi_key> <1> <period>                 : "․"	U2024		# ONE DOT LEADER
+# FIXME: ./. = ⋰
+#<Multi_key> <period> <slash> <period>	: "⁒"	U2052		# COMMERCIAL MINUS SIGN
+# Printable sign for space.  But is \<space> too useful a key combo to use
+# for this?
+<Multi_key> <backslash> <space>	: "␣"	U2423	# OPEN BOX
+
+# Other
+# =====
+
+## <Multi_key> <minus> <comma> : "¬"   notsign # NOT SIGN
+<Multi_key> <exclam> <minus> : "¬" notsign # NOT SIGN
+<Multi_key> <bracketleft> <bracketright>: "∎" # END OF PROOF
+
+# % ÷ 10
+## <Multi_key> <percent> <o>: "‰"   U2030 # PER MILLE SIGN
+# % ÷ 100; can’t extend with <o> <o> due to XCompose substring issue.
+<Multi_key> <percent> <O>: "‱"   U2031 # PER MYRIAD SIGN
+
+# Tell that adjacent symbols form a list, without a visible comma.
+# Conflicts with X shortcut for (non‐combining) cedilla “¸”
+<Multi_key> <space> <comma>: "⁣" U2063 # INVISIBLE COMMA
+
+# v = ↓ = vertical
+<Multi_key> <v> <period> <period>: "⋮" U22EE # VERTICAL ELLIPSIS
+
+# Greek letters loved by mathematicans
+<Multi_key> <l> <a> : "λ" U03BB # lambda
+<Multi_key> <minus> <l> <a> : "ƛ" U019B # lambda stroke
+<Multi_key> <s> <u> <m> : "Σ" U03A3 # upper sigma
+<Multi_key> <p> <h> <i> : "φ" U03C6 # lower phi
+<Multi_key> <p> <s> <i> : "ψ" U03C8 # lower psi
+
+# Indices
+<Multi_key> <underscore> <underscore> <i> : "ᵢ" U1D62 # i subscript
+<Multi_key> <asciicircum> <asciicircum> <i> : "ⁱ" U2071 # i superscript
+
+# Quantifiers
+<Multi_key> <e> <x> : "∃" U2203 # There exists
+<Multi_key> <n> <e> <x> : "∄" U2204 # There does not exist
+<Multi_key> </> <e> <x> : "∄" U2204 # There does not exist
+<Multi_key> <a> <l> : "∀" U2200 # for all
+
+# Operators
+<Multi_key> <i> <n> <t> : "∫" U222B # integral
+
+# stuff from Patrick's old ~/.XCompose footer − needs to be cleaned the fuck up!
+## Disabled/incomplete mappings from math.xcompose
+# Set operators
+# =============
+# TODO: What are some good mnemonics for these?
+#
+# <Multi_key> <braceleft> <i> <n> : "∈" U2208 # ELEMENT OF
+# <Multi_key> <braceleft> <slash> <i> <n> : "∉" U2209 # NOT ELEMENT OF
+# <Multi_key> <braceleft> <exclam> <i> <n> : "∉" U2209 # NOT ELEMENT OF
+# <Multi_key> <braceleft> <parenleft> : "⊂" U2282 # SUBSET OF
+# <Multi_key> <braceleft> <equal> <parenleft>: "⊆" U2286 # SUBSET OF OR EQUAL TO
+# <Multi_key> : "⊄" U2284 
+# <Multi_key> <braceleft> <parenright> : "⊃" # SUPERSET OF
+# <Multi_key> <braceleft> <equal> <parenright> : "⊇" # SUPERSET OF OR EQUAL
+# 
+# Set operators ripped from from ootync-xcompose [need checking]
+# ==============================================================
+# <Multi_key> <braceleft> <slash> <o>						: "∅"	# EMPTY SET
+<Multi_key> <braceleft> <0>						: "∅"	# U2205 EMPTY SET
+#
+ <Multi_key> <braceleft> <i> <n>							: "∈"	# ELEMENT OF
+ <Multi_key> <braceleft> <n> <i>							: "∋"	# CONTAINS AS MEMBER
+ <Multi_key> <braceleft> <underscore> : "∊" # U220A SMALL ELEMENT OF
+ <Multi_key> <braceleft> <slash> <i> <n>					: "∉"	# NOT ELEMENT OF
+ <Multi_key> <braceleft> <slash> <n> <i>					: "∌"	# NOT CONTAINS AS MEMBER
+# 
+ <Multi_key> <braceleft> <plus>							: "∪"	# UNION
+ <Multi_key> <braceleft> <minus>							: "∖"	# MINUS
+ <Multi_key> <braceleft> <asterisk>						: "∩"	# INTERSECTION
+# 
+ <Multi_key> <braceleft> <parenleft>						: "⊂"	# SUBSET OF
+ <Multi_key> <braceleft> <parenright>					: "⊃"	# SUPERSET OF
+ <Multi_key> <braceleft> <equal> <parenleft>				: "⊆"	# SUBSET OF OR EQUAL
+ <Multi_key> <braceleft>	<equal> <parenright>			: "⊇"	# SUPERSET OF OR EQUAL
+# 
+ <Multi_key> <braceleft> <slash> <parenleft>				: "⊄"	# NOT SUBSET OF
+ <Multi_key> <braceleft>	<slash> <parenright>			: "⊅"	# NOT SUPERSET OF
+ <Multi_key> <braceleft> <slash> <equal> <parenleft>		: "⊈"	# NOT SUBSET OF AND EQUAL
+ <Multi_key> <braceleft>	<slash> <equal> <parenright>	: "⊉"	# NOT SUPERSET OF AND EQUAL
+ 
+# alternatives based on normal pointless-xcompose mappings
+ <Multi_key> <f> <o> : "⊃" U2283
+ <Multi_key> <e> <f> <o> : "⊇" U2287
+ <Multi_key> <slash> <f> <o>: "⊅" U2285
+
+# Modal necessity operator
+<Multi_key> <bracketright> <bracketleft> : "◻" # U+25FB white medium square
+<Multi_key> <bracketleft> <bracketright> : "◻" # U+25FB white medium square
+
+# Subscript hyphen, parallel to ₊ and ₌ mappings
+<Multi_key> <underscore> <minus> : "₋" # U208B SUBSCRIPT MINUS 
+
+# Dot operator (multiplication)
+<Multi_key> <asterisk> <period> : "⋅" # U22C5 DOT OPERATOR
+
+# N-ary logical operators
+<Multi_key> <braceleft> <ampersand> : "⋀" # U22C0 N-ARY LOGICAL AND
+<Multi_key> <braceleft> <bar> : "⋁" # U22C1 N-ARY LOGICAL OR
+
+# Ellipsis overrides (for math)
+<Multi_key> <period> <period> <period> : "…" # U2026 HORIZONTAL ELLIPSIS
+<Multi_key> <period> <period> <bar> : "⋮" # U22EE VERTICAL ELLIPSIS
+<Multi_key> <period> <period> <minus> : "⋯" # U22EF MIDLINE HORIZONTAL ELLIPSIS
+<Multi_key> <period> <period> <slash> : "⋰" # U22F0 UP RIGHT DIAGONAL ELLIPSIS
+<Multi_key> <period> <period> <backslash> : "⋱" # U22F1 DOWN RIGHT DIAGONAL ELLIPSIS
+
+# ‘implication’ arrows
+<Multi_key> <equal> <less> <less> : "⇐" # U21D0 LEFTWARDS DOUBLE ARROW
+<Multi_key> <equal> <greater> : "⇒" # U21D2 RIGHTWARDS DOUBLE ARROW
+# (bi-implication overrides some weird whitespace character, idk which)
+<Multi_key> <equal> <less> <greater> : "⇔" # U21D4 LEFT RIGHT DOUBLE ARROW
+<Multi_key> <equal> <slash> <less> <less> : "⇍" # U21CD LEFTWARDS DOUBLE ARROW WITH STROKE
+<Multi_key> <equal> <slash> <less> <greater> : "⇎" # U21CE LEFT RIGHT DOUBLE ARROW WITH STROKE
+<Multi_key> <equal> <slash> <greater> : "⇏" # U21CF RIGHTWARDS DOUBLE ARROW WITH STROKE
+
+# Misc math shit
+<Multi_key> <d> <d> : "∂" # U2202 PARTIAL DIFFERENTIAL
+<Multi_key> <q> <e> <d> : "∎" # U220E END OF PROOF
+<Multi_key> <f> <i> <n> : "∎" # U220E END OF PROOF
+
+#
+# Tell that adjacent symbols form a list, without a visible comma.
+# Conflicts with X shortcut for (non‐combining) cedilla “¸”
+# (enabled below as in math.xcompose)
+<Multi_key> <minus> <asciitilde>                   : "≂" U2242 # MINUS TILDE
+<Multi_key> <asciitilde> <minus>                   : "≃" U2243 # ASYMPTOTICALLY EQUAL TO, TildeEqual
+<Multi_key> <slash> <asciitilde> <minus>           : "≄" U2244 # NOT ASYMPTOTICALLY EQUAL TO, NotTildeEqual
+<Multi_key> <asciitilde> <equal>                   : "≅" U2245 # APPROXIMATELY EQUAL TO, TildeFullEqual
+<Multi_key> <asciitilde> <slash> <equal>           : "≆" U2246 # APPROXIMATELY BUT NOT ACTUALLY EQUAL TO
+<Multi_key> <slash> <asciitilde> <equal>           : "≇" U2247 # NEITHER APPROXIMATELY NOR ACTUALLY EQUAL TO, NotTildeFullEqual
+<Multi_key> <asciitilde> <asciitilde>              : "≈" U2248 # ALMOST EQUAL TO, TildeTilde
+<Multi_key> <slash> <asciitilde> <asciitilde>      : "≉" U2249 # NOT ALMOST EQUAL TO, NotTildeTilde
+
+
+<Multi_key> <space> <comma>: "<U+2063>" U2063 # INVISIBLE COMMA
+<Multi_key> <minus> <equal>                        : "≡" U2261 # IDENTICAL TO, Congruent
+<Multi_key> <equal> <minus>                        : "≡" U2261 # IDENTICAL TO, Congruent
+<Multi_key> <KP_Subtract> <equal>                  : "≡" U2261 # IDENTICAL TO, Congruent
+<Multi_key> <equal> <KP_Subtract>                  : "≡" U2261 # IDENTICAL TO, Congruent
+<Multi_key> <slash> <minus> <equal>                : "≢" U2262 # NOT IDENTICAL TO, NotCongruent
+<Multi_key> <slash> <equal> <minus>                : "≢" U2262 # NOT IDENTICAL TO, NotCongruent
+<Multi_key> <slash> <KP_Subtract> <equal>          : "≢" U2262 # NOT IDENTICAL TO, NotCongruent
+<Multi_key> <slash> <equal> <KP_Subtract>          : "≢" U2262 # NOT IDENTICAL TO, NotCongruent
+#
+# Logical operators (ripped from ootync-xcompose)
+# ================= 
+# (this section is currently missing from math.xcompose!)
+<Multi_key> <asciitilde> <exclam> : "¬"	# LOGICAL NOT
+<Multi_key> <exclam> <asciitilde> : "¬"	# LOGICAL NOT
+<Multi_key> <E> <E> : "∃" 			# THERE EXISTS
+<Multi_key> <exclam> <E> <E> : "∄"		# THERE DOES NOT EXIST
+<Multi_key> <A> <A> : "∀"			# FOR ALL
+<Multi_key> <less> <parenright>	: "∢"		# LET'S SEE
+<Multi_key> <ampersand> <ampersand> : "∧"	# LOGICAL AND
+<Multi_key> <bar> <bar>	: "∨"			# LOGICAL OR
+<Multi_key> <bar> <equal> : "⊨" # DOUBLE TURNSTILE
+<Multi_key> <equal> <bar> : "⫤" # REVERSE DOUBLE TURNSTILE
+<Multi_key> <equal> <equal> : "⟚" # LEFT AND RIGHT DOUBLE TURNSTILE
+
+# Missing mathematical symbols
+# ============================
+<Multi_key> <S> <F> : "∫" U222B	# INTEGRAL
+<Multi_key> <8> <8> : "∞"	# INFINITY
+<Multi_key> <C> <C> : "ℂ"	# DOUBLE-STRUCK CAPITAL C (set of complex numbers)
+<Multi_key> <N> <N> : "ℕ"	# DOUBLE-STRUCK CAPITAL N (natural number)
+# <Multi_key> <P> <P> : "ℙ"	# DOUBLE-STRUCK CAPITAL P # conflicts with ¶ in pointless
+<Multi_key> <Q> <Q> : "ℚ"	# DOUBLE-STRUCK CAPITAL Q (set of rational numbers)
+<Multi_key> <R> <R> : "ℝ"	# DOUBLE-STRUCK CAPITAL R (set of real numbers)
+<Multi_key> <Z> <Z> : "ℤ"	# DOUBLE-STRUCK CAPITAL Z (set of integers)
+<Multi_key> <p> <i> : "π" U03C0 # GREEK SMALL LETTER PI
+<Multi_key> <h> <minus> : "ħ" # small letter latin h with stroke
+<Multi_key> <minus> <h> : "ħ" # small letter latin h with stroke
+##
+
+# ↑ math.xcompose ↑
