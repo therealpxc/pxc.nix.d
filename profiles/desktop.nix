@@ -29,7 +29,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     firefox
-    cutegram
+    #cutegram # broken as of 2017-03-28 😢
     telegram-cli
     yakuake        # quake-style terminal for KDE
     ark
