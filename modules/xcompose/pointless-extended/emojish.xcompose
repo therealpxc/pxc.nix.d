@@ -1,0 +1,49 @@
+### ↓ emojish.xcompose ↓ ###
+
+## override default XCompose mapping for <3 from ♥ (black heart suit) to ❤ (heavy dark heart)
+#<Multi_key> <less> <3>				: "❤" # 2764 HEAVY BLACK HEART
+<Multi_key> <less> <space> <3>			: "♡" # 2661 WHITE HEART SUIT
+<Multi_key> <period> <bar> : "♩"# 2669 QUARTER NOTE
+<Multi_key> <equal> <D>				: "😀" # 1F600 GRINNING FACE
+<Multi_key> <colon> <apostrophe> <D>		: "😂" # 1F602 FACE WITH TEARS OF JOY
+<Multi_key> <colon> <D>				: "😃" # 1F603 SMILING FACE WITH OPEN MOUTH
+<Multi_key> <colon> <minus> <D>			: "😃" # 1F603 SMILING FACE WITH OPEN MOUTH
+<Multi_key> <X> <D>				: "😆" # 1F606 SMILING FACE WITH GRINNING MOUTH AND TIGHTLY CLOSED EYES
+<Multi_key> <O> <colon> <parenright>		: "😇" # 1F607 SMILING FACE WITH HALO
+<Multi_key> <greater> <colon> <parenright>	: "😈" # 1F608 SMILING FACE WITH HORNS
+<Multi_key> <semicolon> <parenright>		: "😉" # 1F609 WINKING FACE
+<Multi_key> <semicolon> <minus> <parenright>	: "😉" # 1F609 WINKING FACE
+<Multi_key> <colon> <d>				: "😋" # 1F60B FACE SAVOURING DELICIOUS FOOD
+<Multi_key> <colon> <minus> <d>				: "😋" # 1F60B FACE SAVOURING DELICIOUS FOOD
+<Multi_key> <colon> <less> <3>			: "😍" # 1F60D SMILING FACE WITH HEART-SHAPED EYES
+<Multi_key> <8> <parenright>			: "😎" # 1F60E SMILING FACE WITH SUNGLASSES
+<Multi_key> <8> <minus> <parenright>		: "😎" # 1F60E SMILING FACE WITH SUNGLASSES
+<Multi_key> <colon> <minus> <apostrophe>	: "😏" # 1F60F SMIRKING FACE
+<Multi_key> <colon> <p>				: "😛" # 1F61B FACE WITH STUCK-OUT TONGUE
+<Multi_key> <colon> <P>				: "😛" # 1F61B FACE WITH STUCK-OUT TONGUE
+<Multi_key> <colon> <minus> <P>			: "😛" # 1F61B FACE WITH STUCK-OUT TONGUE
+<Multi_key> <semicolon> <minus> <P>		: "😜" # 1F61C FACE WITH STUCK-OUT TONGUE AND WINKING EYE
+<Multi_key> <semicolon> <p>			: "😜" # 1F61C FACE WITH STUCK-OUT TONGUE AND WINKING EYE
+<Multi_key> <semicolon> <P>			: "😜" # 1F61C FACE WITH STUCK-OUT TONGUE AND WINKING EYE
+<Multi_key> <x> <p>				: "😝" # 1F61D FACE WITH STUCK-OUT TONGUE AND TIGHTLY-CLOSED EYES
+<Multi_key> <X> <P>				: "😝" # 1F61D FACE WITH STUCK-OUT TONGUE AND TIGHTLY-CLOSED EYES
+<Multi_key> <colon> <parenleft>			: "😞" # 1F61F DISAPPOINTED FACE
+<Multi_key> <colon> <minus> <parenleft>		: "😞" # 1F61F DISAPPOINTED FACE
+<Multi_key> <colon> <minus> <asterisk>		: "😘" # 1F618 FACE THROWING KISS
+<Multi_key> <colon> <asterisk>			: "😘" # 1F618 FACE THROWING KISS
+<Multi_key> <greater> <colon> <parenleft>	: "😠" # 1F620 ANGRY FACE
+<Multi_key> <greater> <colon> <minus> <parenleft> : "😠" # 1F620 ANGRY FACE
+<Multi_key> <colon> <apostrophe> <parenleft>	: "😢" # 1F622 CRYING FACE
+<Multi_key> <D> <colon>				: "😬" # 1F62C GRIMACING FACE
+<Multi_key> <D> <apostrophe> <colon>		: "😭" # 1F62D LOUDLY CRYING FACE
+<Multi_key> <minus> <underscore> <minus>	: "😒" # 1F612 UNAMUSED FACE
+<Multi_key> <colon> <minus> <O>			: "😲" # 1F632 ASTONISHED FACE
+<Multi_key> <colon> <O>				: "😲" # 1F632 ASTONISHED FACE
+<Multi_key> <colon> <z>				: "😴"# 1F634 SLEEPING FACE
+<Multi_key> <colon> <Z>				: "😴"# 1F634 SLEEPING FACE
+<Multi_key> <colon> <space>			: "😶" # 1F636 FACE WITHOUT MOUTH
+<Multi_key> <colon> <3>				: "😺" #1F63A SMILING CAT FACE WITH OPEN MOUTH
+<Multi_key> <n> <o>				: "🙅" # 1F645 FACE WITH NO GOOD GESTURE
+<Multi_key> <o> <k>				: "🙆" # 1F646 FACE WITH OK GESTURE
+
+### ↑ emojish.xcompose ↑ ###

@@ -1,0 +1,20 @@
+### ↓ bullets.xcompose ↓ ###
+
+# Bullets
+# =======
+# Asterisk is commonly used for bullets in ASCII.
+<Multi_key> <asterisk> <asterisk>: "•" U2022 # BULLET
+<Multi_key> <asterisk> <o>: "◦" U25E6 # WHITE BULLET
+<Multi_key> <asterisk> <greater>: "‣" U2023 # TRIANGULAR BULLET
+<Multi_key> <asterisk> <minus>: "⁃" U2043 # HYPHEN BULLET
+<Multi_key> <asterisk> <parenleft>: "⁌" U204C # LEFTWARDS BULLET
+<Multi_key> <asterisk> <parenright>: "⁍" U204D # RIGHTWARDS
+<Multi_key> <exclam> <asterisk>: "◘" U25D8 # INVERSE BULLET
+# Japanese tainome
+<Multi_key> <asterisk> <at>: "◉" U25C9 # FISHEYE
+<Multi_key> <greater> <f> <less> <3> : "☙" U2619 # REVERSED ROTATED FLORAL HEART BULLET
+<Multi_key> <less> <f> <less> <3> : "❧" U2767 # ROTATED FLORAL HEART BULLET
+<Multi_key> <exclam> <less> <3> : "❣" U2763 # HEAVY HEART EXCLAMATION MARK ORNAMENT
+#<Multi_key> <less> <less> <3>           : "❥"  U2765            # ROTATED HEAVY BLACK HEART BULLET
+
+### ↑ bullets.xcompose ↑ ###

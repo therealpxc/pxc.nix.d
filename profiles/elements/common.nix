@@ -108,8 +108,9 @@
     keychain
     mawk              # used by fasd
     xsel              # used by pbcopy
+    psmisc            # killall
 
-    python27Full
+    elvish
 
     direnv            # barebones projects
   ];

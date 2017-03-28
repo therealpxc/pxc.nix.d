@@ -1,0 +1,15 @@
+### ↓ vertical.xcompose ↓ ###
+
+# VERTICAL FORMS
+# ==============
+# correct vertical text uses font glyph substitution; the characters
+# below are deprecated.  since almost no one supports vertical text
+# (not even XeTeX!), these my come in handy.
+
+# «<exclam> <exclam>», «<exclam> <question>» &c. taken
+<Multi_key> <2> <exclam>: "‼" U203C # DOUBLE EXCLAMATION MARK
+<Multi_key> <2> <question>: "⁇" U2047 # DOUBLE QUESTION MARK
+# ⁈
+# ⁉
+
+### ↑ vertical.xcompose ↑ ###

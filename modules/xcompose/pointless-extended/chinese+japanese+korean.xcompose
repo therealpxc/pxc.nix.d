@@ -1,0 +1,18 @@
+### ↓ chinese+japanese+korean.xcompose ↓ ###
+
+# perhaps CJK input is better handled by CJK input methods.  we try to
+# list here only characters that are not tipically avaiable in those
+# (at least in my experience with Japanese IMs).
+
+# “nyoro” on JIMs
+# <Multi_key> <asciitilde> <>: "〜" U301C # WAVE DASH
+<Multi_key> <asciitilde> <asciitilde>: "〰" U3030 # WAVY DASH
+
+<Multi_key> <minus> <equal>: "゠" U30A0 # KATAKANA DOUBLE HYPHEN
+<Multi_key> <equal> <minus>: "゠" U30A0 # KATAKANA DOUBLE HYPHEN
+
+# “kome” IM.
+#
+# <Multi_key> <colon> <x>: "※" U203B # REFERENCE MARK
+
+### ↑ chinese+japanese+korean.xcompose ↑ ###
