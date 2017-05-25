@@ -18,25 +18,12 @@
     enablePepperFlash = true;
   };
 
-  # fuck it− let's have a bootsplash!
-  # just kidding − this is broken as of 2017-03-25
-  # see https://github.com/NixOS/nixpkgs/issues/22292
-  #boot.plymouth.enable = true;
-  #boot.plymouth.themePackages = with pkgs; [ breeze-plymouth ];
-  #boot.plymouth.theme = "breeze";
-
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    firefox
-    cutegram
-    telegram-cli
-    yakuake        # quake-style terminal for KDE
-    ark
+    pxc-common-gui-apps
 
-    vimPlugins.vim-addon-manager
-    
-    breeze-grub
+    #cutegram # broken
     breeze-gtk
     breeze-icons
     breeze-qt4
@@ -44,32 +31,17 @@
 
     plasma-pa
     kdeplasma-addons
-    #cantor # no more cantor package?? 😢
-    s3fs
-    google-drive-ocamlfuse
-    #kdeFrameworks.kdbusaddons # needed?
-    okular
-    #rekonq # no more rekonq
     x2goclient
     winswitch
-    kdeApplications.dolphin-plugins
-    kdeApplications.kio-extras
-    #kdesvn # no more kdesvn
-    kate
     kdesu
     kgpg
-    #kmix
     spectacle
     # afaik there's no manager app for kde5-only yet
     kdeApplications.kwalletmanager
     pavucontrol
-    vlc
     pythonPackages.youtube-dl
     gwenview
     ksysguard
-
-    aspellDicts.en
-    hunspellDicts.en-us
   ];
 
   hardware.pulseaudio.enable = true;
@@ -84,11 +56,6 @@
   services.xserver.layout = "us";
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.windowManager = {
-    #compiz.enable = true;
-    dwm.enable = true;
-    fluxbox.enable = true;
-    icewm.enable = true;
-    openbox.enable = true;
   };
 
   #services.xserver.desktopManager.phonon.gstreamer.enable = true;

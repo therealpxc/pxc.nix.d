@@ -1,39 +1,46 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./desktop.nix
-      ./elements/virtualization.nix
-    ];
+  imports = [
+    ./desktop.nix
+    ./elements/virtualization.nix
+  ];
 
-  #services.xserver.windowManager.i3.enable = true;
+  programs.adb.enable = true;
+  services.udev.packages = with pkgs; [
+    android-udev-rules
+  ];
+  programs.mosh.enable = true;
   
   environment.systemPackages = with pkgs; [
+    adb-sync
+    (heimdall.overrideAttrs (oldAttrs: rec {
+      withGUI = true;
+    }))
+
     lighttable              # lighttable editor
     leiningen               # Clojure project + dependency manager
     glxinfo
     atom
-    i3                      # TODO: figure out how I want to integrate i3 and kde5
     eclipses.eclipse-sdk
-    dwm
-    i3status
-    dmenu
+    #eclipses.eclipse-scala-sdk # based on Eclipse 4.4.1
+    scala     # scala (2.12.2 as of 2017-05-14)
+    scalafmt  # scala formatter
+    sbt       # ‘scala build tool’
+
     virtmanager
     jdk     # openjdk 8
-    jdk7    # openjdk 7
 
     # python development tools
     python3
     python35Packages.pew
     python35Packages.virtualenv
-    idea.pycharm-community
 
     # misc dev tools
     direnv
 
     # typesetting tools
-    texLive2016Custom       # defined in ../elements/my-packages.nix using texLiveAggregationFun
+    #texLive2016Custom       # defined in ../elements/my-packages.nix using texLiveAggregationFun
     lyx
     graphviz
     ghostscript

@@ -54,6 +54,7 @@
 
       hasklig
       powerline-fonts
+      nerdfonts
     ];
   };
 }
