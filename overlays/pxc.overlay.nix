@@ -1,14 +1,11 @@
 self: super: {
-  vimmy = super.vim_configurable.customize {
-    name = "vim";
-    wrapGui = true;
- 
-    vimrcConfig.customRC = ''
+  pxc.vimrcConfig = {
+    customRC = ''
       " set vim shell to bash because Syntastic doesn't like fish and stuff
       set shell=/run/current-system/sw/bin/bash
-      
+
       colorscheme behelit
- 
+
       " more fish stuff
       "syntax enable
       "filetype plugin indent on
@@ -21,7 +18,7 @@ self: super: {
 
       " Enable folding of block structures in fish.
       "autocmd FileType fish setlocal foldmethod=expr
- 
+
       " hybrid line numbering: absolute for current, relative for others
       set relativenumber
       set number
@@ -44,13 +41,11 @@ self: super: {
       nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
       nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
       nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-      nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
-
+      nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
     '';
-    #vimrcConfig.vam.knownPlugins = pkgs.vimPlugins; # optional
-    #vimrcConfig.vam.knownPlugins = pkgs.vimPlugins ++ mypkgs.pkgs.vimPlugins; # optional
-    vimrcConfig.packages.thisPackage.start = with self.vimPlugins; [ vim-nix ];
-    vimrcConfig.vam.pluginDictionaries = [
+
+    packages.thisPackage.start = with self.vimPlugins; [ vim-nix ];
+    vam.pluginDictionaries = [
       {  names = [
           "vim2nix"
           "sensible"            # sensible defaults
@@ -79,6 +74,21 @@ self: super: {
         ];
       }
     ];
+  };
+
+  vimmy = super.neovim.override (o: {
+    configure = self.pxc.vimrcConfig // {
+      vam.pluginDictionaries = self.pxc.vimrcConfig.vam.pluginDictionaries ++ [
+        { name = "ensime-vim"; }
+      ];
+    };
+    vimAlias = true;
+  });
+
+  oldvimmy = super.vim_configurable.customize {
+    name = "oldvimmy";
+
+    vimrcConfig = self.pxc.vimrcConfig;
   };
 
   avahi-compat = super.avahi.override {
@@ -121,7 +131,7 @@ self: super: {
       wget
       curl
       ranger
- 
+
       # stuff my fish config uses
       fish
       grc
@@ -139,7 +149,7 @@ self: super: {
       direnv              # barebones projects, pretty nifty
       gitAndTools.hub
       gitAndTools.gitFull
- 
+
       # dotfiles & configuration
       home-manager        # rycee's nix-based home manager
       super-user-spark    # dotfiles manager
@@ -161,7 +171,7 @@ self: super: {
       smbnetfs
       fusesmb
       cifs_utils
- 
+
       # other
       weechat             # nice terminal-based IRC app
     ];
