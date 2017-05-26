@@ -2,37 +2,50 @@ self: super: {
   vimmy = super.vim_configurable.customize {
     name = "vim";
     wrapGui = true;
-    
+ 
     vimrcConfig.customRC = ''
-    " set vim shell to bash because Syntastic doesn't like fish and stuff
-    set shell=/run/current-system/sw/bin/bash
-    
-    " more fish stuff
-    "syntax enable
-    "filetype plugin indent on
+      " set vim shell to bash because Syntastic doesn't like fish and stuff
+      set shell=/run/current-system/sw/bin/bash
+      
+      colorscheme behelit
+ 
+      " more fish stuff
+      "syntax enable
+      "filetype plugin indent on
 
-    " Set up :make to use fish for syntax checking.
-    "autocmd FileType fish compiler fish
+      " Set up :make to use fish for syntax checking.
+      "autocmd FileType fish compiler fish
 
-    " Set this to have long lines wrap inside comments.
-    "autocmd FileType fish setlocal textwidth=79
+      " Set this to have long lines wrap inside comments.
+      "autocmd FileType fish setlocal textwidth=79
 
-    " Enable folding of block structures in fish.
-    "autocmd FileType fish setlocal foldmethod=expr
-    
-    " hybrid line numbering: absolute for current, relative for others
-    set relativenumber
-    set number
+      " Enable folding of block structures in fish.
+      "autocmd FileType fish setlocal foldmethod=expr
+ 
+      " hybrid line numbering: absolute for current, relative for others
+      set relativenumber
+      set number
 
 
-    " tab width is 2, replace tabs with 2 spaces each
-    set tabstop=2
-    set expandtab
-    set shiftwidth=2
-    
-    " tell airline to use powerline fonts
-    let g:airline_powerline_fonts = 1
-    "
+      " tab width is 2, replace tabs with 2 spaces each
+      set tabstop=2
+      set expandtab
+      set shiftwidth=2
+
+      " tell airline to use powerline fonts
+      let g:airline_powerline_fonts = 1
+      let g:airline_theme = 'behelit'
+      let g:airline#extensions#tabline#enabled = 1
+
+      " tmux-navigator
+      let g:tmux_navigator_no_mappings = 1
+
+      nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+      nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+      nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+      nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+      nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+
     '';
     #vimrcConfig.vam.knownPlugins = pkgs.vimPlugins; # optional
     #vimrcConfig.vam.knownPlugins = pkgs.vimPlugins ++ mypkgs.pkgs.vimPlugins; # optional
@@ -51,17 +64,18 @@ self: super: {
           "fugitive"            # some kind of fancy git thing!
           "UltiSnips"           # fancy snippets
           "VimOutliner"         # vim outlining; collapse/expand trees like a cool kid
-          "vim-webdevicons"     # cool unicode glyphage
+          #"vim-webdevicons"     # cool unicode glyphage
           #"fireplace"       # Clojure REPL!
           #"VimClojure"          # Clojure support for vim!
           #"drgnbrg/vim-redl"    # repl debugging
           #"ag"
-          #"gitv"
+         #"gitv"
           "tmux-navigator"
           "vim-scala"
 
-          "airline"
-          "airline-plugins"
+          "vim-airline"
+          "vim-airline-themes"
+          "vim-colorschemes"
         ];
       }
     ];
