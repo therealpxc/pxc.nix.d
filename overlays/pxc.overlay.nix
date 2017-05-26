@@ -85,7 +85,6 @@ self: super: {
     qt4Support = super.avahi.qt4Support or false;
     withLibdnssdCompat = true;
   };
-
   texLive2016Custom = with super.pkgs; texlive.combine {
     inherit
       (texlive)         # defaults
@@ -98,13 +97,17 @@ self: super: {
       enumitem          # for Lyx's ‘Customizable Lists’ module
       graphviz          # for automata and stuff
       newtx             # NewTX math figures + Libertine Math font
-      
+
       #collection-latex
       collection-latexextra     # some NewTX dependency?
       #collection.fontutils
       collection-fontsextra     # for mweight.sty and ???
     ;
   };
+
+  ranger = super.ranger.overrideAttrs (oldAttrs: {
+    name = "ranger-1.9.0b5";
+  });
 
   # basic command-line environment
   pxc-common-cli-env = with super.pkgs; buildEnv {
@@ -117,13 +120,15 @@ self: super: {
       aria2
       wget
       curl
-      
+      ranger
+ 
       # stuff my fish config uses
       fish
       grc
       silver-searcher
       sift
       tmux
+      byobu
       python35Packages.powerline
       fzf
       fasd
@@ -134,7 +139,7 @@ self: super: {
       direnv              # barebones projects, pretty nifty
       gitAndTools.hub
       gitAndTools.gitFull
-      
+ 
       # dotfiles & configuration
       home-manager        # rycee's nix-based home manager
       super-user-spark    # dotfiles manager
@@ -142,7 +147,7 @@ self: super: {
       pwgen               # for use with pass
       gnupg
       gnupg1
-      
+
       # git
       gitAndTools.gitflow
       gitAndTools.git-annex
@@ -156,7 +161,7 @@ self: super: {
       smbnetfs
       fusesmb
       cifs_utils
-      
+ 
       # other
       weechat             # nice terminal-based IRC app
     ];
