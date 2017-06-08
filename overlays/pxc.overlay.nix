@@ -49,7 +49,6 @@ self: super: {
       {  names = [
           "vim2nix"
           "sensible"            # sensible defaults
-          "vim-nix"             # vim syntax checking for .nix files
           "YouCompleteMe"       # better? autocompletion
           "Syntastic"           # syntax checking
           "ctrlp"               # fuzzy finder
@@ -66,7 +65,9 @@ self: super: {
           #"ag"
          #"gitv"
           "tmux-navigator"
+          
           "vim-scala"
+          "ensime-vim"
 
           "vim-airline"
           "vim-airline-themes"
@@ -79,7 +80,7 @@ self: super: {
   vimmy = super.neovim.override (o: {
     configure = self.pxc.vimrcConfig // {
       vam.pluginDictionaries = self.pxc.vimrcConfig.vam.pluginDictionaries ++ [
-        { name = "ensime-vim"; }
+        #{ name = "ensime-vim"; }I
       ];
     };
     vimAlias = true;
@@ -125,12 +126,17 @@ self: super: {
     paths = [
       # cli basics
       which
-      vimmy
       htop
       aria2
       wget
       curl
       ranger
+      
+      # fancy vim
+      vimmy
+      oldvimmy
+      pythonPackages.sexpdata
+      pythonPackages.websocket_client
 
       # stuff my fish config uses
       fish
@@ -204,6 +210,8 @@ self: super: {
       kdeApplications.dolphin-plugins
       kdeApplications.kio-extras
       kate                # KDE Advanced Text Editor
+      ark
+      krita
 
       # multimedia
       mpv
