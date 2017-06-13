@@ -53,10 +53,7 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.windowManager = {
-  };
-
-  #services.xserver.desktopManager.phonon.gstreamer.enable = true;
+  services.xserver.xkbOptions = "terminate:ctrl_alt_bksp caps:escape";
 
   # disable slim by preferring sddm; slim is apparently kinda broken
   services.xserver.displayManager.sddm.enable = true;
