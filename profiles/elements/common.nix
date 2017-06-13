@@ -43,7 +43,7 @@
   services.samba.enable = true;
   services.samba.nsswins = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; pxc.common.tui.pkgs ++ [
     xpra              # in desktop.profile we also include winswitch
 
     lshw
@@ -52,13 +52,6 @@
     nix-repl
     nixops
     disnix
-
-    gollum              # for editing GitLab
-
-    
-    # common collections of packages to be shared on my Nix and NixOS machines
-    pxc-common-cli-env     # basic CLI environment (fish + hooked utilities for my omf plugins)
-    pxc-common-cli-tools
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

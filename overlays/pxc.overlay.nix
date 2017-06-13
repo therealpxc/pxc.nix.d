@@ -121,111 +121,108 @@ self: super: {
   });
 
   # basic command-line environment
-  pxc-common-cli-env = with super.pkgs; buildEnv {
+  pxc.common.tui.pkgs = with self.pkgs; [
+    # cli basics
+    which
+    htop
+    aria2
+    wget
+    curl
+    ranger
+    
+    # fancy vim
+    vimmy
+    oldvimmy
+    pythonPackages.sexpdata
+    pythonPackages.websocket_client
+
+    # stuff my fish config uses
+    fish
+    grc
+    silver-searcher
+    sift
+    tmux
+    byobu
+    python35Packages.powerline
+    fzf
+    fasd
+    mawk                # used by fasd
+    xsel                # used by pbcopy
+    psmisc              # fuser, killall, pstree & more
+    keychain
+    direnv              # barebones projects, pretty nifty
+    gitAndTools.hub
+    gitAndTools.gitFull
+
+    # dotfiles & configuration
+    home-manager        # rycee's nix-based home manager
+    super-user-spark    # dotfiles manager
+    pass                # git-based password manager
+    pwgen               # for use with pass
+    gnupg
+    gnupg1
+
+    # git
+    gitAndTools.gitflow
+    gitAndTools.git-annex
+    gitAndTools.git-remote-hg
+
+    # filesystem
+    p7zip
+    fuse-7z-ng
+    sshfsFuse
+    nfs-utils
+    smbnetfs
+    fusesmb
+    cifs_utils
+
+    # other
+    weechat             # nice terminal-based IRC app
+    
+    ### extras-ish ###
+    mediainfo
+
+    # other things I like
+    elvish              # cool shell under very active development
+    #dvtm              # alternative terminal multiplexer stuff
+    #dtach             # related to above
+    #abduco            # related to above
+    cowsay
+    telegram-cli
+  ];
+  
+  pxc.common.tui.env = with self.pkgs; buildEnv {
     name = "pxc-common-cli-env";
-    paths = [
-      # cli basics
-      which
-      htop
-      aria2
-      wget
-      curl
-      ranger
-      
-      # fancy vim
-      vimmy
-      oldvimmy
-      pythonPackages.sexpdata
-      pythonPackages.websocket_client
-
-      # stuff my fish config uses
-      fish
-      grc
-      silver-searcher
-      sift
-      tmux
-      byobu
-      python35Packages.powerline
-      fzf
-      fasd
-      mawk                # used by fasd
-      xsel                # used by pbcopy
-      psmisc              # fuser, killall, pstree & more
-      keychain
-      direnv              # barebones projects, pretty nifty
-      gitAndTools.hub
-      gitAndTools.gitFull
-
-      # dotfiles & configuration
-      home-manager        # rycee's nix-based home manager
-      super-user-spark    # dotfiles manager
-      pass                # git-based password manager
-      pwgen               # for use with pass
-      gnupg
-      gnupg1
-
-      # git
-      gitAndTools.gitflow
-      gitAndTools.git-annex
-      gitAndTools.git-remote-hg
-
-      # filesystem
-      p7zip
-      fuse-7z-ng
-      sshfsFuse
-      nfs-utils
-      smbnetfs
-      fusesmb
-      cifs_utils
-
-      # other
-      weechat             # nice terminal-based IRC app
-    ];
+    paths = pxc.apps.common.cli.pkgs;
   };
 
-  # additional command-line tools and applications
-  pxc-common-cli-tools = with super.pkgs; buildEnv {
-    name = "pxc-common-cli-tools";
-    paths = [
-      mediainfo
+  pxc.common.gui.pkgs = with self.pkgs; [
+    firefox
+    qtpass              # Qt GUI frontend for pass
+    yakuake             # Quake-style terminal
+    dolphin             # best file manager ever made
+    kdeApplications.dolphin-plugins
+    kdeApplications.kio-extras
+    kate                # KDE Advanced Text Editor
+    ark
+    krita
 
-      # other things I like
-      elvish              # cool shell under very active development
-      #dvtm              # alternative terminal multiplexer stuff
-      #dtach             # related to above
-      #abduco            # related to above
-      figlet            # stylized ascii-art renderer for text
-      cowsay
-      telegram-cli
-    ];
-  };
+    # multimedia
+    mpv
+    vlc
+    okular              # document viewer
 
-  pxc-common-gui-apps = with super.pkgs; buildEnv {
-    name = "pxc-common-gui-apps";
-    paths = [
-      firefox
-      qtpass              # Qt GUI frontend for pass
-      yakuake             # Quake-style terminal
-      dolphin             # best file manager ever made
-      kdeApplications.dolphin-plugins
-      kdeApplications.kio-extras
-      kate                # KDE Advanced Text Editor
-      ark
-      krita
+    # remote desktopery
+    x2goclient
+    xpra
+    winswitch
 
-      # multimedia
-      mpv
-      vlc
-      okular              # document viewer
-
-      # remote desktopery
-      x2goclient
-      xpra
-      winswitch
-
-      # dictionaries
-      aspellDicts.en
-      hunspellDicts.en-us
-    ];
+    # dictionaries
+    aspellDicts.en
+    hunspellDicts.en-us
+  ];
+  pxc.common.gui.env = with super.pkgs; buildEnv {
+    name = "pxc-common-gui-env";
+    paths = pxc.common.gui.pkgs;
   };
 }
