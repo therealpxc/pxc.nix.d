@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./profiles/workstation.nix
-      ./modules/xcompose
+      #./modules/xcompose
     ];
   nix.useSandbox = false;
 
