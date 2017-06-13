@@ -40,6 +40,7 @@
       inconsolata
       dosemu_fonts
       anonymousPro
+      source-code-pro # used by XEmacs
 
       # tex & typesetting
       (pkgs.ghostscript + "/share/ghostscript/fonts/")
