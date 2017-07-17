@@ -15,8 +15,9 @@
       # /run/current-system/sw/bin/bash
       powerline-fonts
       bashInteractive
-  ] ++ pxc.common.tui.pkgs
-    ++ pxc.macos.gui.pkgs;
+    ] ++ pxc.common.tui.pkgs
+      ++ pxc.macos.tui.pkgs
+      ++ pxc.macos.gui.pkgs;
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   #programs.bash.enable = true;

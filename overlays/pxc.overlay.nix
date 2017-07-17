@@ -289,9 +289,26 @@ self: super: {
     paths = pxc.linux.gui.pkgs;
   };
 
+  pxc.macos.tui.pkgs = with self.pkgs; [
+    # needed for tmux and possibly other utilities to work right
+    # (used by `open` command)
+    reattach-to-user-namespace
+
+    # I hate non-GNU coreutils
+    coreutils
+  ];
+  pxc.macos.tui.env = with super.pkgs; buildEnv {
+    name = "pxc-macos-tui-env";
+    paths = pxc.macos.tui.pkgs;
+  };
+
   pxc.macos.gui.pkgs = with self.pkgs; [
     iterm2
     sequelpro
+
+    # not sure if these are necessary. I should do this a better way
+    powerline-fonts
+    source-code-pro
   ];
   pxc.macos.gui.env = with super.pkgs; buildEnv {
     name = "pxc-macos-gui-env";
