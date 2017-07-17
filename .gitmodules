@@ -1,6 +1,3 @@
-[submodule "hydra"]
-	path = hydra
-	url = git@github.com:LatitudeEngineering/hydra.git
 [submodule "pkgs/home-manager"]
 	path = pkgs/home-manager
 	url = git@github.com:rycee/home-manager.git
