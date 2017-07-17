@@ -163,19 +163,18 @@ self: super: {
     sift
     tmux
     byobu
-    python35Packages.powerline
     fzf
     fasd
     mawk                # used by fasd
     xsel                # used by pbcopy
-    psmisc              # fuser, killall, pstree & more
     keychain
     direnv              # barebones projects, pretty nifty
     gitAndTools.hub
     gitAndTools.gitFull
+    pythonPackages.powerline
 
     # dotfiles & configuration
-    home-manager        # rycee's nix-based home manager
+    #home-manager        # rycee's nix-based home manager
     super-user-spark    # dotfiles manager
     pass                # git-based password manager
     pwgen               # for use with pass
@@ -184,7 +183,6 @@ self: super: {
 
     # git
     gitAndTools.gitflow
-    gitAndTools.git-annex
     gitAndTools.git-remote-hg
 
     # filesystem
@@ -195,8 +193,6 @@ self: super: {
 
     ### extras-ish ###
     mediainfo
-    pdfgrep
-    pdftk
 
     # other things I like
     #dvtm              # alternative terminal multiplexer stuff
@@ -209,8 +205,8 @@ self: super: {
     zsh
   ];
   pxc.common.tui.env = with self.pkgs; buildEnv {
-    name = "pxc-common-cli-env";
-    paths = pxc.apps.common.cli.pkgs;
+    name = "pxc-common-tui-env";
+    paths = pxc.common.tui.pkgs;
   };
 
 
@@ -239,7 +235,7 @@ self: super: {
     hunspellDicts.en-us
   ];
   pxc.common.gui.env = with super.pkgs; buildEnv {
-    name = "pxc-common-gui-env";
+    name = "pxc-common-tui-env";
     paths = pxc.common.gui.pkgs;
   };
 
@@ -252,7 +248,13 @@ self: super: {
     fusesmb
     cifs_utils
 
+    # this needs to be fixed... python cffi doesn't build with clang
+
+    pdfgrep
+    pdftk
+    gitAndTools.git-annex
     lshw
+    psmisc              # fuser, killall, pstree & more
     usbutils
 
     # elvish doesn't build on macOS because of some detected cycle.
