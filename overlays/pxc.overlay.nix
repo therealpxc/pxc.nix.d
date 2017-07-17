@@ -172,6 +172,7 @@ self: super: {
     gitAndTools.hub
     gitAndTools.gitFull
     pythonPackages.powerline
+    findutils           # macOS comes with weak find command
 
     # dotfiles & configuration
     #home-manager        # rycee's nix-based home manager
@@ -191,8 +192,13 @@ self: super: {
     # other
     weechat             # nice terminal-based IRC app
 
+    # possibly useful for work remote debugging stuff?
+    unison
+    fswatch
+
     ### extras-ish ###
     mediainfo
+    asciinema
 
     # other things I like
     #dvtm              # alternative terminal multiplexer stuff
@@ -281,5 +287,14 @@ self: super: {
   pxc.linux.gui.env = with super.pkgs; buildEnv {
     name = "pxc-linux-gui-env";
     paths = pxc.linux.gui.pkgs;
+  };
+
+  pxc.macos.gui.pkgs = with self.pkgs; [
+    iterm2
+    sequelpro
+  ];
+  pxc.macos.gui.env = with super.pkgs; buildEnv {
+    name = "pxc-macos-gui-env";
+    paths = pxc.macos.gui.pkgs;
   };
 }
