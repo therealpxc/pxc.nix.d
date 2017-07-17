@@ -3,10 +3,8 @@ pkgs :
 {
   allowUnfree = true;
   virtualbox = { enableExtensionPack = true; };
-  gazebo = { withQuickBuild = true; };
 
-  #  nix.nixPath = [ "nixup-config=/home/pxc/.config/nixup/profile.nix" ];
-  #  nix.nixPath = [ "~/Code/Personal" ];
+  nix.nixPath = [ "nixpkgs=../channels/nixpkgs" ];
 
   firefox = {
     enableGoogleTalkPlugin = true;
@@ -24,8 +22,8 @@ pkgs :
       src = super.fetchFromGitHub {
         repo = "elvish";
         owner = "therealpxc";
-        rev = "8556834802f5629ed4e8f8e65dc8e030a104acc1";
-        sha256 = "0xpfjficwq261yag9hrxx6mbl97rv0zmp1cllfvyc160x4v0y115";
+        rev = "66b7f997f7e5ff32eaa288be3769f9211762f3b7";
+        sha256 = "03id8h643xkk707qivss9m74q4gsdz2nrcz4hy2axq0989qsl04y";
       };
     });
   };
