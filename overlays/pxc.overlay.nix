@@ -65,7 +65,7 @@ self: super: {
           #"ag"
          #"gitv"
           "tmux-navigator"
-          
+
           "vim-scala"
 
           "vim-airline"
@@ -75,6 +75,16 @@ self: super: {
       }
     ];
   };
+
+  elvish = super.elvish.overrideAttrs (oldAttrs: rec {
+    name = "elvish-git";
+    src = super.fetchFromGitHub {
+      repo = "elvish";
+      owner = "therealpxc";
+      rev = "66b7f997f7e5ff32eaa288be3769f9211762f3b7";
+      sha256 = "03id8h643xkk707qivss9m74q4gsdz2nrcz4hy2axq0989qsl04y";
+    };
+  });
 
   neovimmy = super.neovim.override (o: {
     configure = self.pxc.vimrcConfig // {
@@ -95,6 +105,7 @@ self: super: {
     qt4Support = super.avahi.qt4Support or false;
     withLibdnssdCompat = true;
   };
+
   texLive2016Custom = with super.pkgs; texlive.combine {
     inherit
       (texlive)         # defaults
@@ -130,7 +141,7 @@ self: super: {
     ranger
     ripgrep
     tree
-    
+
     # fancy vim
     neovimmy
     vimmy
@@ -174,7 +185,7 @@ self: super: {
 
     # other
     weechat             # nice terminal-based IRC app
-    
+
     ### extras-ish ###
     mediainfo
     pdfgrep
@@ -194,7 +205,7 @@ self: super: {
     name = "pxc-common-cli-env";
     paths = pxc.apps.common.cli.pkgs;
   };
-  
+
 
   pxc.common.gui.pkgs = with self.pkgs; [
     firefox
@@ -224,7 +235,7 @@ self: super: {
     name = "pxc-common-gui-env";
     paths = pxc.common.gui.pkgs;
   };
-  
+
   # Linux-only packages which require only a textual user-interface
   pxc.linux.tui.pkgs = with self.pkgs; [
     fuse-7z-ng
