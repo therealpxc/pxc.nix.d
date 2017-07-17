@@ -15,3 +15,4 @@ pkgs :
     enablePepperFlash = true;
     enablePepperPDF = true;
   };
+}

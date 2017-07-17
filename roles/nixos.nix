@@ -1,25 +1,28 @@
 { config, pkgs, lib, ... }:
 
 {
-  # import homemade packages and override pkgs
-  imports = [ ./my-packages.nix ];
-
   # allow us to use custom nixpkgs by cloning it into /etc/nixos
   nix.nixPath = [
-    # marks nixpkgs parent directory: 
-    # /etc/nixos/nixpkgs -> /home/pxc/Code/Personal/devnix (local checkout)
+    # /etc/nixos/channels/nixpkgs -> ~/Code/Personal/devnix (or wherever; it's a local checkout)
     "nixpkgs=/etc/nixos/channels/nixpkgs"
 
     # top-level nixos configuration file
     "nixos-config=/etc/nixos/configuration.nix"
   ];
 
-  nix.trustedUsers = [ "@wheel" ];
+  # add overlays and custom packages
+  nixpkgs.overlays = [
+    (import ../overlays/pxc.overlay.nix)
+    (import ../overlays/rust-overlay.nix)
 
-  # this is only allowable because vimmy is also installed by default, see below
-  environment.extraInit = ''
-    EDITOR=vim
-  '';
+    # add third-party packages from outside the nixpkgs tree
+    (self: super: {
+      home-manager = import ../pkgs/home-manager { inherit pkgs; };
+      sbtix = super.callPackage ../pkgs/Sbtix/sbtix-tool.nix { };
+    })
+  ];
+
+  nix.trustedUsers = [ "@wheel" ];
 
   # Select internationalisation properties.
   i18n = {
@@ -43,20 +46,10 @@
   services.samba.enable = true;
   services.samba.nsswins = true;
 
-  environment.systemPackages = with pkgs; [
-    xpra              # in desktop.profile we also include winswitch
+  environment.systemPackages = with pkgs;
+    pxc.common.tui.pkgs ++ pxc.linux.tui.pkgs;
 
-    lshw
-    usbutils            # lsusb
-
-    nix-repl
-    nixops
-    disnix
-  ] ++ pxc.common.tui.pkgs
-    ++ pxc.linux.tui.pkgs
-  ;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # add my own user
   users.extraUsers.pxc = {
     isNormalUser = true;
     uid = 1000;

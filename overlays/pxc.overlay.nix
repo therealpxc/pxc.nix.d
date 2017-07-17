@@ -142,11 +142,18 @@ self: super: {
     ripgrep
     tree
 
+    # nix tools
+    nix-repl
+    nixops
+    disnix
+
     # fancy vim
     neovimmy
     vimmy
     (python.withPackages (ps: with ps; [ sexpdata websocket_client ]))
     unzip               # for using vim to explore zip files
+
+    # for spacemacs!
     emacs
 
     # stuff my fish config uses and some goodies I want
@@ -244,6 +251,9 @@ self: super: {
     smbnetfs
     fusesmb
     cifs_utils
+
+    lshw
+    usbutils
 
     # elvish doesn't build on macOS because of some detected cycle.
     # it's a common problem for macOS Go packages and there are

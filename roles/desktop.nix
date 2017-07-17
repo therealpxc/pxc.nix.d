@@ -5,8 +5,7 @@
   nixpkgs.config.allowUnfree = true;
   imports =
   [
-    ./elements/common.nix # basic shell env
-    ./elements/fonts.nix
+    ./nixos.nix # basic shell env
   ];
 
   nixpkgs.config.firefox = {
@@ -40,11 +39,14 @@
     pythonPackages.youtube-dl
     gwenview
     ksysguard
-  ] ++ pxc.common.gui.pkgs 
+  ] ++ pxc.common.gui.pkgs
     ++ pxc.linux.gui.pkgs
   ;
 
+  # enable sound
   hardware.pulseaudio.enable = true;
+
+  # enable mDNS
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
 
@@ -73,4 +75,61 @@
     gutenprintBin
     samsung-unified-linux-driver
   ];
+
+  # enable lots of fonts for desktop use
+  fonts = {
+    fontconfig.enable = true;
+    enableFontDir = true;
+    enableCoreFonts = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      # microsoft & microsoft-compatibility
+      vistafonts
+      liberation_ttf
+      comic-neue
+      carlito
+      corefonts
+      dosemu_fonts
+
+      # general-purpose
+      ttf_bitstream_vera
+      dejavu_fonts
+      ubuntu_font_family
+
+      # my favorite fonts
+      libertine
+
+      # extended unicode & special
+      symbola
+      clearlyU
+      unifont
+      freefont_ttf
+      cm_unicode
+      ucsFonts
+      junicode
+
+
+      # terminal & coding, monospace
+      inconsolata
+      dosemu_fonts
+      anonymousPro
+      source-code-pro # used by XEmacs
+
+      # tex & typesetting
+      (pkgs.ghostscript + "/share/ghostscript/fonts/")
+      stix-otf
+      xorg.fontadobe100dpi
+      xorg.fontadobe75dpi
+      xorg.fontadobeutopia100dpi
+      xorg.fontadobeutopia75dpi
+      xorg.fontadobeutopiatype1
+      lmmath
+      lmodern
+
+      hasklig
+      powerline-fonts
+      nerdfonts
+    ];
+  };
+
 }
