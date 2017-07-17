@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
+
+  # share our nixpkgs' config with non-NixOS
+  nixpkgs.config = (import ../personal/config.nix );
+
   # allow us to use custom nixpkgs by cloning it into /etc/nixos
   nix.nixPath = [
     # /etc/nixos/channels/nixpkgs -> ~/Code/Personal/devnix (or wherever; it's a local checkout)

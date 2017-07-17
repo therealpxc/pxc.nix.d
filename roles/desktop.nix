@@ -1,21 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  # allow for proprietary graphics drivers ☹
-  nixpkgs.config.allowUnfree = true;
   imports =
   [
     ./nixos.nix # basic shell env
   ];
-
-  nixpkgs.config.firefox = {
-    enableGoogleTalkPlugin = true;
-    enableAdobeFlash = true;
-  };
-
-  nixpkgs.config.chromium = {
-    enablePepperFlash = true;
-  };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget

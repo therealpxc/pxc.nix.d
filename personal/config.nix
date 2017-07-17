@@ -2,7 +2,7 @@ pkgs :
 
 {
   allowUnfree = true;
-  virtualbox = { enableExtensionPack = true; };
+  #  virtualbox = { enableExtensionPack = true; };
 
   nix.nixPath = [ "nixpkgs=../channels/nixpkgs" ];
 
