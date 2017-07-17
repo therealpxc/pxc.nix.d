@@ -13,3 +13,9 @@
 [submodule "pkgsets/nixpkgs/darwin"]
 	path = pkgsets/nixpkgs/darwin
 	url = git@github.com:therealpxc/nixpkgs.git
+[submodule "pkgsets/nix-darwin"]
+	path = pkgsets/nix-darwin
+	url = git@github.com:therealpxc/nix-darwin.git
+[submodule "pkgsets/nixpkgs-mozilla"]
+	path = pkgsets/nixpkgs-mozilla
+	url = git@github.com:mozilla/nixpkgs-mozilla.git
