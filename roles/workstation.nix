@@ -3,7 +3,7 @@
 {
   imports = [
     ./desktop.nix
-    ./elements/virtualization.nix
+    ./virtualization.nix
   ];
 
   programs.adb.enable = true;
