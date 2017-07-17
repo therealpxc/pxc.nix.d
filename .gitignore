@@ -1,8 +1,8 @@
-configuration.nix
-hardware-configuration.nix
 nixos-include
 result
 nixpkgs
 /config.nix
-/home.nix
+/configuration.nix
 /darwin-configuration.nix
+/hardware-configuration.nix
+/home.nix

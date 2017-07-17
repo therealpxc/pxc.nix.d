@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./profiles/workstation.nix
+      ../../profiles/workstation.nix
       #./modules/xcompose
     ];
   nix.useSandbox = false;
