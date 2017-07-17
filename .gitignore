@@ -1,6 +1,6 @@
 nixos-include
 result
-nixpkgs
+/channels/nixpkgs
 /config.nix
 /configuration.nix
 /darwin-configuration.nix
