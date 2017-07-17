@@ -3,3 +3,6 @@ hardware-configuration.nix
 nixos-include
 result
 nixpkgs
+/config.nix
+/home.nix
+/darwin-configuration.nix
