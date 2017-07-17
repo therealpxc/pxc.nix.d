@@ -8,7 +8,7 @@
   # allow us to use custom nixpkgs by cloning it into /etc/nixos
   nix.nixPath = [
     # /etc/nixos/channels/nixpkgs -> ~/Code/Personal/devnix (or wherever; it's a local checkout)
-    "nixpkgs=/etc/nixos/channels/nixpkgs"
+    "nixpkgs=/etc/nixos/pkgsets/nixpkgs/nixpkgs"
 
     # top-level nixos configuration file
     "nixos-config=/etc/nixos/configuration.nix"

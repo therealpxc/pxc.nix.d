@@ -4,7 +4,7 @@ pkgs :
   allowUnfree = true;
   #  virtualbox = { enableExtensionPack = true; };
 
-  nix.nixPath = [ "nixpkgs=../channels/nixpkgs" ];
+  nix.nixPath = [ "nixpkgs=../pkgsets/nixpkgs/nixpkgs" ];
 
   firefox = {
     enableGoogleTalkPlugin = true;

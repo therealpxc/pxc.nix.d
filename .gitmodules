@@ -7,3 +7,9 @@
 [submodule "pkgsets/nixpkgs/worktree-root"]
 	path = pkgsets/nixpkgs/worktree-root
 	url = git@github.com:therealpxc/nixpkgs.git
+[submodule "pkgsets/nixpkgs/nixos"]
+	path = pkgsets/nixpkgs/nixos
+	url = git@github.com:therealpxc/nixpkgs.git
+[submodule "pkgsets/nixpkgs/darwin"]
+	path = pkgsets/nixpkgs/darwin
+	url = git@github.com:therealpxc/nixpkgs.git
