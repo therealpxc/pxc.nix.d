@@ -8,7 +8,7 @@
   nix.nixPath = [
     # marks nixpkgs parent directory: 
     # /etc/nixos/nixpkgs -> /home/pxc/Code/Personal/devnix (local checkout)
-    "/etc/nixos"
+    "/etc/nixos/channels"
 
     # top-level nixos configuration file
     "nixos-config=/etc/nixos/configuration.nix"
