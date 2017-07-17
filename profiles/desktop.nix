@@ -20,7 +20,7 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; pxc.common.gui.pkgs ++ [
+  environment.systemPackages = with pkgs; [
     #cutegram # broken
     breeze-gtk
     breeze-icons
@@ -40,7 +40,9 @@
     pythonPackages.youtube-dl
     gwenview
     ksysguard
-  ];
+  ] ++ pxc.common.gui.pkgs 
+    ++ pxc.linux.gui.pkgs
+  ;
 
   hardware.pulseaudio.enable = true;
   services.avahi.enable = true;

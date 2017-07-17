@@ -67,7 +67,6 @@ self: super: {
           "tmux-navigator"
           
           "vim-scala"
-          "ensime-vim"
 
           "vim-airline"
           "vim-airline-themes"
@@ -77,17 +76,17 @@ self: super: {
     ];
   };
 
-  vimmy = super.neovim.override (o: {
+  neovimmy = super.neovim.override (o: {
     configure = self.pxc.vimrcConfig // {
       vam.pluginDictionaries = self.pxc.vimrcConfig.vam.pluginDictionaries ++ [
-        #{ name = "ensime-vim"; }I
+        { name = "ensime-vim"; }
       ];
     };
-    vimAlias = true;
+    vimAlias = false;
   });
 
-  oldvimmy = super.vim_configurable.customize {
-    name = "oldvimmy";
+  vimmy = super.vim_configurable.customize {
+    name = "vim";
 
     vimrcConfig = self.pxc.vimrcConfig;
   };
@@ -120,7 +119,7 @@ self: super: {
     name = "ranger-1.9.0b5";
   });
 
-  # basic command-line environment
+  # basic command-line environment, common to all platforms
   pxc.common.tui.pkgs = with self.pkgs; [
     # cli basics
     which
@@ -129,14 +128,17 @@ self: super: {
     wget
     curl
     ranger
+    ripgrep
+    tree
     
     # fancy vim
+    neovimmy
     vimmy
-    oldvimmy
-    pythonPackages.sexpdata
-    pythonPackages.websocket_client
+    (python.withPackages (ps: with ps; [ sexpdata websocket_client ]))
+    unzip               # for using vim to explore zip files
+    emacs
 
-    # stuff my fish config uses
+    # stuff my fish config uses and some goodies I want
     fish
     grc
     silver-searcher
@@ -169,32 +171,30 @@ self: super: {
 
     # filesystem
     p7zip
-    fuse-7z-ng
-    sshfsFuse
-    nfs-utils
-    smbnetfs
-    fusesmb
-    cifs_utils
 
     # other
     weechat             # nice terminal-based IRC app
     
     ### extras-ish ###
     mediainfo
+    pdfgrep
+    pdftk
 
     # other things I like
-    elvish              # cool shell under very active development
     #dvtm              # alternative terminal multiplexer stuff
     #dtach             # related to above
     #abduco            # related to above
     cowsay
-    telegram-cli
+
+    # just for funsies
+    bashInteractive
+    zsh
   ];
-  
   pxc.common.tui.env = with self.pkgs; buildEnv {
     name = "pxc-common-cli-env";
     paths = pxc.apps.common.cli.pkgs;
   };
+  
 
   pxc.common.gui.pkgs = with self.pkgs; [
     firefox
@@ -214,7 +214,6 @@ self: super: {
 
     # remote desktopery
     x2goclient
-    xpra
     winswitch
 
     # dictionaries
@@ -224,5 +223,40 @@ self: super: {
   pxc.common.gui.env = with super.pkgs; buildEnv {
     name = "pxc-common-gui-env";
     paths = pxc.common.gui.pkgs;
+  };
+  
+  # Linux-only packages which require only a textual user-interface
+  pxc.linux.tui.pkgs = with self.pkgs; [
+    fuse-7z-ng
+    sshfsFuse
+    nfs-utils
+    smbnetfs
+    fusesmb
+    cifs_utils
+
+    # elvish doesn't build on macOS because of some detected cycle.
+    # it's a common problem for macOS Go packages and there are
+    # known fixes.
+    elvish              # cool shell under very active development
+  ];
+  pxc.linux.tui.env = with super.pkgs; buildEnv {
+    name = "pxc-linux-tui-env";
+    paths = pxc.linux.tui.pkgs;
+  };
+
+  pxc.linux.gui.pkgs = with self.pkgs; [
+    # X utilities
+    xorg.xmodmap
+    xpra
+
+    gnome3.cheese              # simple GNOME webcam app
+
+    # chat apps
+    slack
+    discord
+  ];
+  pxc.linux.gui.env = with super.pkgs; buildEnv {
+    name = "pxc-linux-gui-env";
+    paths = pxc.linux.gui.pkgs;
   };
 }

@@ -43,7 +43,7 @@
   services.samba.enable = true;
   services.samba.nsswins = true;
 
-  environment.systemPackages = with pkgs; pxc.common.tui.pkgs ++ [
+  environment.systemPackages = with pkgs; [
     xpra              # in desktop.profile we also include winswitch
 
     lshw
@@ -52,7 +52,9 @@
     nix-repl
     nixops
     disnix
-  ];
+  ] ++ pxc.common.tui.pkgs
+    ++ pxc.linux.tui.pkgs
+  ;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.pxc = {
