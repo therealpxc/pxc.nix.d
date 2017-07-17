@@ -7,3 +7,6 @@
 [submodule "pkgs/Sbtix"]
 	path = pkgs/Sbtix
 	url = git@github.com:teozkr/Sbtix.git
+[submodule "pkgsets/nixpkgs/worktree-root"]
+	path = pkgsets/nixpkgs/worktree-root
+	url = git@github.com:therealpxc/nixpkgs.git
