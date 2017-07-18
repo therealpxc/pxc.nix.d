@@ -1,1 +1,1 @@
-/home/pxc/Code/Personal/nixpkgs-mozilla/rust-overlay.nix
+../pkgsets/nixpkgs-mozilla/rust-overlay.nix

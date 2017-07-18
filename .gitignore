@@ -6,3 +6,4 @@ result
 /darwin-configuration.nix
 /hardware-configuration.nix
 /home.nix
+/pkgsets/nixpkgs/nixpkgs
