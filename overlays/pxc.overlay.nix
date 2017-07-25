@@ -138,9 +138,10 @@ self: super: {
     aria2
     wget
     curl
-    ranger
+    ranger    # file manager
     ripgrep
     tree
+    fpp       # facebook path picker
 
     # nix tools
     nix-repl
@@ -150,11 +151,10 @@ self: super: {
     # fancy vim
     neovimmy
     vimmy
-    (python.withPackages (ps: with ps; [ sexpdata websocket_client ]))
     unzip               # for using vim to explore zip files
 
-    # for spacemacs!
-    emacs
+    # this is python with the required deps for vim and Spacemacs
+    (python3.withPackages (ps: with ps; [ sexpdata websocket_client ]))
 
     # stuff my fish config uses and some goodies I want
     fish
@@ -283,6 +283,10 @@ self: super: {
     # chat apps
     slack
     discord
+    
+    # for spacemacs!
+    # (added separately here so that I can specify the Mac port on macOS)
+    emacs
   ];
   pxc.linux.gui.env = with super.pkgs; buildEnv {
     name = "pxc-linux-gui-env";
@@ -309,6 +313,8 @@ self: super: {
     # not sure if these are necessary. I should do this a better way
     powerline-fonts
     source-code-pro
+
+    emacs25Macport
   ];
   pxc.macos.gui.env = with super.pkgs; buildEnv {
     name = "pxc-macos-gui-env";
