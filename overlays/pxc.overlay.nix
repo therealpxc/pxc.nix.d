@@ -173,6 +173,7 @@ self: super: {
     gitAndTools.gitFull
     pythonPackages.powerline
     findutils           # macOS comes with weak find command
+    chips               # an alternative to oh-my-fish
 
     # dotfiles & configuration
     #home-manager        # rycee's nix-based home manager
