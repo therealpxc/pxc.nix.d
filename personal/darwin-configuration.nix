@@ -15,6 +15,10 @@
       # /run/current-system/sw/bin/bash
       powerline-fonts
       bashInteractive
+      nix
+      jdk
+      python36Packages.yapf
+      python36Packages.isort
     ] ++ pxc.common.tui.pkgs
       ++ pxc.macos.tui.pkgs
       ++ pxc.macos.gui.pkgs;
