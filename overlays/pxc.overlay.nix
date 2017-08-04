@@ -174,14 +174,14 @@ self: super: {
     pythonPackages.powerline
     findutils           # macOS comes with weak find command
     chips               # an alternative to oh-my-fish
+    thefuck             # correct mistaken commands
+    gawk                # macOS comes with ancient gawk, tmux-fingers wants a newer one
 
     # dotfiles & configuration
     #home-manager        # rycee's nix-based home manager
     super-user-spark    # dotfiles manager
     pass                # git-based password manager
     pwgen               # for use with pass
-    gnupg
-    gnupg1
 
     # git
     gitAndTools.gitflow
@@ -255,7 +255,7 @@ self: super: {
     fusesmb
     cifs_utils
 
-    # this needs to be fixed... python cffi doesn't build with clang
+    gnupg               # macOS comes with old GPG, so the gpg-agent is old and bad
 
     pdfgrep
     pdftk
@@ -301,6 +301,9 @@ self: super: {
 
     # I hate non-GNU coreutils
     coreutils
+
+    # we need old GPG because macOS sucks
+    gnupg20
   ];
   pxc.macos.tui.env = with super.pkgs; buildEnv {
     name = "pxc-macos-tui-env";
