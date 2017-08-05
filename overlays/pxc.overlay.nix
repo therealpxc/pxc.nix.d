@@ -218,24 +218,9 @@ self: super: {
 
 
   pxc.common.gui.pkgs = with self.pkgs; [
-    firefox
-    qtpass              # Qt GUI frontend for pass
-    yakuake             # Quake-style terminal
-    dolphin             # best file manager ever made
-    kdeApplications.dolphin-plugins
-    kdeApplications.kio-extras
-    kate                # KDE Advanced Text Editor
-    ark
-    krita
+    # use the GNU Emacs distribution on both Linux and Mac
+    emacs
 
-    # multimedia
-    mpv
-    vlc
-    okular              # document viewer
-
-    # remote desktopery
-    x2goclient
-    winswitch
 
     # dictionaries
     aspellDicts.en
@@ -281,13 +266,34 @@ self: super: {
 
     gnome3.cheese              # simple GNOME webcam app
 
+    ######
+    # packages below should ideally be in common.gui.pkgs, but some need to be
+    # fixed or recreated for Darwin compatibility
+    #
+
     # chat apps
     slack
     discord
-    
-    # for spacemacs!
-    # (added separately here so that I can specify the Mac port on macOS)
-    emacs
+
+    firefox
+    dolphin             # best file manager ever made
+    kdeApplications.dolphin-plugins
+    kdeApplications.kio-extras
+    kate
+    yakuake             # Quake-style terminal
+    ark
+    krita
+    vlc
+    okular              # document viewer
+
+    # remote desktopery
+    x2goclient
+    winswitch
+
+    # multimedia
+    mpv
+
+    qtpass              # Qt GUI frontend for pass -- qtbase-opensource is broken on macOS
   ];
   pxc.linux.gui.env = with super.pkgs; buildEnv {
     name = "pxc-linux-gui-env";
@@ -318,7 +324,8 @@ self: super: {
     powerline-fonts
     source-code-pro
 
-    emacs25Macport
+    # this doesn't let me connect terminal emacsclient to GUI Emacs
+    # emacs25Macport
   ];
   pxc.macos.gui.env = with super.pkgs; buildEnv {
     name = "pxc-macos-gui-env";

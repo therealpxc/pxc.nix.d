@@ -20,6 +20,7 @@
       python36Packages.yapf
       python36Packages.isort
     ] ++ pxc.common.tui.pkgs
+      ++ pxc.common.gui.pkgs
       ++ pxc.macos.tui.pkgs
       ++ pxc.macos.gui.pkgs;
 
