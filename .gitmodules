@@ -1,3 +1,21 @@
-[submodule "hydra"]
-	path = hydra
-	url = git@github.com:LatitudeEngineering/hydra.git
+[submodule "pkgs/home-manager"]
+	path = pkgs/home-manager
+	url = git@github.com:rycee/home-manager.git
+[submodule "pkgs/Sbtix"]
+	path = pkgs/Sbtix
+	url = git@github.com:teozkr/Sbtix.git
+[submodule "pkgsets/nixpkgs/worktree-root"]
+	path = pkgsets/nixpkgs/worktree-root
+	url = git@github.com:therealpxc/nixpkgs.git
+[submodule "pkgsets/nixpkgs/nixos"]
+	path = pkgsets/nixpkgs/nixos
+	url = git@github.com:therealpxc/nixpkgs.git
+[submodule "pkgsets/nixpkgs/darwin"]
+	path = pkgsets/nixpkgs/darwin
+	url = git@github.com:therealpxc/nixpkgs.git
+[submodule "pkgsets/nix-darwin"]
+	path = pkgsets/nix-darwin
+	url = git@github.com:therealpxc/nix-darwin.git
+[submodule "pkgsets/nixpkgs-mozilla"]
+	path = pkgsets/nixpkgs-mozilla
+	url = git@github.com:mozilla/nixpkgs-mozilla.git

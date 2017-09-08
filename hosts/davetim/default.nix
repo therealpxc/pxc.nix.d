@@ -8,10 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./profiles/workstation.nix
-      ./modules/xcompose
+      ../../roles/workstation.nix
+      #./modules/xcompose
     ];
-  nix.useSandbox = true;
+  nix.useSandbox = false;
 
   # Use the GRUB 2 boot loader.
   #boot.loader.grub.enable = true;
@@ -55,5 +55,9 @@
 
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
+
+  environment.shellAliases = {
+    lsa = "${pkgs.coreutils}/bin/ls -lahFT0 --group-directories-first";
+  };
 
 }
