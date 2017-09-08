@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./profiles/player.nix
       ./profiles/elements/seedbox.nix
+      ./modules/xcompose
     ];
   
   # hardware-y stuff
