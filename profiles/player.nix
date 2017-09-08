@@ -5,27 +5,27 @@ let
     pdfreader steam-launcher advanced-launcher pvr-hts
   ];
   
-  retroPlugins = with pkgs.libretro; [
-    _4do
-    bsnes-mercury
-    desmume
-    fba
-    fceumm
-    gambatte
-    genesis-plus-gx
+#  retroPlugins = with pkgs.libretro; [
+#    _4do
+#    bsnes-mercury
+#    desmume
+#    fba
+#    fceumm
+#    gambatte
+#    genesis-plus-gx
     #mednafen-pce-fast # no more mednafen for retroarch?
-    mupen64plus
-    nestopia
-    picodrive
-    ppsspp
-    quicknes
-    scummvm
-    snes9x
-    snes9x-next
-    stella
-    vba-next
-    vba-m
-  ];
+#    mupen64plus
+#    nestopia
+#    picodrive
+#    ppsspp
+#    quicknes
+#    scummvm
+#    snes9x
+#    snes9x-next
+#    stella
+#    vba-next
+#    vba-m
+#  ];
 in 
 {
   imports = [ ./desktop.nix ];
@@ -33,6 +33,32 @@ in
   services.xserver.desktopManager.kodi.enable = true;
   programs.cdemu.enable = true;
 
+  nixpkgs.config.retroarch = {
+    enable4do = true;
+    enableBeetlePCEFast = true;
+    enableBeetlePSX = true;
+    enableBeetleSaturn = true;
+    enableBsnesMercury = true;
+    enableDesmume = true;
+    enableFBA = true;
+    enableGambatte = true;
+    enableGenesisPlusGX = true;
+    enableMAME = true;
+    enableMGBA = true;
+    enableMupen64Plus = true;
+    enableNestopia = true;
+    enablePicodrive = true;
+    enablePrboom = true;
+    enablePPSSPP = true;
+    enableQuickNES = true;
+    enableReicast = true;
+    enableScummVM = true;
+    enableSnes9x = true;
+    enableSnes9xNext = true;
+    enableStella = true;
+    enableVbaNext = true;
+    enableVbaM = true;
+  };
 
   environment.systemPackages = with pkgs; [
     kodi
@@ -100,7 +126,7 @@ in
     warzone2100
     xonotic
 
-  ] ++ kodiPlugins ++ retroPlugins;
+  ] ++ kodiPlugins;
 
   # 32-bit support for WINE and Steam games
   hardware.opengl.driSupport32Bit = true;
