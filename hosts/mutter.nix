@@ -23,10 +23,16 @@
 
   fileSystems = {
     "/" = { device = "/dev/disk/by-uuid/8faec437-ff47-4c9e-ac38-6d46d19bc274"; fsType = "ext4"; };
+    
     "/mnt/Zeus" = { device = "/dev/disk/by-uuid/59a11ea6-fc2b-4c37-8b9b-0fc8de4df0dd"; fsType = "btrfs"; };
+
+    # so Steam chroot can find Zeus
+    "/home/pxc/.local/mnt/Zeus" = { device = "/dev/disk/by-uuid/59a11ea6-fc2b-4c37-8b9b-0fc8de4df0dd"; fsType = "btrfs"; };
+    
     "/mnt/Constantine" = { device = "/dev/disk/by-uuid/22228e88-1c5e-4eb3-889a-454d348a2edf"; fsType = "btrfs"; };
+    
+    # so Steam chroot can find Zeus
     "/home/pxc/.local/mnt/Constantine" = { device = "/dev/disk/by-uuid/22228e88-1c5e-4eb3-889a-454d348a2edf"; fsType = "btrfs"; };
-#    "/home/pxc/.local/mnt/Constantine" = { device = "/mnt/Constantine"; fsType = "bind"; };
   };
  
   systemd.automounts = [
