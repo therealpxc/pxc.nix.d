@@ -3,7 +3,7 @@
 {
   services.deluge =  { enable = true; web.enable = true; };
   
-  services.transmission.enable = true;
+#  services.transmission.enable = true;
 
   environment.systemPackages = with pkgs; [
     aria
