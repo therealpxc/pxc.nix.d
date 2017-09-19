@@ -130,6 +130,16 @@ self: super: {
     name = "ranger-1.9.0b5";
   });
 
+  # ansible19 = super.ansible.overrideAttrs (oldAttrs: rec {
+  #   name = "ansible-${version}";
+  #   version = "1.9.5";
+
+  #   src = super.fetchurl {
+  #     url = "http://releases.ansible.com/ansible/ansible-${version}.tar.gz";
+  #     sha256 = "13mxri6i5wkp3bql0q0803wsy226l21yxd0fxadhi4yrk2fm78vb";
+  #   };
+  # });
+
   # basic command-line environment, common to all platforms
   pxc.common.tui.pkgs = with self.pkgs; [
     # cli basics
@@ -138,6 +148,7 @@ self: super: {
     aria2
     wget
     curl
+    httpie                    # fancier curl?
     ranger    # file manager
     ripgrep
     tree
@@ -171,9 +182,11 @@ self: super: {
     direnv              # barebones projects, pretty nifty
     gitAndTools.hub
     gitAndTools.gitFull
+    gitAndTools.tig     # curses TUI for browsing git logs
     pythonPackages.powerline
     findutils           # macOS comes with weak find command
-    chips               # an alternative to oh-my-fish
+    # commented out because it's not in Nixpkgs yet
+    #chips               # an alternative to oh-my-fish
     thefuck             # correct mistaken commands
     gawk                # macOS comes with ancient gawk, tmux-fingers wants a newer one
 
@@ -264,7 +277,7 @@ self: super: {
     xorg.xmodmap
     xpra
 
-    gnome3.cheese              # simple GNOME webcam app
+    gnome3.cheese            # simple GNOME webcam app
 
     ######
     # packages below should ideally be in common.gui.pkgs, but some need to be
@@ -294,6 +307,9 @@ self: super: {
     mpv
 
     qtpass              # Qt GUI frontend for pass -- qtbase-opensource is broken on macOS
+
+    # dependency hddtemp doesn't build on Darwin
+    pythonPackages.glances  # fancier htop?
   ];
   pxc.linux.gui.env = with super.pkgs; buildEnv {
     name = "pxc-linux-gui-env";
