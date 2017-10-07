@@ -157,7 +157,7 @@ self: super: {
     # nix tools
     nix-repl
     nixops
-    disnix
+    #disnix
 
     # fancy vim
     neovimmy
@@ -223,6 +223,9 @@ self: super: {
     # just for funsies
     bashInteractive
     zsh
+
+    sbt-with-scala-native
+    graphicsmagick
   ];
   pxc.common.tui.env = with self.pkgs; buildEnv {
     name = "pxc-common-tui-env";
@@ -333,7 +336,7 @@ self: super: {
   };
 
   pxc.macos.gui.pkgs = with self.pkgs; [
-    iterm2
+    #iterm2
     sequelpro
 
     # not sure if these are necessary. I should do this a better way
