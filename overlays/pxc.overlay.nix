@@ -173,8 +173,8 @@ self: super: {
     gitAndTools.gitFull
     pythonPackages.powerline
     findutils           # macOS comes with weak find command
-    chips               # an alternative to oh-my-fish
-    thefuck             # correct mistaken commands
+    #chips               # an alternative to oh-my-fish
+    #thefuck             # correct mistaken commands
     gawk                # macOS comes with ancient gawk, tmux-fingers wants a newer one
 
     # dotfiles & configuration
