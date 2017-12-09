@@ -130,6 +130,16 @@ self: super: {
     name = "ranger-1.9.0b5";
   });
 
+  # ansible19 = super.ansible.overrideAttrs (oldAttrs: rec {
+  #   name = "ansible-${version}";
+  #   version = "1.9.5";
+
+  #   src = super.fetchurl {
+  #     url = "http://releases.ansible.com/ansible/ansible-${version}.tar.gz";
+  #     sha256 = "13mxri6i5wkp3bql0q0803wsy226l21yxd0fxadhi4yrk2fm78vb";
+  #   };
+  # });
+
   # basic command-line environment, common to all platforms
   pxc.common.tui.pkgs = with self.pkgs; [
     # cli basics
@@ -138,6 +148,7 @@ self: super: {
     aria2
     wget
     curl
+    httpie                    # fancier curl?
     ranger    # file manager
     ripgrep
     tree
@@ -146,7 +157,7 @@ self: super: {
     # nix tools
     nix-repl
     nixops
-    disnix
+    #disnix
 
     # fancy vim
     neovimmy
@@ -171,8 +182,10 @@ self: super: {
     direnv              # barebones projects, pretty nifty
     gitAndTools.hub
     gitAndTools.gitFull
+    gitAndTools.tig     # curses TUI for browsing git logs
     pythonPackages.powerline
     findutils           # macOS comes with weak find command
+    # commented out because it's not in Nixpkgs yet
     #chips               # an alternative to oh-my-fish
     #thefuck             # correct mistaken commands
     gawk                # macOS comes with ancient gawk, tmux-fingers wants a newer one
@@ -210,6 +223,9 @@ self: super: {
     # just for funsies
     bashInteractive
     zsh
+
+    sbt-with-scala-native
+    graphicsmagick
   ];
   pxc.common.tui.env = with self.pkgs; buildEnv {
     name = "pxc-common-tui-env";
@@ -218,24 +234,9 @@ self: super: {
 
 
   pxc.common.gui.pkgs = with self.pkgs; [
-    firefox
-    qtpass              # Qt GUI frontend for pass
-    yakuake             # Quake-style terminal
-    dolphin             # best file manager ever made
-    kdeApplications.dolphin-plugins
-    kdeApplications.kio-extras
-    kate                # KDE Advanced Text Editor
-    ark
-    krita
+    # use the GNU Emacs distribution on both Linux and Mac
+    emacs
 
-    # multimedia
-    mpv
-    vlc
-    okular              # document viewer
-
-    # remote desktopery
-    x2goclient
-    winswitch
 
     # dictionaries
     aspellDicts.en
@@ -279,15 +280,39 @@ self: super: {
     xorg.xmodmap
     xpra
 
-    gnome3.cheese              # simple GNOME webcam app
+    gnome3.cheese            # simple GNOME webcam app
+
+    ######
+    # packages below should ideally be in common.gui.pkgs, but some need to be
+    # fixed or recreated for Darwin compatibility
+    #
 
     # chat apps
     slack
     discord
-    
-    # for spacemacs!
-    # (added separately here so that I can specify the Mac port on macOS)
-    emacs
+
+    firefox
+    dolphin             # best file manager ever made
+    kdeApplications.dolphin-plugins
+    kdeApplications.kio-extras
+    kate
+    yakuake             # Quake-style terminal
+    ark
+    krita
+    vlc
+    okular              # document viewer
+
+    # remote desktopery
+    x2goclient
+    winswitch
+
+    # multimedia
+    mpv
+
+    qtpass              # Qt GUI frontend for pass -- qtbase-opensource is broken on macOS
+
+    # dependency hddtemp doesn't build on Darwin
+    pythonPackages.glances  # fancier htop?
   ];
   pxc.linux.gui.env = with super.pkgs; buildEnv {
     name = "pxc-linux-gui-env";
@@ -311,14 +336,15 @@ self: super: {
   };
 
   pxc.macos.gui.pkgs = with self.pkgs; [
-    iterm2
+    #iterm2
     sequelpro
 
     # not sure if these are necessary. I should do this a better way
     powerline-fonts
     source-code-pro
 
-    emacs25Macport
+    # this doesn't let me connect terminal emacsclient to GUI Emacs
+    # emacs25Macport
   ];
   pxc.macos.gui.env = with super.pkgs; buildEnv {
     name = "pxc-macos-gui-env";
