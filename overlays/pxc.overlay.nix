@@ -189,8 +189,9 @@ self: super: {
     # filesystem
     p7zip
 
-    # other
+    # chat
     weechat             # nice terminal-based IRC app
+    tdesktop            # telegram
 
     # possibly useful for work remote debugging stuff?
     unison
