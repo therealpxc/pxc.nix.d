@@ -63,7 +63,7 @@ self: super: {
           #"VimClojure"          # Clojure support for vim!
           #"drgnbrg/vim-redl"    # repl debugging
           #"ag"
-         #"gitv"
+          #"gitv"
           "tmux-navigator"
 
           "vim-scala"
@@ -78,7 +78,7 @@ self: super: {
 
   elvish = super.elvish.overrideAttrs (oldAttrs: rec {
     name = "elvish-git";
-    src = super.fetchFromGitHub {
+    src = self.fetchFromGitHub {
       repo = "elvish";
       owner = "therealpxc";
       rev = "66b7f997f7e5ff32eaa288be3769f9211762f3b7";
@@ -125,20 +125,6 @@ self: super: {
       collection-fontsextra     # for mweight.sty and ???
     ;
   };
-
-  ranger = super.ranger.overrideAttrs (oldAttrs: {
-    name = "ranger-1.9.0b5";
-  });
-
-  # ansible19 = super.ansible.overrideAttrs (oldAttrs: rec {
-  #   name = "ansible-${version}";
-  #   version = "1.9.5";
-
-  #   src = super.fetchurl {
-  #     url = "http://releases.ansible.com/ansible/ansible-${version}.tar.gz";
-  #     sha256 = "13mxri6i5wkp3bql0q0803wsy226l21yxd0fxadhi4yrk2fm78vb";
-  #   };
-  # });
 
   # basic command-line environment, common to all platforms
   pxc.common.tui.pkgs = with self.pkgs; [
