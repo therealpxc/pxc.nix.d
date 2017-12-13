@@ -10,7 +10,7 @@
 
   environment.systemPackages = with pkgs; [
     python27Packages.docker_compose
-    linuxPackages.virtualbox
+    boot.kernelPackages.virtualbox
     vagrant
   ];
 }
