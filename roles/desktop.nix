@@ -21,15 +21,22 @@
     kdesu
     kgpg
     spectacle
-    # afaik there's no manager app for kde5-only yet
     kdeApplications.kwalletmanager
     pavucontrol
     pythonPackages.youtube-dl
     gwenview
     ksysguard
+    touchegg
   ] ++ pxc.common.gui.pkgs
     ++ pxc.linux.gui.pkgs
   ;
+
+  boot.plymouth.enable = true;
+
+  # Samba slows down boot significantly, so on desktops we'll prefer
+  # to load it after the GUI.
+  # systemd.targets.samba.wantedBy = [ "graphical.target" ];
+  # systemd.targets.samba.after = [ "samba-setup.service" "network.target" "display-manager.service" ];
 
   # enable sound
   hardware.pulseaudio.enable = true;
