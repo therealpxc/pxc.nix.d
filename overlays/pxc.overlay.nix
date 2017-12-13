@@ -275,7 +275,7 @@ self: super: {
     slack
     discord
 
-    firefox
+    firefox-bin
     dolphin             # best file manager ever made
     kdeApplications.dolphin-plugins
     kdeApplications.kio-extras
