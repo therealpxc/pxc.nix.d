@@ -236,7 +236,7 @@ self: super: {
     sshfsFuse
     nfs-utils
     smbnetfs
-    fusesmb
+    #fusesmb # depends on Samba 3, which is now EOL and hence a security risk
     cifs_utils
 
     gnupg               # macOS comes with old GPG, so the gpg-agent is old and bad
