@@ -43,6 +43,8 @@
   services.sshd.enable = true;
   services.openssh.forwardX11 = true;
   programs.fish.enable = true;
+  services.emacs.enable = true;
+  programs.mosh.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";
   security.sudo.enable = true;
   services.locate.enable = true;
@@ -54,10 +56,10 @@
     pxc.common.tui.pkgs ++ pxc.linux.tui.pkgs;
 
   # add my own user
-  users.extraUsers.pxc = {
+  users.users.pxc = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "users" "docker" "libvirtd" "vboxusers" "dialout" "cdrom" ];
+    extraGroups = [ "users" "docker" "libvirtd" "vboxusers" "dialout" "cdrom" "video" ];
   };
   users.groups = {
     wheel = { members = [ "pxc" ]; };
