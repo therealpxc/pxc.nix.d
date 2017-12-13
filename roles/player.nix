@@ -4,7 +4,7 @@ let
   kodiPlugins = with pkgs.kodiPlugins; [
     pdfreader steam-launcher urlresolver advanced-launcher pvr-hts
   ];
-  
+
   retroPlugins = with pkgs.libretro; [
     _4do
     bsnes-mercury
@@ -26,9 +26,9 @@ let
     vba-next
     vba-m
   ];
-in 
+in
 {
-  imports = [ ./desktop.nix ];
+  imports = [ ./desktop.nix ./steambox.nix ];
 
   services.xserver.desktopManager.kodi.enable = true;
   programs.cdemu.enable = true;
@@ -45,7 +45,6 @@ in
     # TV streaming (integrates w/ Kodi through pvr-hts)
     tvheadend
 
-    steam
     playonlinux   # wine frontend
 
     # aggregate emulator frontend; ROM library browser and manager
@@ -78,7 +77,7 @@ in
     mednafen-server   # mednafen netplay server (PSX)
     pcsxr             # PSX
     gambatte          # GBA
-    
+
     # hardware peripheral drivers and services
     cwiid
     xwiimote
@@ -89,7 +88,7 @@ in
 
     # games & toys
     game-music-emu
-     freedink        # Dink Smallwood!
+    freedink        # Dink Smallwood!
     #hawkthorne      # broken as of 03/21/2017
     kde4.ksirk      # Risk
     n2048
@@ -103,18 +102,5 @@ in
 
   ] ++ kodiPlugins ++ retroPlugins;
 
-  # 32-bit support for WINE and Steam games
-  hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.extraPackages32 = with pkgs; [
-    libvdpau-va-gl
-    vaapiVdpau
-    vaapiIntel
-    libvdpau
-    libva
-  ];
-
-  hardware.pulseaudio.support32Bit = true;
-
-  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel vaapiVdpau vaapiIntel libvdpau libva libvdpau-va-gl ];
 
 }
