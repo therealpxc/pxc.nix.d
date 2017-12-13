@@ -2,7 +2,6 @@ pkgs :
 
 {
   allowUnfree = true;
-  #  virtualbox = { enableExtensionPack = true; };
 
   nix.nixPath = [ "nixpkgs=../pkgsets/nixpkgs/nixpkgs" ];
 
@@ -15,4 +14,5 @@ pkgs :
     enablePepperFlash = true;
     enablePepperPDF = true;
   };
+
 }
