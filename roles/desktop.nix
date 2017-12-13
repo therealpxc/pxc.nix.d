@@ -73,17 +73,27 @@
 
   # enable lots of fonts for desktop use
   fonts = {
-    fontconfig.enable = true;
+    fontconfig = {
+      enable = true;
+      ultimate.enable = true;
+    };
+
     enableFontDir = true;
     enableCoreFonts = true;
+    enableDefaultFonts = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      # microsoft & microsoft-compatibility
+      # actual proprietary OS-vendor fonts
       vistafonts
+
+      # metric-compatible OS-vendor fonts
       liberation_ttf
       comic-neue
       carlito
-      corefonts
+      caladea
+      kochi-substitute
+      comic-relief
+      liberationsansnarrow
       dosemu_fonts
 
       # general-purpose
@@ -108,10 +118,9 @@
       inconsolata
       dosemu_fonts
       anonymousPro
-      source-code-pro # used by XEmacs
+      source-code-pro     # for Spacemacs
 
       # tex & typesetting
-      (pkgs.ghostscript + "/share/ghostscript/fonts/")
       stix-otf
       xorg.fontadobe100dpi
       xorg.fontadobe75dpi
