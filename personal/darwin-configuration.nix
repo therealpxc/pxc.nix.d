@@ -3,8 +3,8 @@
 
   nix.nixPath = [
     # marks Nix parent directory
-    "nixpkgs=/etc/nix-darwin/nixpkgs"
-    "darwin=/etc/nix-darwin/darwin"
+    "nixpkgs=/etc/nix-darwin/pkgsets/nixpkgs/darwin"
+    "darwin=/etc/nix-darwin/pkgsets/nix-darwin"
     "darwin-config=/etc/nix-darwin/configuration.nix"
   ];
 
@@ -14,8 +14,7 @@
       # needed for some of my configurations, which use
       # /run/current-system/sw/bin/bash
       powerline-fonts
-      bashInteractive
-      nix
+      nixStable
       jdk
       python36Packages.yapf
       python36Packages.isort
@@ -30,11 +29,13 @@
 
   # jk i use fish :)
   programs.fish.enable = true;
+  programs.bash.enable = true;
   programs.man.enable = true;
   programs.info.enable = true;
   #  programs.vim.enable = true;
 
   # Recreate /run/current-system symlink after boot.
   services.activate-system.enable = true;
+  services.nix-daemon.enable = true;
 
 }

@@ -3,13 +3,13 @@
 {
   services.deluge =  { enable = true; web.enable = true; };
   
-  services.transmission.enable = true;
+#  services.transmission.enable = true;
 
   environment.systemPackages = with pkgs; [
     aria
     axel
     mktorrent
-    python27Packages.flexget
+    flexget
     transmission_remote_gtk
     tribler
   ];

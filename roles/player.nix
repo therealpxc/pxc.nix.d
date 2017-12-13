@@ -2,7 +2,7 @@
 
 let
   kodiPlugins = with pkgs.kodiPlugins; [
-    pdfreader steam-launcher urlresolver advanced-launcher pvr-hts
+    pdfreader steam-launcher advanced-launcher pvr-hts
   ];
 
   retroPlugins = with pkgs.libretro; [
@@ -33,6 +33,32 @@ in
   services.xserver.desktopManager.kodi.enable = true;
   programs.cdemu.enable = true;
 
+  nixpkgs.config.retroarch = {
+    enable4do = true;
+    enableBeetlePCEFast = true;
+    enableBeetlePSX = true;
+    enableBeetleSaturn = true;
+    enableBsnesMercury = true;
+    enableDesmume = true;
+    enableFBA = true;
+    enableGambatte = true;
+    enableGenesisPlusGX = true;
+    enableMAME = true;
+    enableMGBA = true;
+    enableMupen64Plus = true;
+    enableNestopia = true;
+    enablePicodrive = true;
+    enablePrboom = true;
+    enablePPSSPP = true;
+    enableQuickNES = true;
+    enableReicast = true;
+    enableScummVM = true;
+    enableSnes9x = true;
+    enableSnes9xNext = true;
+    enableStella = true;
+    enableVbaNext = true;
+    enableVbaM = true;
+  };
 
   environment.systemPackages = with pkgs; [
     kodi
@@ -90,7 +116,6 @@ in
     game-music-emu
     freedink        # Dink Smallwood!
     #hawkthorne      # broken as of 03/21/2017
-    kde4.ksirk      # Risk
     n2048
     openmw          # Morrowind
     openra          # Command & Conquer: Red Alert
@@ -100,7 +125,7 @@ in
     warzone2100
     xonotic
 
-  ] ++ kodiPlugins ++ retroPlugins;
+  ] ++ kodiPlugins;
 
 
 }
