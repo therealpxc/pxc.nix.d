@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
+  # Include a symlink to the version of Nixpkgs used to build this generation
+  # inside the generation
+  system.extraSystemBuilderCmds = ''
+    ln -sv ${pkgs.path} $out/nixpkgs
+  '';
 
   # share our nixpkgs' config with non-NixOS
   nixpkgs.config = (import ../personal/config.nix );
