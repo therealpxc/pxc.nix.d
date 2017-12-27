@@ -11,27 +11,36 @@
     ./hardware-configuration.nix # Include the results of the hardware scan.
   ];
 
-  nixpkgs.config.packageOverrides = superPkgs: {
-    steam = superPkgs.steam.override {
-      withPrimus = true;
-      extraPkgs = p: with p; [
-        glxinfo        # for diagnostics
-        # nettools       # for `hostname`, which some scripts expect
-        bumblebee      # for optirun
-        virtualgl      # for glxspheres
-      ];
-    };
-  };
+
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_4_14;
 
+  # Network configuration
   networking.hostName = "rhett"; # Define your hostname.
   networking.networkmanager.enable = true;
+
+  # Enable bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull; # for bt audio support
+
+  # Handle some bluetooth hardware quirks
+  hardware.enableRedistributableFirmware = true;
+  powerManagement.resumeCommands = ''
+    # After suspend, the bluetooth device (an embedded, Intel-based ‘USB’
+    # adapter, apparently) in my ThinkPad 25 winds up in a strange power state.
+    # It's inaccessible, and invisible to `bluetoothctl` as well as Bluez (and
+    # hence likewise to the Plasma desktop). `rfkill` can see it, but reports
+    # that it is blocked neither in hardware nor software. Happily, blocking it
+    # and unblocking it using `rfkill` resets the power management state so as to
+    # make the device usable again.
+
+    ${pkgs.rfkill}/bin/rfkill block bluetooth
+    ${pkgs.rfkill}/bin/rfkill unblock bluetooth
+  '';
 
   environment.systemPackages = with pkgs; [
     powertop
@@ -39,23 +48,44 @@
     redshift
   ];
 
-  # services.redshift.enable = true;
-  # services.redshift.provider = "geoclue2";
+  # Since redshift is handled with the Plasma applet above, we don't need to
+  # run the daemon as a system service.
+  services.redshift.enable = false;
 
   hardware.bumblebee.enable = true;
   hardware.bumblebee.group = "video";
   hardware.bumblebee.connectDisplay = true;
-  boot.extraModprobeConfig = "options bbswitch load_state=-1 unload_state=1";
+  # some Steam/Optimus quirks
+  nixpkgs.config.packageOverrides = superPkgs: {
+    steam = superPkgs.steam.override {
+      withPrimus = true;
+      extraPkgs = p: with p; [
+        glxinfo        # for diagnostics
+        nettools       # for `hostname`, which some scripts expect
+        bumblebee      # for optirun
+        virtualgl      # for glxspheres
+      ];
+    };
+  };
+
+  boot.extraModprobeConfig = ''
+    # Handle NVIDIA Optimus power management quirk
+    options bbswitch load_state=-1 unload_state=1
+
+    # Handle wireless / bluetooth hardware quirks
+    options iwlwifi bt_coex_active=0 # bluetooth fails on recent kernels without this
+  '';
+
   services.tlp.enable = true;
+  # This disables setting CPU freq and running acpid
+  # (Other powerManagement.* settings will still be honored!)
+  powerManagement.enable = false;
   services.tlp.extraConfig = ''
     CPU_SCALING_GOVERNOR_ON_AC=performance
     CPU_SCALING_GOVERNOR_ON_BAT=powersave
   '';
 
   programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
-
-
 
   hardware.trackpoint = {
     enable = true;
@@ -102,12 +132,12 @@
   '';
 
   # Enable the KDE Desktop Environment.
+  services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sddm.autoLogin = {
     enable = true;
     user = "pxc";
   };
-  services.xserver.desktopManager.plasma5.enable = true;
 
   system.stateVersion = "17.09"; # Did you read the comment?
 }
