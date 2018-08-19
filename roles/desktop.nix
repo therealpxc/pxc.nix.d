@@ -2,16 +2,14 @@
 
 {
   imports =
-  [
+    [
     ./nixos.nix # basic shell env
   ];
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     breeze-gtk
     breeze-icons
-    breeze-qt4
+    #    breeze-qt4 # disabled for nixos-18.03
     breeze-qt5
 
     plasma-pa
@@ -26,17 +24,26 @@
     pythonPackages.youtube-dl
     gwenview
     ksysguard
-    touchegg
+    # touchegg
+    libsForQt5.phonon-backend-vlc
+    phonon-backend-vlc
   ] ++ pxc.common.gui.pkgs
     ++ pxc.linux.gui.pkgs
   ;
 
-  boot.plymouth.enable = true;
+  # let's have a bootsplash!
+  boot.plymouth = {
+    enable = true;
 
-  # Samba slows down boot significantly, so on desktops we'll prefer
-  # to load it after the GUI.
-  # systemd.targets.samba.wantedBy = [ "graphical.target" ];
-  # systemd.targets.samba.after = [ "samba-setup.service" "network.target" "display-manager.service" ];
+    # # this is done by default in NixOS 18.03, but not yet
+    # themePackages = with pkgs; [
+    #   plymouth (breeze-plymouth.override {
+    #     nixosBranding = true;
+    #     # nixosVersion = config.system.nixosRelease;
+    #   })
+    # ];
+    # theme = "breeze";
+  };
 
   # enable sound
   hardware.pulseaudio.enable = true;
@@ -52,7 +59,7 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.xkbOptions = "terminate:ctrl_alt_bksp caps:escape";
+  services.xserver.desktopManager.plasma5.enableQt4Support = true;
 
   # disable slim by preferring sddm; slim is apparently kinda broken
   services.xserver.displayManager.sddm.enable = true;
@@ -69,6 +76,7 @@
     cups_filters
     gutenprintBin
     samsung-unified-linux-driver
+    hplip
   ];
 
   # enable lots of fonts for desktop use
@@ -132,7 +140,7 @@
 
       hasklig
       powerline-fonts
-      nerdfonts
+      nerdfonts           # including Sauce Code Pro for Spacemacs
     ];
   };
 

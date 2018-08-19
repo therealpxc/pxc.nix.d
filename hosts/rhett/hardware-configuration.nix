@@ -25,9 +25,21 @@
       options = [ "defaults" "noatime" ];
     };
 
-    "/boot" = {
+    "/boot/efi" = {
       device = "/dev/disk/by-uuid/B81B-593A";
       fsType = "vfat";
+    };
+
+    "/var/lib/libvirt/images" = {
+      device = "/dev/disk/by-uuid/1f6dca6f-17c7-4134-8f9b-ca1c4f7c8fa1";
+      fsType = "ext4";
+      options = [ "defaults" "noatime" ];
+    };
+
+    "/var/lib/vbox/images" = {
+      device = "/dev/disk/by-uuid/8a95a69b-4b03-4bb6-9e04-1a6902e77436";
+      fsType = "ext4";
+      options = [ "defaults" "noatime" ];
     };
 
     "/data/shared/Common" = {
@@ -98,6 +110,11 @@
       fsType = "btrfs";
       noCheck = true;
       neededForBoot = false;
+    };
+
+    "data/foreign-os/openSUSE/boot/efi" = {
+      device = "/dev/disk/by-uuid/B81B-593A";
+      fsType = "vfat";
     };
 
     "/data/foreign-os/openSUSE/home" = {

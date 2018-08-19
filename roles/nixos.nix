@@ -10,19 +10,20 @@
   # share our nixpkgs' config with non-NixOS
   nixpkgs.config = (import ../personal/config.nix );
 
-  # allow us to use custom nixpkgs by cloning it into /etc/nixos
-  nix.nixPath = [
-    # /etc/nixos/channels/nixpkgs -> ~/Code/Personal/devnix (or wherever; it's a local checkout)
-    "nixpkgs=/etc/nixos/pkgsets/nixpkgs/nixpkgs"
+  # # allow us to use custom nixpkgs by cloning it into /etc/nixos
+  # nix.nixPath = [
+  #   # /etc/nixos/channels/nixpkgs -> ~/Code/Personal/devnix (or wherever; it's a local checkout)
+  #   "nixpkgs=/etc/nixos/pkgsets/nixpkgs/nixpkgs"
 
-    # top-level nixos configuration file
-    "nixos-config=/etc/nixos/configuration.nix"
-  ];
+  #   # top-level nixos configuration file
+  #   "nixos-config=/etc/nixos/configuration.nix"
+  # ];
 
   # add overlays and custom packages
   nixpkgs.overlays = [
     (import ../overlays/pxc.overlay.nix)
     (import ../overlays/rust-overlay.nix)
+    (import ../overlays/plasma/plasma-overlay.nix)
 
     # add third-party packages from outside the nixpkgs tree
     (self: super: {

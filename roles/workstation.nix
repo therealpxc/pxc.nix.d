@@ -19,7 +19,7 @@
     jdk     # openjdk 8
 
     # python development tools
-    python35Packages.pew
+    #python35Packages.pew
     python35Packages.virtualenv
 
     # misc dev tools

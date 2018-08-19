@@ -57,7 +57,6 @@ self: super: {
           "vim-gitgutter"       # mark changed lines since last commit with a clear visual indicator in the gutter
           "fugitive"            # some kind of fancy git thing!
           "UltiSnips"           # fancy snippets
-          "VimOutliner"         # vim outlining; collapse/expand trees like a cool kid
           #"vim-webdevicons"     # cool unicode glyphage
           #"fireplace"       # Clojure REPL!
           #"VimClojure"          # Clojure support for vim!
@@ -80,9 +79,9 @@ self: super: {
     name = "elvish-git";
     src = self.fetchFromGitHub {
       repo = "elvish";
-      owner = "therealpxc";
-      rev = "66b7f997f7e5ff32eaa288be3769f9211762f3b7";
-      sha256 = "03id8h643xkk707qivss9m74q4gsdz2nrcz4hy2axq0989qsl04y";
+      owner = "elves";
+      rev = "80ba0122ad3ddcb34d5288e6afd9dcfde496db6c";
+      sha256 = "1lq24j61pas5mpwvv151ayc3izkf1rrzzsx1iiw3pwq1jmhkkyy2";
     };
   });
 
@@ -106,7 +105,7 @@ self: super: {
     withLibdnssdCompat = true;
   };
 
-  texLive2016Custom = with super.pkgs; texlive.combine {
+  texLive2017Custom = with super.pkgs; texlive.combine {
     inherit
       (texlive)         # defaults
       scheme-tetex      # ‘bigger than medium, way less than full’
@@ -141,7 +140,7 @@ self: super: {
     fpp       # facebook path picker
 
     # nix tools
-    nix-repl
+    #nix-repl
     nixops
     #disnix
 
@@ -191,7 +190,7 @@ self: super: {
 
     # chat
     weechat             # nice terminal-based IRC app
-    tdesktop            # telegram
+    # tdesktop            # telegram
 
     # possibly useful for work remote debugging stuff?
     unison
@@ -277,8 +276,9 @@ self: super: {
     # chat apps
     slack
     discord
+    wire-desktop
 
-    firefox-bin
+    firefox
     dolphin             # best file manager ever made
     kdeApplications.dolphin-plugins
     kdeApplications.kio-extras

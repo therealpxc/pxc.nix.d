@@ -35,7 +35,7 @@
     ark
 
     vimPlugins.vim-addon-manager
-    
+
     breeze-grub
     breeze-gtk
     breeze-icons
