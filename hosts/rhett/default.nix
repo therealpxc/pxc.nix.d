@@ -22,10 +22,11 @@
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # boot.kernelPackages = pkgs.linuxPackages_4_14;
+  boot.kernelPackages = pkgs.linuxPackages_4_17; # default is still 4.14
 
   # hoping this will relieve a suspend/resume issue
-  boot.kernelParams = [ "intel_iommu=off" ]; # not sure that this is necessary since fbc is disabled, but I'm still having problems.
+  # temporarily allowing iommu to see if things are still bad with the 4.17 kernel
+  # boot.kernelParams = [ "intel_iommu=off" ]; # not sure that this is necessary since fbc is disabled, but I'm still having problems.
 
   # Network configuration
   networking.hostName = "rhett"; # Define your hostname.
@@ -47,8 +48,8 @@
     # and unblocking it using `rfkill` resets the power management state so as to
     # make the device usable again.
 
-    ${pkgs.rfkill}/bin/rfkill block bluetooth
-    ${pkgs.rfkill}/bin/rfkill unblock bluetooth
+    # ${pkgs.rfkill}/bin/rfkill block bluetooth  # still needed with 4.17?
+    # ${pkgs.rfkill}/bin/rfkill unblock bluetooth
   '';
 
   environment.systemPackages = with pkgs; [
@@ -92,9 +93,12 @@
     # ghc-mod # broken?
     apply-refact
     hoogle
-    intero
+    # intero # broken, I guess
     # hasktags
     stylish-haskell
+
+    # for primerun.sh
+    fluxbox
   ]);
 
   services.udev.packages = with pkgs; [
@@ -133,7 +137,9 @@
     # Handle wireless / bluetooth hardware quirks
     options iwlwifi bt_coex_active=0 # bluetooth fails on recent kernels without this
 
-    options i915 enable_guc_loading=1 enable_guc_submission=1 enable_fbc=0
+    # I'm not sure why I disabled framebuffer compression. I'm going to give it a try again.
+    # options i915 enable_guc_loading=1 enable_guc_submission=1 enable_fbc=0
+    options i915 enable_guc_loading=1 enable_guc_submission=1 enable_fbc=1
   '';
 
   services.tlp.enable = true;
@@ -160,7 +166,7 @@
     deviceSection = ''
       # Option      "AccelMethod"  "uxa"
       # Option "DRI" "2"
-      Option "TearFree" "true"
+      # Option "TearFree" "true"
     '';
     config = ''
       Section "InputClass"
@@ -170,7 +176,10 @@
         Option "AccelProfile" "flat"
       EndSection
     '';
-    videoDrivers = [ "modesetting" ];
+    # idr why I used to have modesetting, but I want to experiment
+    # with the "intel" driver to use the firmware and get VUlkan support
+    # videoDrivers = [ "modesetting" ];
+    videoDrivers = [ "intel" ];
     exportConfiguration = true;
   };
 
@@ -217,4 +226,8 @@
   nix.buildCores = 2;
 
   system.stateVersion = "18.03";
+
+  # just for fun
+  # services.i2pd.enable = true;
+  # services.i2p.enable = true;
 }
