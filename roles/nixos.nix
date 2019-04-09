@@ -22,8 +22,9 @@
   # add overlays and custom packages
   nixpkgs.overlays = [
     (import ../overlays/pxc.overlay.nix)
-    (import ../overlays/rust-overlay.nix)
+    # (import ../overlays/rust-overlay.nix)
     (import ../overlays/plasma/plasma-overlay.nix)
+    (import ../overlays/themis-overlay.nix)
 
     # add third-party packages from outside the nixpkgs tree
     (self: super: {
@@ -53,7 +54,7 @@
   programs.mosh.enable = true;
   users.defaultUserShell = "/run/current-system/sw/bin/fish";
   security.sudo.enable = true;
-  services.locate.enable = true;
+  # services.locate.enable = true;
 
   services.samba.enable = true;
   services.samba.nsswins = true;

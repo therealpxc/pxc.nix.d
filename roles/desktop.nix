@@ -15,7 +15,7 @@
     plasma-pa
     kdeplasma-addons
     x2goclient
-    winswitch
+    # winswitch # broken?
     kdesu
     kgpg
     spectacle
@@ -82,8 +82,10 @@
   # enable lots of fonts for desktop use
   fonts = {
     fontconfig = {
-      enable = true;
+      penultimate.enable = false; # true by default
       ultimate.enable = true;
+      useEmbeddedBitmaps = true;
+      cache32Bit = true;
     };
 
     enableFontDir = true;

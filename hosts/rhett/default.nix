@@ -8,11 +8,9 @@
   imports = [
     ../../roles/workstation.nix
     ../../roles/steambox.nix
+    ../../roles/virtualization.nix
     ./hardware-configuration.nix # Include the results of the hardware scan.
   ];
-
-  virtualisation.libvirtd.enable = true;
-  virtualisation.virtualbox.host.enable = true;
 
   # Use grub for EFI booting
   boot.loader.grub = {
@@ -22,20 +20,39 @@
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.kernelPackages = pkgs.linuxPackages_4_17; # default is still 4.14
+  boot.kernelPackages = pkgs.linuxPackages_4_19; # LTS, hopefully fewer problems with certain kernel modules
 
   # hoping this will relieve a suspend/resume issue
   # temporarily allowing iommu to see if things are still bad with the 4.17 kernel
   # boot.kernelParams = [ "intel_iommu=off" ]; # not sure that this is necessary since fbc is disabled, but I'm still having problems.
 
+  # boot.kernelParams = ["acpi_rev_override=1"];
+
+  # I have a really small root partition. This should prevent nix-build from dying when it has to extract large files.
+  boot.tmpOnTmpfs = true;
+
   # Network configuration
   networking.hostName = "rhett"; # Define your hostname.
   networking.networkmanager.enable = true;
+  # for split DNS configuration while on VPN
+  # requires search domains to be set on the VPN connection in nm
+  networking.networkmanager.dns = "dnsmasq";
+
+  # hopefully sending ipv4 and ipv6 requests separately will solve my transient DNS resolution issues
+  # networking.dnsSingleRequest = true;
+  #networking.resolvConfOptions = [ "timeout:1" "single-request" ];
+
+  # Enable the Linux firmware update tool
+  services.fwupd.enable = true;
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
   hardware.pulseaudio.package = pkgs.pulseaudioFull; # for bt audio support
+  hardware.pulseaudio.extraConfig = ''
+    # move existing streams to Bluetooth sinks when they are connected
+    load-module module-switch-on-connect
+  '';
 
   # Handle some bluetooth hardware quirks
   hardware.enableAllFirmware = true;
@@ -52,7 +69,12 @@
     # ${pkgs.rfkill}/bin/rfkill unblock bluetooth
   '';
 
+  environment.shellAliases = {
+    ls = null;
+  };
+
   environment.systemPackages = with pkgs; [
+    nitrokey-app
     powertop
     redshift-plasma-applet
     redshift
@@ -63,10 +85,16 @@
     lastpass-cli                               # for SigFig
     exfat
 
-    androidsdk
+    androidsdk_9_0
 
     nextcloud-client
     calibre
+
+    kdeApplications.kdepim-addons
+    kdeApplications.korganizer
+    kdeApplications.kmail
+    kdeApplications.kontact
+
 
     # for Emacs
     tetex
@@ -85,6 +113,8 @@
     aspellDicts.en
     aspellDicts.en-computers
     aspellDicts.en-science
+
+    extra-container
 
   ] ++ (with pkgs.haskellPackages; [
     ghc
@@ -107,6 +137,8 @@
   ];
 
   hardware.u2f.enable = true;
+  hardware.nitrokey.enable = true;
+  users.users.pxc.extraGroups = [ "nitrokey" ];
 
   services.pcscd.enable = true;
 
@@ -135,12 +167,14 @@
     options bbswitch load_state=-1 unload_state=1
 
     # Handle wireless / bluetooth hardware quirks
-    options iwlwifi bt_coex_active=0 # bluetooth fails on recent kernels without this
+    # options iwlwifi bt_coex_active=0 # bluetooth fails on recent kernels without this
 
-    # I'm not sure why I disabled framebuffer compression. I'm going to give it a try again.
-    # options i915 enable_guc_loading=1 enable_guc_submission=1 enable_fbc=0
-    options i915 enable_guc_loading=1 enable_guc_submission=1 enable_fbc=1
+    options i915 enable_fbc=1
   '';
+
+  # boot.extraModulePackages = with config.boot.kernelPackages; [
+  #   exfat-nofuse # broken :-()
+  # ];
 
   services.tlp.enable = true;
   # This disables setting CPU freq and running acpid
@@ -225,9 +259,104 @@
 
   nix.buildCores = 2;
 
-  system.stateVersion = "18.03";
+  system.stateVersion = "18.09";
 
   # just for fun
   # services.i2pd.enable = true;
   # services.i2p.enable = true;
+
+  # for Themis testing/local dev
+  networking.hosts = {
+    "127.0.0.1" = [ "dev.themisbar.com" "local.themisbar.com" ];
+    "178.32.222.191" =  [ "archive.is" "www.archive.is" "archive.fo" "www.archive.fo" "archive.li" "www.archive.li" ];
+    # "54.87.249.43" = [ "phpup.themisbar.com" ];
+    # "18.207.213.15" = [ "next.themisbar.com" ];
+  };
+
+  # Experimental Themis VPN configuration
+  networking.wireguard.interfaces = {
+    "wg-pxc@staging" = {
+      # private key is stored via `pass`, see post-up script configuration
+      privateKeyFile = "/dev/null";
+      # privateKeyFile = "/etc/wireguard/keys/pxc@staging";
+
+      ips = [ "172.20.254.1/32" ];
+
+      peers = [
+        { # staging.thbr.co
+          publicKey = "0SxwJxNkbwaorNc/5XNzaZe7p0pfXmuwJce8BU+wpT0=";
+          allowedIPs = [ "172.20.0.0/16" ];
+          endpoint = "wg.staging.thbr.co:54977";
+          presharedKeyFile = "/etc/wireguard/keys/user/pxc@staging.psk";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+
+    "wg-pxc@prod" = {
+      # private key is stored via `pass`, see post-up script configuration
+      privateKeyFile = "/dev/null";
+      ips = [ "172.252.254.1/32" ];
+
+      peers = [
+        { # staging.thbr.co
+          publicKey = "x3+5Feq2Aqc0AukI0FTPLAsRoK4CtSdB1DfYd4+czl4=";
+          allowedIPs = [ "172.252.0.0/16" ];
+          endpoint = "wg.prod.thbr.co:58688";
+          presharedKeyFile = "/etc/wireguard/keys/user/pxc@prod.psk";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
+
+  # ad-hoc Themis container
+  # containers.themis-single = {
+  #   # autoStart = true;
+  #   config = { config, pkgs, ... }: {
+  #     system.stateVersion = "19.09";
+
+  #     nixpkgs.config = {
+  #       php.xslSupport = true;
+  #     };
+
+  #     services.httpd = {
+  #       enable = true;
+  #       enablePHP = true;
+  #       # enableSSL = true;
+  #       adminAddr = "patrick@themisbar.com";
+  #       documentRoot = "/data/themis/webapp/www";
+  #     };
+
+  #     services.rabbitmq.enable = true;
+  #     services.memcached = {
+  #       enable = true;
+  #     };
+
+  #     services.mysql = {
+  #       enable = true;
+  #       package = pkgs.mariadb; # MariaDB 10.2.17 on NixOS Unstable (to be 19.09) on 2019-03-17
+
+  #       # TODO: fix our DB usage so we don't need this
+  #       # Newer versions of SQL expect dates to be well-formed, no division by 0,
+  #       # proper GROUP BY and ORDER BY statements, and more. Much of our application
+  #       # was written prior to the standardization of these expectations, and in
+  #       # violation of them. This tells our SQL server to chill out about it.
+  #       # initialScript = "set GLOBAL sql_mode = '';";
+  #       rootPassword = "themis rules!";
+
+  #     };
+
+  #     networking.firewall.allowedTCPPorts = [ 80 ];
+  #   };
+
+  #   bindMounts = {
+  #     "/data/themis/webapp" = {
+  #       hostPath = "/home/pxc/Code/Themis/admin";
+  #       isReadOnly = false;
+  #     };
+  #   };
+  # };
+
+  zramSwap.enable = true; hardware.opengl.s3tcSupport = true;
 }

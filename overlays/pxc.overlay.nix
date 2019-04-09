@@ -42,6 +42,9 @@ self: super: {
       nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
       nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
       nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+
+      " let's still source the user's config
+      source ~/.vim/vimrc
     '';
 
     packages.thisPackage.start = with self.vimPlugins; [ vim-nix ];
@@ -75,6 +78,13 @@ self: super: {
     ];
   };
 
+  calibre = super.calibre.overrideAttrs (oldAttrs: rec {
+    buildInputs = oldAttrs.buildInputs ++ (with self.python2Packages;
+      [
+        pycrypto
+      ]);
+  });
+
   elvish = super.elvish.overrideAttrs (oldAttrs: rec {
     name = "elvish-git";
     src = self.fetchFromGitHub {
@@ -85,6 +95,12 @@ self: super: {
     };
   });
 
+  extra-container = self.pkgs.callPackage (builtins.fetchGit {
+    url = "https://github.com/erikarvstedt/extra-container.git";
+    # Recommended: Specify a git revision hash
+    rev = "457bc8b401cbe3b77d2d6fb7b192b1c17a72f8a9";
+  }) {};
+
   neovimmy = super.neovim.override (o: {
     configure = self.pxc.vimrcConfig // {
       vam.pluginDictionaries = self.pxc.vimrcConfig.vam.pluginDictionaries ++ [
@@ -92,6 +108,8 @@ self: super: {
       ];
     };
     vimAlias = false;
+    extraPythonPackages = with self.pythonPackages; [ sexpdata websocket_client ];
+    extraPython3Packages = with self.python3Packages; [ sexpdata websocket_client ];
   });
 
   vimmy = super.vim_configurable.customize {
@@ -133,7 +151,7 @@ self: super: {
     aria2
     wget
     curl
-    httpie                    # fancier curl?
+    httpie    # fancier curl?
     ranger    # file manager
     ripgrep
     tree
@@ -141,16 +159,17 @@ self: super: {
 
     # nix tools
     #nix-repl
-    nixops
+    # nixops
     #disnix
 
     # fancy vim
-    neovimmy
+    # neovimmy # broken? (02-08-2019)
     vimmy
     unzip               # for using vim to explore zip files
 
     # this is python with the required deps for vim and Spacemacs
     (python3.withPackages (ps: with ps; [ sexpdata websocket_client ]))
+    nodePackages.tern
 
     # stuff my fish config uses and some goodies I want
     fish
@@ -190,7 +209,6 @@ self: super: {
 
     # chat
     weechat             # nice terminal-based IRC app
-    # tdesktop            # telegram
 
     # possibly useful for work remote debugging stuff?
     unison
@@ -212,6 +230,22 @@ self: super: {
 
     sbt-with-scala-native
     graphicsmagick
+
+    # to explore in the future
+    # fd                              # alternative to find
+    # bat                             # alternative to cat
+    # sharkdp/diskus, ncdu            # alternative to du -sh
+    # saulpw/visidata                 # spreadsheet TUI
+    # jarun/nnn                       # alternative to ranger
+    # ts / moreutils                  # task spooler and other CLI utils
+    # most                            # alternative to less
+    # restic, duplicacy, rclone       # rsync-like cloud backup
+    # entr, watchman                  # watch dirs and files, do stuff when they change
+
+
+    # emacs stuff, to be configured in emacs:
+    # telephone-line  # powerline replacement, perhaps less buggy?
+    # avy             # for jumping to text as with vim keys in Firefox
   ];
   pxc.common.tui.env = with self.pkgs; buildEnv {
     name = "pxc-common-tui-env";
@@ -223,6 +257,8 @@ self: super: {
     # use the GNU Emacs distribution on both Linux and Mac
     emacs
 
+    # chat
+    tdesktop
 
     # dictionaries
     aspellDicts.en
@@ -238,7 +274,7 @@ self: super: {
     fuse-7z-ng
     sshfsFuse
     nfs-utils
-    smbnetfs
+    #smbnetfs # broken as of 2019-01-22
     #fusesmb # depends on Samba 3, which is now EOL and hence a security risk
     cifs_utils
 
@@ -264,7 +300,7 @@ self: super: {
   pxc.linux.gui.pkgs = with self.pkgs; [
     # X utilities
     xorg.xmodmap
-    xpra
+    # xpra # broken :-()
 
     gnome3.cheese            # simple GNOME webcam app
 
@@ -274,7 +310,7 @@ self: super: {
     #
 
     # chat apps
-    slack
+    slack-dark
     discord
     wire-desktop
 
@@ -291,7 +327,7 @@ self: super: {
 
     # remote desktopery
     x2goclient
-    winswitch
+    # winswitch
 
     # multimedia
     mpv
