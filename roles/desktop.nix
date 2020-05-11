@@ -6,8 +6,16 @@
     ./nixos.nix # basic shell env
   ];
 
+  programs.browserpass.enable = true;
+
+  # enable qt5 theming outside of plasma, hopefully this fixes pinentry-qt with gpg-agent systemd user service
+  # programs.qt5ct.enable = true;
+
+  environment.variables.QT_QPA_PLATFORMTHEME = "kde";
+
   environment.systemPackages = with pkgs; [
     breeze-gtk
+    gtk2 # must explicitly be included; workaround for https://github.com/NixOS/nixpkgs/issues/69455
     breeze-icons
     #    breeze-qt4 # disabled for nixos-18.03
     breeze-qt5
@@ -20,13 +28,13 @@
     kgpg
     spectacle
     kdeApplications.kwalletmanager
+    kdeApplications.kfind
     pavucontrol
     pythonPackages.youtube-dl
     gwenview
     ksysguard
-    # touchegg
+    touchegg
     libsForQt5.phonon-backend-vlc
-    phonon-backend-vlc
   ] ++ pxc.common.gui.pkgs
     ++ pxc.linux.gui.pkgs
   ;
@@ -59,11 +67,10 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.desktopManager.plasma5.enableQt4Support = true;
 
   # disable slim by preferring sddm; slim is apparently kinda broken
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.default = "plasma5";
+  services.xserver.displayManager.defaultSession = "plasma5";
 
   # printer stuff!
   services.printing.drivers = with pkgs; [
@@ -82,19 +89,18 @@
   # enable lots of fonts for desktop use
   fonts = {
     fontconfig = {
-      penultimate.enable = false; # true by default
-      ultimate.enable = true;
-      useEmbeddedBitmaps = true;
+      # useEmbeddedBitmaps = true;
       cache32Bit = true;
+      # penultimate.enable = true;
     };
 
     enableFontDir = true;
-    enableCoreFonts = true;
     enableDefaultFonts = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       # actual proprietary OS-vendor fonts
-      vistafonts
+      # vistafonts
+      # corefonts # this look so fugly
 
       # metric-compatible OS-vendor fonts
       liberation_ttf
@@ -103,7 +109,7 @@
       caladea
       kochi-substitute
       comic-relief
-      liberationsansnarrow
+      # liberationsansnarrow
       dosemu_fonts
 
       # general-purpose
@@ -120,7 +126,7 @@
       unifont
       freefont_ttf
       cm_unicode
-      ucsFonts
+      # ucsFonts # this contains the FUGLY Helvetica and Arial fonts that demean GitHub
       junicode
 
 
@@ -132,11 +138,12 @@
 
       # tex & typesetting
       stix-otf
-      xorg.fontadobe100dpi
-      xorg.fontadobe75dpi
-      xorg.fontadobeutopia100dpi
-      xorg.fontadobeutopia75dpi
-      xorg.fontadobeutopiatype1
+      # oops, these fonts are also fugly
+      # xorg.fontadobe100dpi
+      # xorg.fontadobe75dpi
+      # xorg.fontadobeutopia100dpi
+      # xorg.fontadobeutopia75dpi
+      # xorg.fontadobeutopiatype1
       lmmath
       lmodern
 

@@ -4,6 +4,11 @@
 
 { config, pkgs, ... }:
 
+let
+  unstablePkgs = (import <nixos-unstable> { }).pkgs;
+  stablePkgs = (import <nixos-stable> { }).pkgs;
+in
+
 {
   imports = [
     ../../roles/workstation.nix
@@ -20,7 +25,9 @@
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.kernelPackages = pkgs.linuxPackages_4_19; # LTS, hopefully fewer problems with certain kernel modules
+  boot.kernelPackages = pkgs.linuxPackages_5_6;
+
+  boot.loader.grub.enable = false;
 
   # hoping this will relieve a suspend/resume issue
   # temporarily allowing iommu to see if things are still bad with the 4.17 kernel
@@ -34,9 +41,11 @@
   # Network configuration
   networking.hostName = "rhett"; # Define your hostname.
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
   # for split DNS configuration while on VPN
   # requires search domains to be set on the VPN connection in nm
   networking.networkmanager.dns = "dnsmasq";
+  # networking.networkmanager.dynamicHosts = {enable = true; hostsDirs = { root = {}; }; }; # feature removed
 
   # hopefully sending ipv4 and ipv6 requests separately will solve my transient DNS resolution issues
   # networking.dnsSingleRequest = true;
@@ -44,6 +53,9 @@
 
   # Enable the Linux firmware update tool
   services.fwupd.enable = true;
+
+  # Enable some Thunderbolt 3 tools
+  services.hardware.bolt.enable = true;
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -55,7 +67,8 @@
   '';
 
   # Handle some bluetooth hardware quirks
-  hardware.enableAllFirmware = true;
+  # hardware.enableAllFirmware = true; # disabled because FacetimeHD firmware was getting pulled in and failing: https://github.com/NixOS/nixpkgs/issues/71952
+  hardware.enableRedistributableFirmware = true;
   powerManagement.resumeCommands = ''
     # After suspend, the bluetooth device (an embedded, Intel-based ‘USB’
     # adapter, apparently) in my ThinkPad 25 winds up in a strange power state.
@@ -90,7 +103,7 @@
     nextcloud-client
     calibre
 
-    kdeApplications.kdepim-addons
+    # kdeApplications.kdepim-addons # kitinerary not building as of 2019-12-09
     kdeApplications.korganizer
     kdeApplications.kmail
     kdeApplications.kontact
@@ -125,10 +138,11 @@
     hoogle
     # intero # broken, I guess
     # hasktags
-    stylish-haskell
+    # stylish-haskell # broken on 20.03
 
     # for primerun.sh
     fluxbox
+  ]) ++ (with unstablePkgs; [
   ]);
 
   services.udev.packages = with pkgs; [
@@ -146,9 +160,12 @@
   # run the daemon as a system service.
   services.redshift.enable = false;
 
-  hardware.bumblebee.enable = true;
-  hardware.bumblebee.group = "video";
-  hardware.bumblebee.connectDisplay = true;
+  # hardware.bumblebee.enable = true;
+  # hardware.bumblebee.group = "video";
+  # hardware.bumblebee.connectDisplay = true;
+
+
+
   # some Steam/Optimus quirks
   nixpkgs.config.packageOverrides = superPkgs: {
     steam = superPkgs.steam.override {
@@ -156,7 +173,6 @@
       extraPkgs = p: with p; [
         glxinfo        # for diagnostics
         nettools       # for `hostname`, which some scripts expect
-        bumblebee      # for optirun
         virtualgl      # for glxspheres
       ];
     };
@@ -164,13 +180,24 @@
 
   boot.extraModprobeConfig = ''
     # Handle NVIDIA Optimus power management quirk
-    options bbswitch load_state=-1 unload_state=1
+    # options bbswitch load_state=-1 unload_state=1
 
     # Handle wireless / bluetooth hardware quirks
     # options iwlwifi bt_coex_active=0 # bluetooth fails on recent kernels without this
 
     options i915 enable_fbc=1
   '';
+
+  # does not seem to have helped any or changed anything really
+  # boot.kernelPatches = [ {
+  #    name = "thunderbolt";
+  #    patch = null;
+  #    extraConfig = ''
+  #      THUNDERBOLT y
+  #      HOTPLUG_PCI y
+  #      HOTPLUG_PCI_ACPI y
+  #    '';
+  # } ];
 
   # boot.extraModulePackages = with config.boot.kernelPackages; [
   #   exfat-nofuse # broken :-()
@@ -185,7 +212,11 @@
     CPU_SCALING_GOVERNOR_ON_BAT=powersave
   '';
 
-  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    enableExtraSocket = true;
+  };
 
   hardware.trackpoint = {
     enable = true;
@@ -209,11 +240,31 @@
         MatchDevicePath "/dev/input/event*"
         Option "AccelProfile" "flat"
       EndSection
+
+      Section "InputClass"
+        Identifier "Disable Mouse Acceleration"
+        Driver "libinput"
+        MatchVendor "ROCCAT"
+        MatchIsPointer "on"
+        Option "AccelProfile" "flat"
+        Option "AccelSpeed" "0"
+      EndSection
     '';
     # idr why I used to have modesetting, but I want to experiment
-    # with the "intel" driver to use the firmware and get VUlkan support
+    # with the "intel" driver to use the firmware and get Vulkan support
     # videoDrivers = [ "modesetting" ];
-    videoDrivers = [ "intel" ];
+    # videoDrivers = [ "intel" ];
+
+    # jk, I'm very sick of docked video performance. Please let this help.
+    # # always use the NVIDIA GPU (I'm hoping this makes using the laptop while docked better, less video dropouts)
+    # hardware.nvidia = {
+    #   modesetting = true;
+    #   optimus_prime = {
+    #     intelBusId = "00:02.0";
+    #     nvidiaBusId = "02:00.0";
+    #   };
+    # };
+    videoDrivers = [ "nvidia" ];
     exportConfiguration = true;
   };
 
@@ -241,6 +292,12 @@
     LIBINPUT_ATTR_SIZE_HINT=100x58
   '';
 
+  # for flashing my Gemini
+  services.udev.extraRules = ''
+    ATTRS{idVendor}=="0e8d", ENV{ID_MM_DEVICE_IGNORE}="1"
+    ATTRS{idVendor}=="6000", ENV{ID_MM_DEVICE_IGNORE}="1"
+  '';
+
   # services.xserver.windowManager.fluxbox.enable = true;
 
   # Enable the KDE Desktop Environment.
@@ -254,8 +311,9 @@
   services.xserver.displayManager.job.logToFile = true;
 
   # services.kmscon.enable = true;
-  boot.earlyVconsoleSetup = true;
-  i18n.consoleFont = "${pkgs.terminus_font}/share/consolefonts/ter-i16n.psf.gz";
+  console.earlySetup = true;
+  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-i16n.psf.gz";
+  i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
 
   nix.buildCores = 2;
 
@@ -268,7 +326,7 @@
   # for Themis testing/local dev
   networking.hosts = {
     "127.0.0.1" = [ "dev.themisbar.com" "local.themisbar.com" ];
-    "178.32.222.191" =  [ "archive.is" "www.archive.is" "archive.fo" "www.archive.fo" "archive.li" "www.archive.li" ];
+    "178.170.84.10" =  [ "archive.is" "www.archive.is" "archive.fo" "www.archive.fo" "archive.li" "www.archive.li" ];
     # "54.87.249.43" = [ "phpup.themisbar.com" ];
     # "18.207.213.15" = [ "next.themisbar.com" ];
   };
@@ -299,11 +357,28 @@
       ips = [ "172.252.254.1/32" ];
 
       peers = [
-        { # staging.thbr.co
+        { # prod.thbr.co
           publicKey = "x3+5Feq2Aqc0AukI0FTPLAsRoK4CtSdB1DfYd4+czl4=";
           allowedIPs = [ "172.252.0.0/16" ];
           endpoint = "wg.prod.thbr.co:58688";
           presharedKeyFile = "/etc/wireguard/keys/user/pxc@prod.psk";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+
+    "wg-pxc@ops" = {
+      # private key is stored via `pass`, see post-up script configuration
+      privateKeyFile = "/dev/null";
+      ips = [ "10.128.254.1/32" ];
+
+      peers = [
+        { # ops.thbr.co
+        publicKey = "wvJMc2TZQS2E7owpa4WXzn7noIKZOiKuRj71POclOCM=";
+          allowedIPs = [ "10.128.0.0/16" ];
+          # endpoint = "wg.prod.thbr.co:53712";
+          endpoint = " 3.221.10.224:53712";
+          presharedKeyFile = "/etc/wireguard/keys/user/pxc@ops.psk";
           persistentKeepalive = 25;
         }
       ];
@@ -358,5 +433,5 @@
   #   };
   # };
 
-  zramSwap.enable = true; hardware.opengl.s3tcSupport = true;
+  zramSwap.enable = true;
 }

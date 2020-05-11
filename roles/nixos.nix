@@ -40,9 +40,10 @@
     #consoleFont = "/run/current-system/sw/share/fonts/psf/ter-powerline-v20n.psf.gz";
     #consoleFont = "ter-powerline-v16n";    # TODO: fix the powerline-fonts package so that the full path is not required
     #consoleFont = "Lat2-Terminus16";       # default
-    consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
+
+  console.keyMap = "us";
 
   # Set your time zone.
   time.timeZone = "America/Phoenix";

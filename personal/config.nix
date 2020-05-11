@@ -8,9 +8,10 @@ pkgs :
   android_sdk.accept_license = true;
 
   firefox = {
-    enableGoogleTalkPlugin = true;
+    # enableGoogleTalkPlugin = true;
     enablePlasmaBrowserIntegration = true;
     enableBrowserpass = true;
+    enableTridactylNative = true;
     #   enableAdobeFlash = true;
   };
 
@@ -18,6 +19,9 @@ pkgs :
   # #    enablePepperFlash = true;
   #   # enablePepperPDF = true;
   # };
+  chromium = {
+    enableWideVine = true;
+  };
 
   php.xslSupport = true;
 

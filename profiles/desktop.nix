@@ -52,6 +52,7 @@
     #rekonq # no more rekonq
     x2goclient
     winswitch
+    kfind
     kdeApplications.dolphin-plugins
     kdeApplications.kio-extras
     #kdesvn # no more kdesvn

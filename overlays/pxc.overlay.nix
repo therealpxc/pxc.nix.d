@@ -85,13 +85,13 @@ self: super: {
       ]);
   });
 
-  elvish = super.elvish.overrideAttrs (oldAttrs: rec {
+  elvish-git = super.elvish.overrideAttrs (oldAttrs: rec {
     name = "elvish-git";
     src = self.fetchFromGitHub {
       repo = "elvish";
       owner = "elves";
-      rev = "80ba0122ad3ddcb34d5288e6afd9dcfde496db6c";
-      sha256 = "1lq24j61pas5mpwvv151ayc3izkf1rrzzsx1iiw3pwq1jmhkkyy2";
+      rev = "master";
+      sha256 = "sha256:17xa0aska6r9ylr55gpjari8r1cvl84qsn1ma7jywmjw5a7mmpxm";
     };
   });
 
@@ -185,9 +185,10 @@ self: super: {
     keychain
     direnv              # barebones projects, pretty nifty
     gitAndTools.hub
-    gitAndTools.gitFull
+    # gitAndTools.gitFull
+    git
     gitAndTools.tig     # curses TUI for browsing git logs
-    pythonPackages.powerline
+    python3Packages.powerline
     findutils           # macOS comes with weak find command
     # commented out because it's not in Nixpkgs yet
     #chips               # an alternative to oh-my-fish
@@ -196,7 +197,7 @@ self: super: {
 
     # dotfiles & configuration
     #home-manager        # rycee's nix-based home manager
-    super-user-spark    # dotfiles manager
+    # super-user-spark    # dotfiles manager
     pass                # git-based password manager
     pwgen               # for use with pass
 
@@ -229,7 +230,12 @@ self: super: {
     zsh
 
     sbt-with-scala-native
+    pipenv
     graphicsmagick
+
+    # tldr-hs
+    whois
+    awscli
 
     # to explore in the future
     # fd                              # alternative to find
@@ -241,7 +247,7 @@ self: super: {
     # most                            # alternative to less
     # restic, duplicacy, rclone       # rsync-like cloud backup
     # entr, watchman                  # watch dirs and files, do stuff when they change
-
+    # exa                             # alternative to ls
 
     # emacs stuff, to be configured in emacs:
     # telephone-line  # powerline replacement, perhaps less buggy?
@@ -291,6 +297,7 @@ self: super: {
     # it's a common problem for macOS Go packages and there are
     # known fixes.
     elvish              # cool shell under very active development
+    bind
   ];
   pxc.linux.tui.env = with super.pkgs; buildEnv {
     name = "pxc-linux-tui-env";
@@ -300,9 +307,13 @@ self: super: {
   pxc.linux.gui.pkgs = with self.pkgs; [
     # X utilities
     xorg.xmodmap
+    xautomation
+    xdotool
+    minitube
     # xpra # broken :-()
 
     gnome3.cheese            # simple GNOME webcam app
+
 
     ######
     # packages below should ideally be in common.gui.pkgs, but some need to be
@@ -313,8 +324,14 @@ self: super: {
     slack-dark
     discord
     wire-desktop
+    tdesktop      # telegram-desktop
+
+    signal-desktop
+
+    kdeconnect
 
     firefox
+    google-chrome
     dolphin             # best file manager ever made
     kdeApplications.dolphin-plugins
     kdeApplications.kio-extras
@@ -335,7 +352,9 @@ self: super: {
     qtpass              # Qt GUI frontend for pass -- qtbase-opensource is broken on macOS
 
     # dependency hddtemp doesn't build on Darwin
-    pythonPackages.glances  # fancier htop?
+    python3Packages.glances  # fancier htop?
+
+    spotify
   ];
   pxc.linux.gui.env = with super.pkgs; buildEnv {
     name = "pxc-linux-gui-env";

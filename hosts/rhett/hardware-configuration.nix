@@ -105,24 +105,24 @@
       neededForBoot = false;
     };
 
-    "/data/foreign-os/openSUSE" = {
-      device = "/dev/disk/by-uuid/2f953f0a-64d3-46ec-80d8-66179ce15091";
-      fsType = "btrfs";
-      noCheck = true;
-      neededForBoot = false;
-    };
-
-    "data/foreign-os/openSUSE/boot/efi" = {
-      device = "/dev/disk/by-uuid/B81B-593A";
-      fsType = "vfat";
-    };
-
-    "/data/foreign-os/openSUSE/home" = {
-      device = "/dev/disk/by-uuid/e168d489-ab14-4237-8270-c371c9d337f0";
-      fsType = "ext4";
-      noCheck = true;
-      neededForBoot = false;
-    };
+    # "/data/foreign-os/openSUSE" = {
+      # device = "/dev/disk/by-uuid/2f953f0a-64d3-46ec-80d8-66179ce15091";
+      # fsType = "btrfs";
+      # noCheck = true;
+      # neededForBoot = false;
+    # };
+#
+    # "data/foreign-os/openSUSE/boot/efi" = {
+      # device = "/dev/disk/by-uuid/B81B-593A";
+      # fsType = "vfat";
+    # };
+#
+    # "/data/foreign-os/openSUSE/home" = {
+      # device = "/dev/disk/by-uuid/e168d489-ab14-4237-8270-c371c9d337f0";
+      # fsType = "ext4";
+      # noCheck = true;
+      # neededForBoot = false;
+    # };
 
   };
 
